@@ -3,104 +3,107 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
+const ease = [0.22, 1, 0.36, 1] as const;
+
 const services = [
   {
-    number: "01",
+    num: "01",
     title: "Développement Frontend",
-    description:
-      "Applications web modernes et performantes avec React, Next.js, Angular, Vue.js et Nuxt.js. Interfaces élégantes et expériences utilisateur immersives.",
-    techs: ["React", "Next.js", "Angular", "Vue.js", "Nuxt.js"],
-    color: "#6C63FF",
+    desc: "Applications web modernes et performantes. Interfaces élégantes et expériences utilisateur immersives qui convertissent.",
+    tags: ["React", "Next.js", "Angular", "Vue.js", "Nuxt.js"],
+    accent: "bg-accent",
   },
   {
-    number: "02",
+    num: "02",
     title: "Développement Backend",
-    description:
-      "Architecture serveur robuste et scalable avec NestJS et TypeScript. APIs RESTful et GraphQL, microservices et intégrations complexes.",
-    techs: ["NestJS", "TypeScript", "GraphQL", "REST API"],
-    color: "#00D4AA",
+    desc: "Architecture serveur robuste et scalable. APIs RESTful, GraphQL, microservices et intégrations sur mesure.",
+    tags: ["NestJS", "TypeScript", "Node.js", "GraphQL"],
+    accent: "bg-teal",
   },
   {
-    number: "03",
-    title: "Protection des données & RGPD",
-    description:
-      "Audit de conformité RGPD, mise en place de politiques de protection des données, DPO externalisé et accompagnement juridique adapté.",
-    techs: ["RGPD", "DPO", "Audit", "Compliance"],
-    color: "#FF6B6B",
+    num: "03",
+    title: "RGPD & DPO Externalisé",
+    desc: "Audit de conformité, mise en place de politiques de protection des données, DPO externalisé et accompagnement continu.",
+    tags: ["RGPD", "DPO", "Audit", "Conformité", "Privacy by Design"],
+    accent: "bg-coral",
   },
   {
-    number: "04",
+    num: "04",
     title: "Design & UX/UI",
-    description:
-      "Conception d'interfaces centrées utilisateur, prototypage, design systems et identité visuelle qui reflètent votre marque.",
-    techs: ["UI Design", "UX Research", "Prototyping", "Design System"],
-    color: "#FFD93D",
+    desc: "Conception d'interfaces centrées utilisateur. Prototypage, design systems et identités visuelles mémorables.",
+    tags: ["UI Design", "UX Research", "Prototyping", "Design System"],
+    accent: "bg-blue",
   },
 ];
 
 export default function Services() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="services" className="relative py-32" ref={ref}>
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="services" className="relative py-32 lg:py-40" ref={ref}>
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+        {/* Section label */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-20"
+          initial={{ opacity: 0, x: -20 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.7, ease }}
+          className="flex items-center gap-4 mb-16"
         >
-          <span className="text-xs tracking-[0.3em] uppercase text-accent font-[family-name:var(--font-geist-mono)] mb-4 block">
-            Nos services
+          <div className="w-12 h-[1px] bg-accent" />
+          <span className="text-[11px] tracking-[0.35em] uppercase text-accent font-[family-name:var(--font-mono)]">
+            Services
           </span>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-            Ce que nous
-            <br />
-            <span className="text-muted font-light">faisons le mieux.</span>
-          </h2>
         </motion.div>
 
-        <div className="space-y-4">
-          {services.map((service, i) => (
-            <motion.div
-              key={service.number}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                duration: 0.6,
-                delay: i * 0.1,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              <div className="group glass rounded-2xl p-8 sm:p-10 hover:bg-white/5 transition-all duration-500 cursor-default">
-                <div className="flex flex-col lg:flex-row lg:items-center gap-6">
-                  {/* Number */}
-                  <span
-                    className="text-5xl font-bold opacity-20 font-[family-name:var(--font-geist-mono)] lg:w-24 shrink-0 transition-opacity duration-500 group-hover:opacity-50"
-                    style={{ color: service.color }}
-                  >
-                    {service.number}
-                  </span>
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.1, ease }}
+          className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl lg:text-[3.5rem] font-700 leading-[1.05] tracking-tight mb-20"
+        >
+          Ce que nous
+          <br />
+          <span className="text-text-secondary font-300">faisons le mieux.</span>
+        </motion.h2>
 
-                  {/* Content */}
-                  <div className="flex-1">
-                    <h3 className="text-2xl sm:text-3xl font-semibold mb-3 group-hover:text-accent transition-colors duration-300">
-                      {service.title}
+        {/* Service cards */}
+        <div className="space-y-3">
+          {services.map((s, i) => (
+            <motion.div
+              key={s.num}
+              initial={{ opacity: 0, y: 25 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.15 + i * 0.08, ease }}
+            >
+              <div className="group border border-border rounded-sm p-8 lg:p-10 card-lift cursor-default">
+                <div className="flex flex-col lg:flex-row lg:items-start gap-8">
+                  {/* Number + accent dot */}
+                  <div className="flex items-center gap-4 lg:w-20 shrink-0">
+                    <div className={`w-2 h-2 rounded-full ${s.accent} opacity-60 group-hover:opacity-100 transition-opacity duration-300`} />
+                    <span className="text-text-dim text-[13px] font-[family-name:var(--font-mono)]">
+                      {s.num}
+                    </span>
+                  </div>
+
+                  {/* Title + desc */}
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-[family-name:var(--font-display)] text-xl sm:text-2xl font-600 mb-3 group-hover:text-accent transition-colors duration-400">
+                      {s.title}
                     </h3>
-                    <p className="text-muted leading-relaxed max-w-2xl">
-                      {service.description}
+                    <p className="text-text-secondary text-[15px] leading-relaxed max-w-2xl font-[family-name:var(--font-body)]">
+                      {s.desc}
                     </p>
                   </div>
 
-                  {/* Tech tags */}
-                  <div className="flex flex-wrap gap-2 lg:justify-end lg:w-64 shrink-0">
-                    {service.techs.map((tech) => (
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 lg:w-72 lg:justify-end shrink-0">
+                    {s.tags.map((tag) => (
                       <span
-                        key={tech}
-                        className="px-3 py-1.5 text-xs rounded-full border border-border text-muted font-[family-name:var(--font-geist-mono)] hover:border-accent/50 hover:text-accent transition-colors duration-300"
+                        key={tag}
+                        className="px-3 py-1 text-[11px] rounded-sm border border-border text-text-dim font-[family-name:var(--font-mono)] tracking-wide group-hover:border-border-hover group-hover:text-text-secondary transition-all duration-300"
                       >
-                        {tech}
+                        {tag}
                       </span>
                     ))}
                   </div>

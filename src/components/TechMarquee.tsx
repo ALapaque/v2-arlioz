@@ -1,8 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
-
-const technologies = [
+const items = [
   "React",
   "Next.js",
   "Angular",
@@ -14,7 +12,7 @@ const technologies = [
   "GraphQL",
   "RGPD",
   "DPO",
-  "Tailwind CSS",
+  "Tailwind",
   "PostgreSQL",
   "MongoDB",
   "Docker",
@@ -22,29 +20,25 @@ const technologies = [
 ];
 
 export default function TechMarquee() {
+  const doubled = [...items, ...items];
+
   return (
-    <section className="relative py-16 border-y border-border overflow-hidden">
-      <div className="flex whitespace-nowrap">
-        <motion.div
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            x: {
-              duration: 30,
-              repeat: Infinity,
-              ease: "linear",
-            },
-          }}
-          className="flex items-center gap-8 shrink-0"
-        >
-          {[...technologies, ...technologies].map((tech, i) => (
-            <span
-              key={`${tech}-${i}`}
-              className="text-sm text-muted/40 font-[family-name:var(--font-geist-mono)] uppercase tracking-widest hover:text-accent transition-colors duration-300 cursor-default"
-            >
-              {tech}
-            </span>
-          ))}
-        </motion.div>
+    <section className="relative border-y border-border py-5 overflow-hidden">
+      <div
+        className="flex gap-12 whitespace-nowrap"
+        style={{
+          animation: "marquee 40s linear infinite",
+          width: "max-content",
+        }}
+      >
+        {doubled.map((item, i) => (
+          <span
+            key={`${item}-${i}`}
+            className="text-[12px] text-text-dim/50 font-[family-name:var(--font-mono)] uppercase tracking-[0.25em] hover:text-accent transition-colors duration-300 cursor-default select-none"
+          >
+            {item}
+          </span>
+        ))}
       </div>
     </section>
   );

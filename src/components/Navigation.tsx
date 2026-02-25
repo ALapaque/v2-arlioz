@@ -2,117 +2,128 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Logo from "./Logo";
+import Image from "next/image";
 
-const navItems = [
+const links = [
   { label: "A propos", href: "#about" },
   { label: "Services", href: "#services" },
-  { label: "Portfolio", href: "#portfolio" },
+  { label: "Projets", href: "#portfolio" },
   { label: "Equipe", href: "#team" },
   { label: "Contact", href: "#contact" },
 ];
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      <motion.header
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
           scrolled
-            ? "glass-strong py-3"
-            : "py-5 bg-transparent"
+            ? "bg-bg/80 backdrop-blur-xl border-b border-border"
+            : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
+          {/* Logo */}
           <a href="#" className="flex items-center gap-3 group">
-            <Logo className="w-9 h-9 transition-transform duration-300 group-hover:scale-110" />
-            <span className="text-lg font-bold tracking-tight font-[family-name:var(--font-geist-mono)]">
-              ARLIOZ
+            <Image
+              src="/logo-arlioz.svg"
+              alt="Arlioz"
+              width={38}
+              height={38}
+              className="transition-transform duration-500 group-hover:rotate-12"
+            />
+            <span className="text-[15px] font-bold tracking-[0.2em] uppercase font-[family-name:var(--font-display)]">
+              Arlioz
             </span>
           </a>
 
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
+          {/* Desktop links */}
+          <nav className="hidden lg:flex items-center gap-1">
+            {links.map((link) => (
               <a
-                key={item.href}
-                href={item.href}
-                className="px-4 py-2 text-sm text-muted hover:text-foreground transition-colors duration-300 font-[family-name:var(--font-geist-mono)]"
+                key={link.href}
+                href={link.href}
+                className="accent-line px-4 py-2 text-[13px] text-text-secondary hover:text-text transition-colors duration-300 font-[family-name:var(--font-mono)] tracking-wide"
               >
-                {item.label}
+                {link.label}
               </a>
             ))}
             <a
               href="#contact"
-              className="ml-4 px-5 py-2.5 bg-accent text-white text-sm font-medium rounded-full hover:bg-accent/80 transition-all duration-300 font-[family-name:var(--font-geist-mono)]"
+              className="ml-6 px-6 py-2.5 text-[13px] font-medium bg-accent text-bg rounded-sm hover:bg-accent-hover transition-all duration-300 font-[family-name:var(--font-mono)] tracking-wide"
             >
               Parlons-en
             </a>
-          </div>
+          </nav>
 
-          {/* Mobile burger */}
+          {/* Mobile toggle */}
           <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2"
+            onClick={() => setOpen(!open)}
+            className="lg:hidden relative w-8 h-8 flex items-center justify-center"
             aria-label="Menu"
           >
             <motion.span
-              animate={mobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-              className="block w-6 h-0.5 bg-foreground"
+              animate={open ? { rotate: 45, y: 0 } : { rotate: 0, y: -4 }}
+              className="absolute w-5 h-[1.5px] bg-text"
             />
             <motion.span
-              animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="block w-6 h-0.5 bg-foreground"
+              animate={open ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+              className="absolute w-5 h-[1.5px] bg-text"
             />
             <motion.span
-              animate={mobileOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-              className="block w-6 h-0.5 bg-foreground"
+              animate={open ? { rotate: -45, y: 0 } : { rotate: 0, y: 4 }}
+              className="absolute w-5 h-[1.5px] bg-text"
             />
           </button>
         </div>
-      </motion.nav>
+      </motion.header>
 
-      {/* Mobile menu */}
+      {/* Mobile fullscreen menu */}
       <AnimatePresence>
-        {mobileOpen && (
+        {open && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl flex items-center justify-center"
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 bg-bg flex flex-col items-center justify-center gap-2"
           >
-            <motion.div
+            {links.map((link, i) => (
+              <motion.a
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ delay: i * 0.06, duration: 0.4 }}
+                className="text-4xl font-light font-[family-name:var(--font-display)] text-text hover:text-accent transition-colors duration-300 py-3"
+              >
+                {link.label}
+              </motion.a>
+            ))}
+            <motion.a
+              href="#contact"
+              onClick={() => setOpen(false)}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ delay: 0.1 }}
-              className="flex flex-col items-center gap-6"
+              transition={{ delay: 0.35, duration: 0.4 }}
+              className="mt-8 px-10 py-4 bg-accent text-bg font-medium rounded-sm font-[family-name:var(--font-mono)] text-sm tracking-wide"
             >
-              {navItems.map((item, i) => (
-                <motion.a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + i * 0.05 }}
-                  className="text-3xl font-light text-foreground hover:text-accent transition-colors font-[family-name:var(--font-geist-mono)]"
-                >
-                  {item.label}
-                </motion.a>
-              ))}
-            </motion.div>
+              Parlons-en
+            </motion.a>
           </motion.div>
         )}
       </AnimatePresence>

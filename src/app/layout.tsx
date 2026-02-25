@@ -8,16 +8,24 @@ const geistSans = localFont({
   weight: "100 900",
 });
 
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff2",
-  variable: "--font-geist-mono",
+const outfit = localFont({
+  src: "./fonts/Outfit-Variable.woff2",
+  variable: "--font-outfit",
   weight: "100 900",
+});
+
+const spaceMono = localFont({
+  src: [
+    { path: "./fonts/SpaceMono-Regular.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/SpaceMono-Bold.woff2", weight: "700", style: "normal" },
+  ],
+  variable: "--font-space-mono",
 });
 
 export const metadata: Metadata = {
   title: "Arlioz — Data Protection & Digital Development",
   description:
-    "Your trusted partners in data protection and digital development. We combine privacy expertise with cutting-edge web development to help companies grow safely and smartly.",
+    "Votre partenaire de confiance en protection des données et développement digital. Expertise RGPD et développement web de pointe en Belgique.",
   keywords: [
     "Arlioz",
     "web development",
@@ -32,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Arlioz — Data Protection & Digital Development",
     description:
-      "Your trusted partners in data protection and digital development.",
+      "Votre partenaire de confiance en protection des données et développement digital.",
     url: "https://arlioz.be",
     siteName: "Arlioz",
     type: "website",
@@ -48,7 +56,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${outfit.variable} ${spaceMono.variable} antialiased`}
       >
         {children}
       </body>
