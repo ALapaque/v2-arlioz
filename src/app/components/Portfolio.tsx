@@ -3,7 +3,8 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-interface Project {
+interface PortfolioProject {
+  slug: string;
   name: string;
   category: string;
   description: string;
@@ -12,8 +13,9 @@ interface Project {
   accent: string;
 }
 
-const projects: Project[] = [
+const projects: PortfolioProject[] = [
   {
+    slug: "vaultify",
     name: "Vaultify",
     category: "FinTech SaaS",
     description: "Dashboard analytics & gestion de portefeuille pour investisseurs nouvelle génération.",
@@ -22,6 +24,7 @@ const projects: Project[] = [
     accent: "#00D4AA",
   },
   {
+    slug: "lumiere",
     name: "Lumière",
     category: "E-commerce Luxe",
     description: "Plateforme e-commerce headless pour une maison de haute couture parisienne.",
@@ -30,6 +33,7 @@ const projects: Project[] = [
     accent: "#E8C4A0",
   },
   {
+    slug: "orbyt",
     name: "Orbyt",
     category: "Plateforme RH / B2B",
     description: "Suite RH complète : recrutement, onboarding, performance et engagement collaborateur.",
@@ -75,7 +79,8 @@ export default function Portfolio() {
         {/* Projects */}
         <div className="flex flex-col gap-6">
           {projects.map((project, i) => (
-            <motion.div
+            <motion.a
+              href={`/projets/${project.slug}`}
               key={project.name}
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -84,7 +89,7 @@ export default function Portfolio() {
                 duration: 0.8,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="group relative overflow-hidden border border-[var(--nx-border)] hover:border-[var(--nx-gold)] transition-all duration-500"
+              className="group block relative overflow-hidden border border-[var(--nx-border)] hover:border-[var(--nx-gold)] transition-all duration-500"
             >
               {/* Project mockup background */}
               <div
@@ -168,7 +173,7 @@ export default function Portfolio() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </div>

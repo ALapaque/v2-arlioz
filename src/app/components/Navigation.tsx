@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "Réalisations", href: "#portfolio" },
-  { label: "Process", href: "#process" },
-  { label: "Contact", href: "#contact" },
+  { label: "Services", href: "/#services" },
+  { label: "Réalisations", href: "/#portfolio" },
+  { label: "Process", href: "/#process" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Navigation() {
@@ -34,7 +34,7 @@ export default function Navigation() {
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-baseline gap-2 group">
+          <a href="/" className="flex items-baseline gap-2 group">
             <span
               className="text-2xl tracking-[0.08em] text-[var(--nx-ivory)]"
               style={{ fontFamily: "var(--font-display)" }}
@@ -65,7 +65,7 @@ export default function Navigation() {
 
           {/* CTA */}
           <a
-            href="#contact"
+            href="/#contact"
             className="hidden md:inline-flex items-center gap-2 px-6 py-2.5 border border-[var(--nx-gold)] text-[var(--nx-gold)] text-[12px] tracking-[0.2em] uppercase hover:bg-[var(--nx-gold)] hover:text-[var(--nx-black)] transition-all duration-300"
             style={{ fontFamily: "var(--font-mono)" }}
           >
@@ -118,7 +118,7 @@ export default function Navigation() {
               </motion.a>
             ))}
             <a
-              href="#contact"
+              href="/#contact"
               onClick={() => setMobileOpen(false)}
               className="mt-8 inline-flex items-center gap-3 px-6 py-3 border border-[var(--nx-gold)] text-[var(--nx-gold)] text-[12px] tracking-[0.2em] uppercase self-start"
               style={{ fontFamily: "var(--font-mono)" }}
