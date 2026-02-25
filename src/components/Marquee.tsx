@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 const items = [
   "React", "Next.js", "Angular", "Vue.js", "NestJS", "TypeScript",
   "Node.js", "GraphQL", "Tailwind", "PostgreSQL", "Docker", "AWS",
+  "React Native", "Figma",
 ];
 
 export default function Marquee() {
@@ -28,10 +29,9 @@ export default function Marquee() {
           }
         },
       });
-
       gsap.fromTo(sectionRef.current, { opacity: 0 }, {
         opacity: 1, duration: 0.5, ease: "power2.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 95%" },
+        scrollTrigger: { trigger: sectionRef.current, start: "top 96%" },
       });
     }, sectionRef);
     return () => ctx.revert();
@@ -47,10 +47,7 @@ export default function Marquee() {
         style={{ animation: "marquee 35s linear infinite", width: "max-content" }}
       >
         {doubled.map((item, i) => (
-          <span
-            key={`${item}-${i}`}
-            className="text-[11px] text-text-dim font-[family-name:var(--font-mono)] uppercase tracking-[0.25em] hover:text-blue transition-colors duration-300 cursor-default select-none"
-          >
+          <span key={`${item}-${i}`} className="text-[10px] text-dim font-[family-name:var(--font-mono)] uppercase tracking-[0.25em] hover:text-accent transition-colors duration-300 cursor-default select-none">
             {item}
           </span>
         ))}

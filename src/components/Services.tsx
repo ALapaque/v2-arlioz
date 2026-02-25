@@ -7,50 +7,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const services = [
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
-      </svg>
-    ),
-    title: "Développement Web",
-    desc: "Applications React, Next.js, Angular et Vue.js. Interfaces rapides, accessibles et optimisées SEO.",
-    tags: ["React", "Next.js", "TypeScript"],
-    color: "var(--color-blue)",
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
-      </svg>
-    ),
-    title: "Applications Mobile",
-    desc: "Apps cross-platform avec React Native. Une codebase, tous les appareils, performances natives.",
-    tags: ["React Native", "iOS", "Android"],
-    color: "var(--color-teal)",
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" />
-      </svg>
-    ),
-    title: "Backend & APIs",
-    desc: "Architecture NestJS, APIs REST & GraphQL, microservices scalables et intégrations sur mesure.",
-    tags: ["NestJS", "GraphQL", "Node.js"],
-    color: "var(--color-orange)",
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
-      </svg>
-    ),
-    title: "UI/UX Design",
-    desc: "Prototypage, design systems et interfaces utilisateur pensées pour la conversion et l'engagement.",
-    tags: ["Figma", "Prototyping", "Design System"],
-    color: "var(--color-blue)",
-  },
+  { num: "01", title: "Développement Web", desc: "Applications React, Next.js, Angular. Interfaces rapides, accessibles et performantes.", tags: ["React", "Next.js", "Angular", "TypeScript"] },
+  { num: "02", title: "Applications Mobile", desc: "Apps cross-platform React Native. Une codebase, tous les appareils, performances natives.", tags: ["React Native", "iOS", "Android"] },
+  { num: "03", title: "Backend & APIs", desc: "Architecture NestJS, APIs REST & GraphQL, microservices scalables et intégrations complexes.", tags: ["NestJS", "GraphQL", "Node.js", "PostgreSQL"] },
+  { num: "04", title: "UI/UX Design", desc: "Prototypage, design systems et interfaces pensées pour la conversion et l'engagement.", tags: ["Figma", "Prototyping", "Design System"] },
 ];
 
 export default function Services() {
@@ -58,18 +18,18 @@ export default function Services() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(".sv-label", { x: -30, opacity: 0 }, {
-        x: 0, opacity: 1, duration: 0.6, ease: "power3.out",
-        scrollTrigger: { trigger: ".sv-label", start: "top 88%" },
+      gsap.fromTo(".sv-num", { x: -20, opacity: 0 }, {
+        x: 0, opacity: 1, duration: 0.5, ease: "power3.out",
+        scrollTrigger: { trigger: ".sv-num", start: "top 88%" },
       });
-      gsap.fromTo(".sv-heading", { y: 50, opacity: 0 }, {
+      gsap.fromTo(".sv-h", { y: 40, opacity: 0 }, {
         y: 0, opacity: 1, duration: 0.8, stagger: 0.08, ease: "power3.out",
-        scrollTrigger: { trigger: ".sv-heading", start: "top 85%" },
+        scrollTrigger: { trigger: ".sv-title", start: "top 85%" },
       });
-      gsap.utils.toArray<HTMLElement>(".sv-card").forEach((card, i) => {
-        gsap.fromTo(card, { y: 60, opacity: 0 }, {
-          y: 0, opacity: 1, duration: 0.8, delay: i * 0.1, ease: "power3.out",
-          scrollTrigger: { trigger: card, start: "top 90%" },
+      gsap.utils.toArray<HTMLElement>(".sv-row").forEach((row, i) => {
+        gsap.fromTo(row, { y: 30, opacity: 0 }, {
+          y: 0, opacity: 1, duration: 0.7, delay: i * 0.08, ease: "power3.out",
+          scrollTrigger: { trigger: row, start: "top 92%" },
         });
       });
     }, sectionRef);
@@ -77,35 +37,37 @@ export default function Services() {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="py-28 lg:py-36">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-        <span className="sv-label section-label font-[family-name:var(--font-mono)]">Nos services</span>
-        <h2 className="sv-heading font-[family-name:var(--font-sans)] text-3xl sm:text-4xl lg:text-5xl font-800 leading-tight tracking-tight mb-14">
-          Ce que nous construisons<br />
-          <span className="text-text-secondary font-300">pour vous.</span>
+    <section id="services" ref={sectionRef} className="py-32 lg:py-44">
+      <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
+        <div className="sv-num section-num font-[family-name:var(--font-mono)]">01 Services</div>
+        <h2 className="sv-title font-[family-name:var(--font-sans)] text-3xl sm:text-4xl lg:text-[3.2rem] font-800 leading-[1.05] tracking-tight mb-16">
+          <span className="sv-h block">Ce que nous</span>
+          <span className="sv-h block text-muted font-300">construisons pour vous.</span>
         </h2>
 
-        <div className="grid sm:grid-cols-2 gap-4">
+        {/* Horizontal service rows — not cards */}
+        <div className="border-t border-border">
           {services.map((sv) => (
-            <div key={sv.title} className="sv-card card p-7 lg:p-8 group cursor-default">
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-5 transition-colors duration-400" style={{ background: `color-mix(in srgb, ${sv.color} 12%, transparent)`, color: sv.color }}>
-                {sv.icon}
-              </div>
-              <h3 className="font-[family-name:var(--font-sans)] text-lg font-700 mb-2 group-hover:text-blue transition-colors duration-300">
-                {sv.title}
-              </h3>
-              <p className="text-text-secondary text-sm leading-relaxed mb-5 font-[family-name:var(--font-sans)]">
-                {sv.desc}
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                {sv.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="px-2.5 py-1 text-[10px] border border-border rounded-md text-text-dim font-[family-name:var(--font-mono)] tracking-wider uppercase group-hover:border-border-hover group-hover:text-text-secondary transition-all duration-400"
-                  >
-                    {t}
-                  </span>
-                ))}
+            <div key={sv.num} className="sv-row service-row group cursor-default">
+              <div className="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-0 py-7 lg:py-8 px-4 lg:px-6">
+                {/* Number */}
+                <div className="lg:w-20 shrink-0">
+                  <span className="text-[11px] text-dim group-hover:text-accent transition-colors duration-400 font-[family-name:var(--font-mono)] tracking-[0.15em]">{sv.num}</span>
+                </div>
+                {/* Title */}
+                <div className="lg:w-64 shrink-0">
+                  <h3 className="font-[family-name:var(--font-sans)] text-xl font-700 group-hover:text-accent transition-colors duration-300">{sv.title}</h3>
+                </div>
+                {/* Description */}
+                <div className="flex-1 lg:px-8">
+                  <p className="text-muted text-[14px] leading-relaxed font-[family-name:var(--font-sans)] max-w-md">{sv.desc}</p>
+                </div>
+                {/* Tags */}
+                <div className="flex flex-wrap gap-1.5 lg:w-56 lg:justify-end shrink-0">
+                  {sv.tags.map((t) => (
+                    <span key={t} className="px-2 py-0.5 text-[9px] border border-border text-dim font-[family-name:var(--font-mono)] tracking-[0.12em] uppercase group-hover:border-border-active group-hover:text-muted transition-all duration-400">{t}</span>
+                  ))}
+                </div>
               </div>
             </div>
           ))}

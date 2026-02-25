@@ -19,18 +19,12 @@ export const metadata: Metadata = {
   description:
     "Agence digitale belge spécialisée dans le développement d'applications web et mobile sur mesure. React, Next.js, NestJS, TypeScript.",
   keywords: [
-    "Arlioz",
-    "développement web",
-    "applications sur mesure",
-    "React",
-    "Next.js",
-    "NestJS",
-    "TypeScript",
-    "Belgique",
+    "Arlioz", "développement web", "applications sur mesure", "React",
+    "Next.js", "NestJS", "TypeScript", "React Native", "Belgique",
   ],
   openGraph: {
     title: "Arlioz — Développement d'applications sur mesure",
-    description: "Agence digitale belge spécialisée dans le développement d'applications sur mesure.",
+    description: "Agence digitale belge — applications web & mobile sur mesure.",
     url: "https://arlioz.be",
     siteName: "Arlioz",
     type: "website",

@@ -24,18 +24,18 @@ export default function Home() {
       {!loaded && <Loader onComplete={handleLoaderComplete} />}
 
       <div className="grain">
-        <div className="bg-grid" />
+        <div className="dot-grid" />
         <SmoothScroll>
           <main className="relative z-10">
             <Navigation />
             <Hero />
             <Marquee />
             <Services />
-            <div className="sep max-w-[1100px] mx-auto" />
+            <div className="sep max-w-[1200px] mx-auto" />
             <About />
-            <div className="sep max-w-[1100px] mx-auto" />
+            <div className="sep max-w-[1200px] mx-auto" />
             <Projects />
-            <div className="sep max-w-[1100px] mx-auto" />
+            <div className="sep max-w-[1200px] mx-auto" />
             <Contact />
             <Footer />
           </main>
