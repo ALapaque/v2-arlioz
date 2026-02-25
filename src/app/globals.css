@@ -1,19 +1,346 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 @import "tailwindcss";
 
+/* ============================================
+   NEXORA — Design Tokens
+   ============================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --nx-black: #080808;
+  --nx-black-alt: #0D0D0D;
+  --nx-gold: #C9A84C;
+  --nx-gold-dim: rgba(201, 168, 76, 0.15);
+  --nx-gold-glow: rgba(201, 168, 76, 0.3);
+  --nx-ivory: #F5F0E8;
+  --nx-ivory-dim: rgba(245, 240, 232, 0.6);
+  --nx-ivory-ghost: rgba(245, 240, 232, 0.15);
+  --nx-ivory-faint: rgba(245, 240, 232, 0.08);
+  --nx-border: rgba(201, 168, 76, 0.2);
+
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --font-body: 'DM Sans', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================
+   GLOBAL RESET & BASE
+   ============================================ */
+* {
+  cursor: none !important;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--nx-black);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--nx-black);
+  color: var(--nx-ivory);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   CUSTOM CURSOR
+   ============================================ */
+.nx-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  z-index: 99999;
+  mix-blend-mode: difference;
+  transition: transform 0.15s ease;
+}
+
+.nx-cursor::before,
+.nx-cursor::after {
+  content: '';
+  position: absolute;
+  background: var(--nx-gold);
+}
+
+.nx-cursor::before {
+  width: 1px;
+  height: 24px;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.nx-cursor::after {
+  width: 24px;
+  height: 1px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+/* ============================================
+   SCROLL PROGRESS BAR
+   ============================================ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--nx-gold), var(--nx-ivory));
+  z-index: 10000;
+  transition: width 0.05s linear;
+}
+
+/* ============================================
+   NOISE TEXTURE OVERLAY
+   ============================================ */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ============================================
+   DECORATIVE LINES
+   ============================================ */
+.line-decorative {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--nx-border) 20%,
+    var(--nx-gold) 50%,
+    var(--nx-border) 80%,
+    transparent 100%
+  );
+}
+
+.line-vertical {
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--nx-border) 20%,
+    var(--nx-gold) 50%,
+    var(--nx-border) 80%,
+    transparent 100%
+  );
+}
+
+/* ============================================
+   SELECTION STYLE
+   ============================================ */
+::selection {
+  background: var(--nx-gold);
+  color: var(--nx-black);
+}
+
+::-moz-selection {
+  background: var(--nx-gold);
+  color: var(--nx-black);
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--nx-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--nx-gold-dim);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--nx-gold);
+}
+
+/* ============================================
+   SECTION BASE
+   ============================================ */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--nx-gold);
+}
+
+/* ============================================
+   GRADIENT MESH for HERO
+   ============================================ */
+@keyframes meshPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 0.4;
+  }
+}
+
+@keyframes meshRotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) scale(1);
+  }
+}
+
+.hero-mesh {
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(201, 168, 76, 0.15) 0%,
+    rgba(201, 168, 76, 0.05) 40%,
+    transparent 70%
+  );
+  animation: meshPulse 8s ease-in-out infinite;
+  filter: blur(80px);
+}
+
+.hero-mesh-secondary {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(201, 168, 76, 0.08) 0%,
+    transparent 60%
+  );
+  animation: meshRotate 20s linear infinite;
+  filter: blur(60px);
+}
+
+/* ============================================
+   MARQUEE ANIMATION
+   ============================================ */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  animation: marquee 30s linear infinite;
+  width: max-content;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ============================================
+   SCROLL INDICATOR
+   ============================================ */
+@keyframes scrollBounce {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 0.4;
+  }
+}
+
+.scroll-indicator {
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+/* ============================================
+   BADGE FLOAT
+   ============================================ */
+@keyframes badgeFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(1deg);
+  }
+}
+
+.badge-float {
+  animation: badgeFloat 4s ease-in-out infinite;
+}
+
+/* ============================================
+   SERVICE CARD BORDER ANIMATION
+   ============================================ */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes borderRotate {
+  to {
+    --angle: 360deg;
+  }
+}
+
+.card-border-animated {
+  position: relative;
+  background: var(--nx-black-alt);
+  border: 1px solid var(--nx-border);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-border-animated:hover {
+  border-color: var(--nx-gold);
+  box-shadow: 0 0 40px rgba(201, 168, 76, 0.08), inset 0 0 40px rgba(201, 168, 76, 0.03);
+  transform: translateY(-4px);
+}
+
+/* ============================================
+   RESPONSIVE HELPERS
+   ============================================ */
+@media (max-width: 768px) {
+  .hero-mesh {
+    width: 400px;
+    height: 400px;
+    left: 50%;
+  }
+  .hero-mesh-secondary {
+    width: 300px;
+    height: 300px;
+  }
+  * {
+    cursor: auto !important;
+  }
+  .nx-cursor {
+    display: none !important;
+  }
 }
