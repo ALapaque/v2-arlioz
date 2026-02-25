@@ -1,33 +1,48 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-bg: #07070A;
-  --color-bg-elevated: #0E0E14;
-  --color-bg-card: #111118;
-  --color-text: #EEEEF0;
-  --color-text-secondary: #78788A;
-  --color-text-dim: #3E3E4A;
+  --color-bg: #050508;
+  --color-bg-elevated: #0a0a10;
+  --color-bg-card: #0e0e16;
+  --color-text: #f0f0f2;
+  --color-text-secondary: #6a6a7a;
+  --color-text-dim: #35354a;
   --color-accent: #F5A623;
   --color-accent-hover: #FFB940;
   --color-teal: #2BA88C;
   --color-blue: #4A8AF5;
   --color-coral: #E85D4A;
-  --color-border: #1A1A24;
-  --color-border-hover: #2A2A38;
+  --color-border: #16161e;
+  --color-border-hover: #24243a;
   --font-display: var(--font-outfit);
   --font-body: var(--font-geist-sans);
   --font-mono: var(--font-space-mono);
 }
 
-* {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
   background: var(--color-bg);
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 body {
@@ -43,26 +58,89 @@ body {
   color: var(--color-bg);
 }
 
-::-webkit-scrollbar {
-  width: 3px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--color-text-dim);
-  border-radius: 3px;
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-text-dim); border-radius: 3px; }
+
+/* ─── Loader ─── */
+.loader-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-/* ─── Grain overlay ─── */
+.loader-text {
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  background: linear-gradient(90deg, var(--color-accent) var(--fill, 0%), var(--color-text-dim) var(--fill, 0%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.loader-bar {
+  width: min(300px, 60vw);
+  height: 2px;
+  background: var(--color-border);
+  border-radius: 1px;
+  overflow: hidden;
+  position: relative;
+}
+
+.loader-bar-fill {
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: 1px;
+  width: 0%;
+}
+
+/* ─── Grain ─── */
 .grain::after {
   content: '';
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: 9998;
   pointer-events: none;
-  opacity: 0.02;
+  opacity: 0.018;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ─── Reveal animations ─── */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(80px);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.line-reveal {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.line-reveal > span {
+  display: inline-block;
+  transform: translateY(110%);
 }
 
 /* ─── Utilities ─── */
@@ -88,29 +166,37 @@ body {
   background: linear-gradient(90deg, transparent, var(--color-border) 15%, var(--color-border) 85%, transparent);
 }
 
-.card-lift {
+.card-hover {
   transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
               border-color 0.4s ease,
               box-shadow 0.4s ease;
 }
-.card-lift:hover {
-  transform: translateY(-6px);
+.card-hover:hover {
+  transform: translateY(-8px);
   border-color: var(--color-border-hover);
-  box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
 }
 
-/* ─── Animations ─── */
+.magnetic {
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ─── Keyframes ─── */
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
 }
 
-@keyframes glow-pulse {
-  0%, 100% { opacity: 0.15; }
-  50% { opacity: 0.3; }
+@keyframes dash {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
