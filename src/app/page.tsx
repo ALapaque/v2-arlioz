@@ -1,46 +1,15 @@
-"use client";
-
-import { useState, useCallback } from "react";
-import Loader from "@/components/Loader";
-import SmoothScroll from "@/components/SmoothScroll";
-import Navigation from "@/components/Navigation";
-import Hero from "@/components/Hero";
-import Marquee from "@/components/Marquee";
-import Services from "@/components/Services";
-import About from "@/components/About";
-import Projects from "@/components/Projects";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-
 export default function Home() {
-  const [loaded, setLoaded] = useState(false);
-
-  const handleLoaderComplete = useCallback(() => {
-    setLoaded(true);
-  }, []);
-
   return (
-    <>
-      {!loaded && <Loader onComplete={handleLoaderComplete} />}
-
-      <div className="grain">
-        <div className="dot-grid" />
-        <SmoothScroll>
-          <main className="relative z-10">
-            <Navigation />
-            <Hero />
-            <Marquee />
-            <Services />
-            <div className="sep max-w-[1200px] mx-auto" />
-            <About />
-            <div className="sep max-w-[1200px] mx-auto" />
-            <Projects />
-            <div className="sep max-w-[1200px] mx-auto" />
-            <Contact />
-            <Footer />
-          </main>
-        </SmoothScroll>
-      </div>
-    </>
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+        <h1 className="text-4xl font-bold">Next.js</h1>
+        <p className="text-center sm:text-left text-lg">
+          Get started by editing{" "}
+          <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold font-[family-name:var(--font-geist-mono)]">
+            src/app/page.tsx
+          </code>
+        </p>
+      </main>
+    </div>
   );
 }
