@@ -1,198 +1,68 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, MeshDistortMaterial } from "@react-three/drei";
 import { useRef, useMemo } from "react";
 import * as THREE from "three";
 
-function FloatingTorus({
-  position,
-  color,
-  scale,
-  speed,
-}: {
-  position: [number, number, number];
-  color: string;
-  scale: number;
-  speed: number;
-}) {
-  const meshRef = useRef<THREE.Mesh>(null);
-
-  useFrame((state) => {
-    if (!meshRef.current) return;
-    meshRef.current.rotation.x = state.clock.elapsedTime * speed * 0.3;
-    meshRef.current.rotation.z = state.clock.elapsedTime * speed * 0.2;
-  });
-
-  return (
-    <Float speed={speed} rotationIntensity={0.4} floatIntensity={0.6}>
-      <mesh ref={meshRef} position={position} scale={scale}>
-        <torusGeometry args={[1, 0.35, 32, 64]} />
-        <MeshDistortMaterial
-          color={color}
-          emissive={color}
-          emissiveIntensity={0.15}
-          roughness={0.6}
-          metalness={0.3}
-          transparent
-          opacity={0.35}
-          distort={0.2}
-          speed={1.5}
-        />
-      </mesh>
-    </Float>
-  );
+function WireframeIcosahedron() {
+  const ref = useRef<THREE.Mesh>(null);
+  useFrame((s) => { if (ref.current) { ref.current.rotation.x = s.clock.elapsedTime * 0.08; ref.current.rotation.y = s.clock.elapsedTime * 0.12; } });
+  return <mesh ref={ref} scale={3}><icosahedronGeometry args={[1, 1]} /><meshBasicMaterial color="#0ef" wireframe transparent opacity={0.06} /></mesh>;
 }
 
-// Deterministic pseudo-random for particle generation
+function WireframeOctahedron() {
+  const ref = useRef<THREE.Mesh>(null);
+  useFrame((s) => { if (ref.current) { ref.current.rotation.x = s.clock.elapsedTime * -0.06; ref.current.rotation.z = s.clock.elapsedTime * 0.1; } });
+  return <mesh ref={ref} scale={5} position={[0, 0, -3]}><octahedronGeometry args={[1, 0]} /><meshBasicMaterial color="#0ef" wireframe transparent opacity={0.03} /></mesh>;
+}
+
 function seededRandom(seed: number) {
   let s = seed;
-  return () => {
-    s = (s * 16807 + 0) % 2147483647;
-    return (s - 1) / 2147483646;
-  };
+  return () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
 }
 
-function Particles() {
-  const particlesRef = useRef<THREE.Points>(null);
+function NodeNetwork() {
+  const pRef = useRef<THREE.Points>(null);
+  const lRef = useRef<THREE.LineSegments>(null);
 
-  const { positions, colors } = useMemo(() => {
-    const rand = seededRandom(42);
-    const count = 300;
+  const { positions, linePositions } = useMemo(() => {
+    const rand = seededRandom(123);
+    const count = 60;
     const positions = new Float32Array(count * 3);
-    const colors = new Float32Array(count * 3);
-    const palette = [
-      new THREE.Color("#F5A623"),
-      new THREE.Color("#2BA88C"),
-      new THREE.Color("#4A8AF5"),
-      new THREE.Color("#E85D4A"),
-    ];
-
+    const nodes: THREE.Vector3[] = [];
     for (let i = 0; i < count; i++) {
-      positions[i * 3] = (rand() - 0.5) * 20;
-      positions[i * 3 + 1] = (rand() - 0.5) * 20;
-      positions[i * 3 + 2] = (rand() - 0.5) * 15;
-      const c = palette[Math.floor(rand() * palette.length)];
-      colors[i * 3] = c.r;
-      colors[i * 3 + 1] = c.g;
-      colors[i * 3 + 2] = c.b;
+      const x = (rand() - 0.5) * 16, y = (rand() - 0.5) * 12, z = (rand() - 0.5) * 8 - 4;
+      positions[i * 3] = x; positions[i * 3 + 1] = y; positions[i * 3 + 2] = z;
+      nodes.push(new THREE.Vector3(x, y, z));
     }
-    return { positions, colors };
+    const lines: number[] = [];
+    for (let i = 0; i < count; i++) for (let j = i + 1; j < count; j++) {
+      if (nodes[i].distanceTo(nodes[j]) < 4) {
+        lines.push(nodes[i].x, nodes[i].y, nodes[i].z, nodes[j].x, nodes[j].y, nodes[j].z);
+      }
+    }
+    return { positions, linePositions: new Float32Array(lines) };
   }, []);
 
-  useFrame((state) => {
-    if (!particlesRef.current) return;
-    particlesRef.current.rotation.y = state.clock.elapsedTime * 0.02;
-    particlesRef.current.rotation.x = state.clock.elapsedTime * 0.01;
+  useFrame((s) => {
+    const t = s.clock.elapsedTime * 0.015;
+    if (pRef.current) pRef.current.rotation.y = t;
+    if (lRef.current) lRef.current.rotation.y = t;
   });
 
   return (
-    <points ref={particlesRef}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          args={[positions, 3]}
-        />
-        <bufferAttribute
-          attach="attributes-color"
-          args={[colors, 3]}
-        />
-      </bufferGeometry>
-      <pointsMaterial
-        size={0.03}
-        vertexColors
-        transparent
-        opacity={0.6}
-        sizeAttenuation
-      />
-    </points>
-  );
-}
-
-function AuroraPlane() {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const materialRef = useRef<THREE.ShaderMaterial>(null);
-
-  const shaderData = useMemo(
-    () => ({
-      uniforms: {
-        uTime: { value: 0 },
-        uColor1: { value: new THREE.Color("#F5A623") },
-        uColor2: { value: new THREE.Color("#2BA88C") },
-        uColor3: { value: new THREE.Color("#4A8AF5") },
-      },
-      vertexShader: `
-        varying vec2 vUv;
-        void main() {
-          vUv = uv;
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-        }
-      `,
-      fragmentShader: `
-        uniform float uTime;
-        uniform vec3 uColor1;
-        uniform vec3 uColor2;
-        uniform vec3 uColor3;
-        varying vec2 vUv;
-
-        void main() {
-          float t = uTime * 0.15;
-          float wave1 = sin(vUv.x * 3.0 + t) * 0.5 + 0.5;
-          float wave2 = sin(vUv.y * 2.0 - t * 0.7) * 0.5 + 0.5;
-          float wave3 = sin((vUv.x + vUv.y) * 2.5 + t * 0.5) * 0.5 + 0.5;
-
-          vec3 color = mix(uColor1, uColor2, wave1);
-          color = mix(color, uColor3, wave2 * 0.5);
-
-          float alpha = smoothstep(0.0, 0.5, vUv.y) * smoothstep(1.0, 0.6, vUv.y);
-          alpha *= 0.08 * (wave3 * 0.5 + 0.5);
-
-          gl_FragColor = vec4(color, alpha);
-        }
-      `,
-    }),
-    []
-  );
-
-  useFrame((state) => {
-    if (materialRef.current) {
-      materialRef.current.uniforms.uTime.value = state.clock.elapsedTime;
-    }
-  });
-
-  return (
-    <mesh ref={meshRef} position={[0, 0, -5]} scale={[20, 12, 1]}>
-      <planeGeometry args={[1, 1, 32, 32]} />
-      <shaderMaterial
-        ref={materialRef}
-        args={[shaderData]}
-        transparent
-        depthWrite={false}
-      />
-    </mesh>
+    <>
+      <points ref={pRef}><bufferGeometry><bufferAttribute attach="attributes-position" args={[positions, 3]} /></bufferGeometry><pointsMaterial color="#0ef" size={0.04} transparent opacity={0.5} sizeAttenuation /></points>
+      <lineSegments ref={lRef}><bufferGeometry><bufferAttribute attach="attributes-position" args={[linePositions, 3]} /></bufferGeometry><lineBasicMaterial color="#0ef" transparent opacity={0.04} /></lineSegments>
+    </>
   );
 }
 
 export default function Scene3D() {
   return (
     <div className="fixed inset-0 z-0 pointer-events-none">
-      <Canvas
-        camera={{ position: [0, 0, 6], fov: 60 }}
-        dpr={[1, 1.5]}
-        gl={{ antialias: true, alpha: true }}
-        style={{ background: "transparent" }}
-      >
-        <ambientLight intensity={0.3} />
-        <directionalLight position={[5, 5, 5]} intensity={0.4} />
-        <pointLight position={[-5, -5, 3]} intensity={0.2} color="#F5A623" />
-
-        <AuroraPlane />
-        <Particles />
-
-        <FloatingTorus position={[-3.5, 1.5, -2]} color="#F5A623" scale={0.7} speed={1.2} />
-        <FloatingTorus position={[3, -1, -3]} color="#2BA88C" scale={0.5} speed={0.8} />
-        <FloatingTorus position={[0, 2.5, -4]} color="#4A8AF5" scale={0.4} speed={1} />
-        <FloatingTorus position={[-2, -2.5, -2.5]} color="#E85D4A" scale={0.35} speed={1.4} />
+      <Canvas camera={{ position: [0, 0, 8], fov: 55 }} dpr={[1, 1.5]} gl={{ antialias: true, alpha: true }} style={{ background: "transparent" }}>
+        <WireframeIcosahedron /><WireframeOctahedron /><NodeNetwork />
       </Canvas>
     </div>
   );

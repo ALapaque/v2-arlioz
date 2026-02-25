@@ -1,104 +1,65 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
+const bootLines = [
+  "ARLIOZ SYSTEMS v2.0.26",
+  "Initializing secure environment...",
+  "Loading GDPR compliance module...",
+  "Connecting frontend engines...",
+  "Calibrating design systems...",
+  "All systems operational.",
+];
+
 export default function Loader({ onComplete }: { onComplete: () => void }) {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLSpanElement>(null);
+  const screenRef = useRef<HTMLDivElement>(null);
+  const fillRef = useRef<HTMLSpanElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
-  const counterRef = useRef<HTMLSpanElement>(null);
-  const [, setTick] = useState(0);
+  const linesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const tl = gsap.timeline({
       onComplete: () => {
-        // Exit animation
-        const exitTl = gsap.timeline({ onComplete });
-        exitTl
-          .to(textRef.current, {
-            y: -60,
-            opacity: 0,
-            duration: 0.5,
-            ease: "power3.in",
-          })
-          .to(
-            barRef.current?.parentElement ?? null,
-            { opacity: 0, duration: 0.3, ease: "power2.in" },
-            "-=0.3"
-          )
-          .to(
-            counterRef.current,
-            { opacity: 0, duration: 0.2, ease: "power2.in" },
-            "-=0.3"
-          )
-          .to(wrapperRef.current, {
-            clipPath: "inset(0 0 100% 0)",
-            duration: 0.8,
-            ease: "power4.inOut",
-          });
+        gsap.to(screenRef.current, {
+          clipPath: "inset(0 0 100% 0)", duration: 0.9, ease: "power4.inOut", onComplete,
+        });
       },
     });
 
-    // Animate fill via CSS custom property
-    const obj = { fill: 0 };
-    tl.to(obj, {
-      fill: 100,
-      duration: 2.2,
-      ease: "power2.inOut",
-      onUpdate: () => {
-        if (textRef.current) {
-          textRef.current.style.setProperty("--fill", `${obj.fill}%`);
-        }
-        if (counterRef.current) {
-          counterRef.current.textContent = `${Math.round(obj.fill)}`;
-        }
-        setTick((t) => t + 1);
-      },
-    });
+    const lines = linesRef.current?.querySelectorAll(".boot-line");
+    if (lines) {
+      lines.forEach((line, i) => {
+        tl.to(line, { opacity: 1, duration: 0.05 }, 0.2 + i * 0.3)
+          .to(line, { className: "boot-line done font-[family-name:var(--font-mono)]" }, 0.2 + i * 0.3 + 0.25);
+      });
+    }
 
-    // Animate bar fill
-    tl.to(
-      barRef.current,
-      {
-        width: "100%",
-        duration: 2.2,
-        ease: "power2.inOut",
-      },
-      0
-    );
+    tl.to(barRef.current, { width: "100%", duration: 2, ease: "power2.inOut" }, 0);
+    tl.to(fillRef.current, { clipPath: "inset(0% 0 0 0)", duration: 1.4, ease: "power3.inOut" }, 0.5);
+    tl.to(screenRef.current, { backgroundColor: "rgba(0,238,255,0.03)", duration: 0.1, yoyo: true, repeat: 1 }, "-=0.2");
 
-    // Text entrance
-    tl.fromTo(
-      textRef.current,
-      { y: 40, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
-      0
-    );
-
-    return () => {
-      tl.kill();
-    };
+    return () => { tl.kill(); };
   }, [onComplete]);
 
   return (
-    <div ref={wrapperRef} className="loader-wrapper" style={{ clipPath: "inset(0 0 0% 0)" }}>
-      <span
-        ref={textRef}
-        className="loader-text font-[family-name:var(--font-display)]"
-        style={{ "--fill": "0%" } as React.CSSProperties}
-      >
-        ARLIOZ
-      </span>
-      <div className="loader-bar">
-        <div ref={barRef} className="loader-bar-fill" />
+    <div ref={screenRef} className="boot-screen" style={{ clipPath: "inset(0 0 0% 0)" }}>
+      <div ref={linesRef} className="mb-10 flex flex-col items-center gap-1">
+        {bootLines.map((line) => (
+          <span key={line} className="boot-line font-[family-name:var(--font-mono)]">{line}</span>
+        ))}
       </div>
-      <span
-        ref={counterRef}
-        className="text-[11px] text-text-dim font-[family-name:var(--font-mono)] tracking-[0.3em]"
-      >
-        0
-      </span>
+      <div className="boot-logo font-[family-name:var(--font-display)]">
+        ARLIOZ
+        <span ref={fillRef} className="boot-logo-fill font-[family-name:var(--font-display)]" style={{ clipPath: "inset(100% 0 0 0)" }}>
+          ARLIOZ
+        </span>
+      </div>
+      <div className="boot-progress"><div ref={barRef} className="boot-progress-fill" /></div>
+      <div className="mt-4 flex items-center gap-2">
+        <div className="w-1.5 h-1.5 rounded-full bg-cyan animate-[pulse-dot_1s_ease-in-out_infinite]" />
+        <span className="text-[10px] text-text-ghost font-[family-name:var(--font-mono)] tracking-[0.3em] uppercase">Loading</span>
+      </div>
     </div>
   );
 }

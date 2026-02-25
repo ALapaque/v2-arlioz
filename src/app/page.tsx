@@ -27,7 +27,8 @@ export default function Home() {
     <>
       {!loaded && <Loader onComplete={handleLoaderComplete} />}
 
-      <div className="grain">
+      <div className="grain scanline">
+        <div className="grid-bg" />
         <Scene3D />
         <SmoothScroll>
           <main className="relative z-10">

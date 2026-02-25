@@ -44,14 +44,14 @@ export default function TechMarquee() {
   const doubled = [...items, ...items];
 
   return (
-    <section ref={sectionRef} className="relative border-y border-border py-6 overflow-hidden opacity-0">
+    <section ref={sectionRef} className="relative border-y border-line py-6 overflow-hidden opacity-0">
       <div
         ref={trackRef}
         className="flex gap-12 whitespace-nowrap"
         style={{ animation: "marquee 40s linear infinite", width: "max-content" }}
       >
         {doubled.map((item, i) => (
-          <span key={`${item}-${i}`} className="text-[11px] text-text-dim/40 font-[family-name:var(--font-mono)] uppercase tracking-[0.3em] hover:text-accent transition-colors duration-300 cursor-default select-none">
+          <span key={`${item}-${i}`} className="text-[11px] text-text-ghost font-[family-name:var(--font-mono)] uppercase tracking-[0.3em] hover:text-cyan transition-colors duration-300 cursor-default select-none">
             {item}
           </span>
         ))}
