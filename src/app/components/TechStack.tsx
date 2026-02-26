@@ -43,7 +43,7 @@ export default function TechStack() {
             <SplitText animate={isInView} delay={0.1}>
               TECHNOLOGIES
             </SplitText>{" "}
-            <span className="text-[var(--nx-gold)]">
+            <span className="text-gradient">
               <SplitText animate={isInView} delay={0.18}>
                 DE POINTE
               </SplitText>
@@ -64,7 +64,7 @@ export default function TechStack() {
               key={`${tech}-${i}`}
               className="flex-shrink-0 px-8 md:px-12 py-6 flex items-center gap-3 group"
             >
-              <span className="w-1.5 h-1.5 bg-[var(--nx-gold)] rotate-45 opacity-40 group-hover:opacity-100 transition-opacity" />
+              <span className="w-1.5 h-1.5 bg-[var(--nx-accent-from)] rotate-45 opacity-40 group-hover:opacity-100 transition-opacity" />
               <span
                 className="text-[clamp(1.2rem,2vw,1.8rem)] tracking-wide text-[var(--nx-ivory-ghost)] group-hover:text-[var(--nx-ivory)] transition-colors duration-300 whitespace-nowrap"
                 style={{ fontFamily: "var(--font-display)" }}

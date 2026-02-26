@@ -33,7 +33,7 @@ export default function Footer() {
           <div className="flex gap-10">
             <div className="flex flex-col gap-3">
               <span
-                className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-gold)] mb-2"
+                className="text-[10px] tracking-[0.3em] uppercase text-gradient mb-2"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
                 Navigation
@@ -43,7 +43,7 @@ export default function Footer() {
                   <a
                     key={link}
                     href={`#${link.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}
-                    className="text-[13px] text-[var(--nx-ivory-dim)] hover:text-[var(--nx-gold)] transition-colors duration-300"
+                    className="text-[13px] text-[var(--nx-ivory-dim)] hover:text-[var(--nx-accent-from)] transition-colors duration-300"
                     style={{ fontFamily: "var(--font-body)" }}
                   >
                     {link}
@@ -53,7 +53,7 @@ export default function Footer() {
             </div>
             <div className="flex flex-col gap-3">
               <span
-                className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-gold)] mb-2"
+                className="text-[10px] tracking-[0.3em] uppercase text-gradient mb-2"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
                 Social
@@ -67,7 +67,7 @@ export default function Footer() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-[13px] text-[var(--nx-ivory-dim)] hover:text-[var(--nx-gold)] transition-colors duration-300"
+                  className="text-[13px] text-[var(--nx-ivory-dim)] hover:text-[var(--nx-accent-from)] transition-colors duration-300"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   {link.label}

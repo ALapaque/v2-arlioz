@@ -54,7 +54,7 @@ export default function BrandLoader({
   return (
     <motion.div
       className="fixed inset-0 z-[10001] flex items-center justify-center"
-      style={{ background: "var(--nx-black)" }}
+      style={{ background: "#080808" }}
       animate={
         phase >= 4
           ? { y: "-100%", transition: { duration: 0.8, ease: exitEase } }
@@ -123,7 +123,7 @@ export default function BrandLoader({
             aria-hidden="true"
           >
             <motion.span
-              className="inline-block text-[clamp(4rem,14vw,11rem)] leading-none tracking-[0.04em] text-[var(--nx-ivory)]"
+              className="inline-block text-[clamp(4rem,14vw,11rem)] leading-none tracking-[0.04em] text-[#F5F0E8]"
               initial={{ y: "115%", opacity: 0 }}
               animate={
                 phase >= 2

@@ -66,7 +66,7 @@ export default function Process() {
                 UN PROCESS ÉPROUVÉ,
               </SplitText>
             </span>
-            <span className="block text-[var(--nx-gold)]">
+            <span className="block text-gradient">
               <SplitText animate={isInView} delay={0.2}>
                 DES RÉSULTATS GARANTIS
               </SplitText>
@@ -97,9 +97,9 @@ export default function Process() {
               >
                 {/* Step number node */}
                 <div className="absolute left-0 top-8 md:relative md:left-auto md:top-auto mb-6">
-                  <div className="w-[46px] h-[46px] border border-[var(--nx-gold)] flex items-center justify-center bg-[var(--nx-black)] relative z-10">
+                  <div className="w-[46px] h-[46px] border border-[var(--nx-accent-from)] flex items-center justify-center bg-[var(--nx-black)] relative z-10">
                     <span
-                      className="text-[var(--nx-gold)] text-sm"
+                      className="text-[var(--nx-accent-from)] text-sm"
                       style={{ fontFamily: "var(--font-mono)" }}
                     >
                       {step.number}

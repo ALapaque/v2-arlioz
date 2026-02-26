@@ -3,24 +3,102 @@
 
 /* ============================================
    ARLIOZ — Design Tokens
+   Primary gradient: warm amber → orange → deep orange
    ============================================ */
+
+/* ---------- SHARED (both themes) ---------- */
 :root {
-  --nx-black: #080808;
-  --nx-black-alt: #0D0D0D;
-  --nx-gold: #F5A623;
-  --nx-gold-dim: rgba(245, 166, 35, 0.15);
-  --nx-gold-glow: rgba(245, 166, 35, 0.3);
+  /* Gradient accent — the brand signature */
+  --nx-accent-from: #F59E0B;
+  --nx-accent-via: #F97316;
+  --nx-accent-to: #EA580C;
+  --nx-accent: linear-gradient(135deg, var(--nx-accent-from), var(--nx-accent-via), var(--nx-accent-to));
+  --nx-accent-flat: #F59E0B;
+
+  /* Accent opacity variants */
+  --nx-accent-dim: rgba(249, 115, 22, 0.15);
+  --nx-accent-glow: rgba(249, 115, 22, 0.3);
+
+  /* Secondary colors */
   --nx-blue: #3B7DD8;
   --nx-teal: #2EBD8E;
-  --nx-ivory: #F5F0E8;
-  --nx-ivory-dim: rgba(245, 240, 232, 0.6);
-  --nx-ivory-ghost: rgba(245, 240, 232, 0.15);
-  --nx-ivory-faint: rgba(245, 240, 232, 0.08);
-  --nx-border: rgba(245, 166, 35, 0.2);
 
   --font-display: 'Bebas Neue', sans-serif;
   --font-mono: 'DM Mono', monospace;
   --font-body: 'DM Sans', sans-serif;
+
+  /* Legacy aliases */
+  --nx-gold: var(--nx-accent-flat);
+  --nx-gold-dim: var(--nx-accent-dim);
+  --nx-gold-glow: var(--nx-accent-glow);
+}
+
+/* ---------- DARK THEME ---------- */
+[data-theme="dark"] {
+  --nx-bg: #060606;
+  --nx-bg-alt: #0C0C0C;
+  --nx-fg: #EDEBE6;
+  --nx-fg-dim: rgba(237, 235, 230, 0.55);
+  --nx-fg-ghost: rgba(237, 235, 230, 0.14);
+  --nx-fg-faint: rgba(237, 235, 230, 0.07);
+  --nx-border: rgba(249, 115, 22, 0.14);
+  --nx-border-subtle: rgba(237, 235, 230, 0.06);
+  --nx-surface: rgba(6, 6, 6, 0.88);
+  --nx-surface-card: rgba(6, 6, 6, 0.72);
+  --nx-overlay-from: rgba(6, 6, 6, 1);
+  --nx-overlay-via: rgba(6, 6, 6, 0.5);
+  --nx-overlay-side: rgba(6, 6, 6, 0.75);
+  --nx-tag-bg: rgba(255, 255, 255, 0.04);
+  --nx-tag-border: rgba(255, 255, 255, 0.08);
+  --nx-card-hover-shadow: 0 0 60px rgba(249, 115, 22, 0.06), inset 0 0 60px rgba(249, 115, 22, 0.02);
+
+  color-scheme: dark;
+}
+
+/* ---------- LIGHT THEME ---------- */
+[data-theme="light"] {
+  --nx-bg: #FDFCFA;
+  --nx-bg-alt: #F5F2ED;
+  --nx-fg: #18170F;
+  --nx-fg-dim: rgba(24, 23, 15, 0.55);
+  --nx-fg-ghost: rgba(24, 23, 15, 0.14);
+  --nx-fg-faint: rgba(24, 23, 15, 0.06);
+  --nx-border: rgba(249, 115, 22, 0.18);
+  --nx-border-subtle: rgba(24, 23, 15, 0.06);
+  --nx-surface: rgba(253, 252, 250, 0.92);
+  --nx-surface-card: rgba(253, 252, 250, 0.85);
+  --nx-overlay-from: rgba(253, 252, 250, 1);
+  --nx-overlay-via: rgba(253, 252, 250, 0.5);
+  --nx-overlay-side: rgba(253, 252, 250, 0.75);
+  --nx-tag-bg: rgba(0, 0, 0, 0.03);
+  --nx-tag-border: rgba(0, 0, 0, 0.07);
+  --nx-card-hover-shadow: 0 8px 40px rgba(249, 115, 22, 0.08), 0 0 0 1px rgba(249, 115, 22, 0.12);
+
+  color-scheme: light;
+}
+
+/* Legacy aliases */
+:root {
+  --nx-black: var(--nx-bg);
+  --nx-black-alt: var(--nx-bg-alt);
+  --nx-ivory: var(--nx-fg);
+  --nx-ivory-dim: var(--nx-fg-dim);
+  --nx-ivory-ghost: var(--nx-fg-ghost);
+  --nx-ivory-faint: var(--nx-fg-faint);
+}
+
+/* ============================================
+   GRADIENT TEXT UTILITY
+   ============================================ */
+.text-gradient {
+  background: var(--nx-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-gradient-accent {
+  background: var(--nx-accent);
 }
 
 /* ============================================
@@ -32,65 +110,93 @@
 
 html {
   scroll-behavior: smooth;
-  background: var(--nx-black);
+  background: var(--nx-bg);
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 body {
-  background: var(--nx-black);
-  color: var(--nx-ivory);
+  background: var(--nx-bg);
+  color: var(--nx-fg);
   font-family: var(--font-body);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* ============================================
-   CUSTOM CURSOR
+   CUSTOM CURSOR — dot + ring
    ============================================ */
-.nx-cursor {
+
+/* Inner dot — instant, no lag */
+.nx-dot {
   position: fixed;
   top: 0;
   left: 0;
-  width: 24px;
-  height: 24px;
+  width: 6px;
+  height: 6px;
+  background: var(--nx-accent-from);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100000;
+  will-change: transform;
+}
+
+.nx-dot--expand {
+  opacity: 0;
+}
+
+/* Outer ring — smooth lerp via JS, expand on interactive */
+.nx-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border: 1px solid var(--nx-accent-from);
+  border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
+  opacity: 0.5;
+  will-change: transform;
+  transition:
+    width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    margin 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+/* Expanded state — on cards, links, buttons */
+.nx-ring--expand {
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  opacity: 0.8;
+  background: var(--nx-fg);
+  border-color: transparent;
   mix-blend-mode: difference;
-  transition: transform 0.15s ease;
 }
 
-.nx-cursor::before,
-.nx-cursor::after {
-  content: '';
-  position: absolute;
-  background: var(--nx-gold);
-}
-
-.nx-cursor::before {
-  width: 1px;
-  height: 24px;
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%);
-}
-
-.nx-cursor::after {
-  width: 24px;
-  height: 1px;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
+/* Press state */
+.nx-ring--press {
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
+  opacity: 0.6;
 }
 
 /* ============================================
-   SCROLL PROGRESS BAR
+   SCROLL PROGRESS BAR — uses gradient
    ============================================ */
 .scroll-progress {
   position: fixed;
   top: 0;
   left: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--nx-gold), var(--nx-ivory));
+  background: var(--nx-accent);
   z-index: 10000;
   transition: width 0.05s linear;
 }
@@ -106,23 +212,25 @@ body {
   height: 100%;
   pointer-events: none;
   z-index: 9998;
-  opacity: 0.03;
+  opacity: 0.02;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 256px 256px;
 }
 
 /* ============================================
-   DECORATIVE LINES
+   DECORATIVE LINES — gradient accent
    ============================================ */
 .line-decorative {
   height: 1px;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    var(--nx-border) 20%,
-    var(--nx-gold) 50%,
-    var(--nx-border) 80%,
+    var(--nx-border) 15%,
+    var(--nx-accent-from) 35%,
+    var(--nx-accent-via) 50%,
+    var(--nx-accent-to) 65%,
+    var(--nx-border) 85%,
     transparent 100%
   );
 }
@@ -132,9 +240,11 @@ body {
   background: linear-gradient(
     180deg,
     transparent 0%,
-    var(--nx-border) 20%,
-    var(--nx-gold) 50%,
-    var(--nx-border) 80%,
+    var(--nx-border) 15%,
+    var(--nx-accent-from) 35%,
+    var(--nx-accent-via) 50%,
+    var(--nx-accent-to) 65%,
+    var(--nx-border) 85%,
     transparent 100%
   );
 }
@@ -143,13 +253,13 @@ body {
    SELECTION STYLE
    ============================================ */
 ::selection {
-  background: var(--nx-gold);
-  color: var(--nx-black);
+  background: var(--nx-accent-from);
+  color: var(--nx-bg);
 }
 
 ::-moz-selection {
-  background: var(--nx-gold);
-  color: var(--nx-black);
+  background: var(--nx-accent-from);
+  color: var(--nx-bg);
 }
 
 /* ============================================
@@ -160,27 +270,30 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--nx-black);
+  background: var(--nx-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--nx-gold-dim);
+  background: var(--nx-accent-dim);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--nx-gold);
+  background: var(--nx-accent-from);
 }
 
 /* ============================================
-   SECTION BASE
+   SECTION LABEL — gradient text
    ============================================ */
 .section-label {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--nx-gold);
+  background: var(--nx-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* ============================================
@@ -189,11 +302,11 @@ body {
 @keyframes meshPulse {
   0%, 100% {
     transform: translate(-50%, -50%) scale(1);
-    opacity: 0.25;
+    opacity: 0.2;
   }
   50% {
     transform: translate(-50%, -50%) scale(1.15);
-    opacity: 0.4;
+    opacity: 0.35;
   }
 }
 
@@ -218,8 +331,9 @@ body {
   border-radius: 50%;
   background: radial-gradient(
     ellipse at center,
-    rgba(245, 166, 35, 0.15) 0%,
-    rgba(245, 166, 35, 0.05) 40%,
+    rgba(249, 115, 22, 0.12) 0%,
+    rgba(245, 158, 11, 0.06) 30%,
+    rgba(234, 88, 12, 0.03) 50%,
     transparent 70%
   );
   animation: meshPulse 8s ease-in-out infinite;
@@ -235,7 +349,8 @@ body {
   border-radius: 50%;
   background: radial-gradient(
     ellipse at center,
-    rgba(245, 166, 35, 0.08) 0%,
+    rgba(234, 88, 12, 0.07) 0%,
+    rgba(249, 115, 22, 0.03) 40%,
     transparent 60%
   );
   animation: meshRotate 20s linear infinite;
@@ -246,12 +361,8 @@ body {
    MARQUEE ANIMATION
    ============================================ */
 @keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .marquee-track {
@@ -268,14 +379,8 @@ body {
    SCROLL INDICATOR
    ============================================ */
 @keyframes scrollBounce {
-  0%, 100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(8px);
-    opacity: 0.4;
-  }
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: 0.4; }
 }
 
 .scroll-indicator {
@@ -286,12 +391,8 @@ body {
    BADGE FLOAT
    ============================================ */
 @keyframes badgeFloat {
-  0%, 100% {
-    transform: translateY(0) rotate(-2deg);
-  }
-  50% {
-    transform: translateY(-12px) rotate(1deg);
-  }
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-12px) rotate(1deg); }
 }
 
 .badge-float {
@@ -299,7 +400,7 @@ body {
 }
 
 /* ============================================
-   SERVICE CARD BORDER ANIMATION
+   SERVICE CARD
    ============================================ */
 @property --angle {
   syntax: '<angle>';
@@ -308,22 +409,68 @@ body {
 }
 
 @keyframes borderRotate {
-  to {
-    --angle: 360deg;
-  }
+  to { --angle: 360deg; }
 }
 
 .card-border-animated {
   position: relative;
-  background: var(--nx-black-alt);
-  border: 1px solid var(--nx-border);
+  background: var(--nx-bg-alt);
+  border: 1px solid var(--nx-border-subtle);
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-border-animated:hover {
-  border-color: var(--nx-gold);
-  box-shadow: 0 0 40px rgba(245, 166, 35, 0.08), inset 0 0 40px rgba(245, 166, 35, 0.03);
+  border-color: var(--nx-accent-from);
+  box-shadow: var(--nx-card-hover-shadow);
   transform: translateY(-4px);
+}
+
+/* ============================================
+   GLOW BORDER — cursor-following radial glow
+   ============================================ */
+.glow-border-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Border glow — masked to only show at edges */
+.glow-border-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    500px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+    var(--nx-accent-from),
+    transparent 40%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  padding: 1px;
+}
+
+/* Subtle surface glow — soft spotlight on card content */
+.glow-border-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    350px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+    var(--nx-accent-dim),
+    transparent 40%
+  );
 }
 
 /* ============================================
@@ -345,7 +492,7 @@ body {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: var(--nx-ivory);
+  background: var(--nx-fg);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -357,7 +504,7 @@ body {
 }
 
 .btn-slide:hover {
-  color: var(--nx-black) !important;
+  color: var(--nx-bg) !important;
 }
 
 .btn-outline-slide {
@@ -376,7 +523,7 @@ body {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: var(--nx-gold);
+  background: var(--nx-accent);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -388,12 +535,38 @@ body {
 }
 
 .btn-outline-slide:hover {
-  color: var(--nx-black) !important;
-  border-color: var(--nx-gold) !important;
+  color: var(--nx-bg) !important;
+  border-color: var(--nx-accent-from) !important;
 }
 
 /* ============================================
-   RESPONSIVE HELPERS
+   THEME TOGGLE
+   ============================================ */
+.theme-toggle {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--nx-border-subtle);
+  background: transparent;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--nx-accent-from);
+  box-shadow: 0 0 20px var(--nx-accent-dim);
+}
+
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+/* ============================================
+   RESPONSIVE
    ============================================ */
 @media (max-width: 768px) {
   .hero-mesh {
@@ -408,7 +581,8 @@ body {
   * {
     cursor: auto !important;
   }
-  .nx-cursor {
+  .nx-dot,
+  .nx-ring {
     display: none !important;
   }
 }

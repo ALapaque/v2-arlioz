@@ -47,12 +47,12 @@ export default function ProjectHero({ project }: { project: Project }) {
           >
             <a
               href="/#portfolio"
-              className="hover:text-[var(--nx-gold)] transition-colors duration-300"
+              className="hover:text-[var(--nx-accent-from)] transition-colors duration-300"
             >
               Réalisations
             </a>
             <span className="mx-3 text-[var(--nx-border)]">&rarr;</span>
-            <span className="text-[var(--nx-gold)]">{project.name}</span>
+            <span className="text-[var(--nx-accent-from)]">{project.name}</span>
           </span>
         </motion.div>
 
@@ -107,7 +107,7 @@ export default function ProjectHero({ project }: { project: Project }) {
           transition={{ delay: 0.3, duration: 1, ease }}
           className="relative w-full aspect-[16/9] max-w-[1100px] mb-16 border border-[var(--nx-border)] overflow-hidden"
           style={{
-            background: project.gallery[0]?.gradient || "linear-gradient(135deg, #0D1117 0%, #111827 100%)",
+            background: project.gallery[0]?.gradient || `linear-gradient(135deg, var(--nx-bg) 0%, var(--nx-bg-alt) 100%)`,
           }}
         >
           {/* Project image */}
@@ -128,7 +128,7 @@ export default function ProjectHero({ project }: { project: Project }) {
                   <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e] opacity-70" />
                   <div className="w-2.5 h-2.5 rounded-full bg-[#28c840] opacity-70" />
                 </div>
-                <div className="flex-1 h-6 bg-[rgba(255,255,255,0.04)] rounded-sm mx-8 max-w-[300px]" />
+                <div className="flex-1 h-6 bg-[var(--nx-tag-bg)] rounded-sm mx-8 max-w-[300px]" />
               </div>
 
               {/* Content grid */}
@@ -138,7 +138,7 @@ export default function ProjectHero({ project }: { project: Project }) {
                     {(project.gallery[0]?.uiElements || []).slice(0, 4).map((el, i) => (
                       <div
                         key={i}
-                        className="p-3 md:p-4 border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)]"
+                        className="p-3 md:p-4 border border-[var(--nx-tag-border)] bg-[var(--nx-tag-bg)]"
                       >
                         <div
                           className="text-[clamp(0.9rem,2vw,1.3rem)]"
@@ -152,7 +152,7 @@ export default function ProjectHero({ project }: { project: Project }) {
                       </div>
                     ))}
                   </div>
-                  <div className="flex-1 border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.01)] p-4 flex items-end gap-1.5 min-h-[80px]">
+                  <div className="flex-1 border border-[var(--nx-tag-border)] bg-[var(--nx-tag-bg)] p-4 flex items-end gap-1.5 min-h-[80px]">
                     {[40, 55, 35, 68, 52, 78, 45, 82, 60, 90, 72, 95, 65, 88, 70, 85, 75, 92, 80, 98].map(
                       (h, i) => (
                         <div
@@ -188,7 +188,7 @@ export default function ProjectHero({ project }: { project: Project }) {
         >
           <div>
             <span
-              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-gold)] block mb-2"
+              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-accent-from)] block mb-2"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Rôle
@@ -199,7 +199,7 @@ export default function ProjectHero({ project }: { project: Project }) {
           </div>
           <div>
             <span
-              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-gold)] block mb-2"
+              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-accent-from)] block mb-2"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Année
@@ -210,7 +210,7 @@ export default function ProjectHero({ project }: { project: Project }) {
           </div>
           <div>
             <span
-              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-gold)] block mb-2"
+              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-accent-from)] block mb-2"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Client

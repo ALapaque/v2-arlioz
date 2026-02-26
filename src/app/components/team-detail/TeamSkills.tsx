@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import GlowBorder from "../GlowBorder";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
@@ -39,7 +40,7 @@ export default function TeamSkills({
           >
             STACK
             <br />
-            <span className="text-[var(--nx-gold)]">TECHNIQUE</span>
+            <span className="text-gradient">TECHNIQUE</span>
           </h2>
         </motion.div>
 
@@ -55,8 +56,9 @@ export default function TeamSkills({
                 duration: 0.6,
                 ease,
               }}
-              className="border border-[var(--nx-border)] p-8 md:p-10 md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500"
+              className="relative border border-[var(--nx-border)] p-8 md:p-10 transition-colors duration-500"
             >
+              <GlowBorder />
               <span
                 className="text-[10px] tracking-[0.3em] uppercase block mb-8"
                 style={{
@@ -70,7 +72,7 @@ export default function TeamSkills({
                 {group.items.map((item) => (
                   <span
                     key={item}
-                    className="px-3 py-1.5 bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] text-[12px] text-[var(--nx-ivory-dim)]"
+                    className="px-3 py-1.5 bg-[var(--nx-fg-faint)] border border-[var(--nx-tag-border)] text-[12px] text-[var(--nx-ivory-dim)]"
                     style={{ fontFamily: "var(--font-mono)" }}
                   >
                     {item}

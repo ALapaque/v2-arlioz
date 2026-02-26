@@ -39,7 +39,7 @@ export default function ProjectChallenge({
             >
               LE
               <br />
-              <span className="text-[var(--nx-gold)]">PROBLÈME</span>
+              <span className="text-gradient">PROBLÈME</span>
             </h2>
           </motion.div>
 
@@ -47,7 +47,7 @@ export default function ProjectChallenge({
           <div className="lg:col-span-8 relative">
             {/* Large decorative quote mark */}
             <span
-              className="absolute -top-8 -left-4 text-[8rem] leading-none text-[var(--nx-gold)] opacity-8 select-none pointer-events-none"
+              className="absolute -top-8 -left-4 text-[8rem] leading-none text-[var(--nx-accent-from)] opacity-8 select-none pointer-events-none"
               style={{ fontFamily: "var(--font-display)" }}
               aria-hidden="true"
             >

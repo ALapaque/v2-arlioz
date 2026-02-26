@@ -30,7 +30,7 @@ export default function ProjectStack({
           >
             BOÎTE À
             <br />
-            <span className="text-[var(--nx-gold)]">OUTILS</span>
+            <span className="text-gradient">OUTILS</span>
           </h2>
         </motion.div>
 
@@ -50,7 +50,7 @@ export default function ProjectStack({
             className="md:pr-16"
           >
             <span
-              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-gold)] block mb-8"
+              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-accent-from)] block mb-8"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Frontend
@@ -66,7 +66,7 @@ export default function ProjectStack({
                     duration: 0.5,
                     ease,
                   }}
-                  className="px-4 py-2.5 border border-[var(--nx-border)] bg-[var(--nx-black-alt)] text-[12px] tracking-[0.15em] uppercase text-[var(--nx-ivory-dim)] hover:border-[var(--nx-gold)] hover:text-[var(--nx-gold)] transition-all duration-300"
+                  className="px-4 py-2.5 border border-[var(--nx-border)] bg-[var(--nx-black-alt)] text-[12px] tracking-[0.15em] uppercase text-[var(--nx-ivory-dim)] hover:border-[var(--nx-accent-from)] hover:text-[var(--nx-accent-from)] transition-all duration-300"
                   style={{ fontFamily: "var(--font-mono)" }}
                 >
                   {tech}
@@ -83,7 +83,7 @@ export default function ProjectStack({
             className="md:pl-16"
           >
             <span
-              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-gold)] block mb-8"
+              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-accent-from)] block mb-8"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Backend
@@ -99,7 +99,7 @@ export default function ProjectStack({
                     duration: 0.5,
                     ease,
                   }}
-                  className="px-4 py-2.5 border border-[var(--nx-border)] bg-[var(--nx-black-alt)] text-[12px] tracking-[0.15em] uppercase text-[var(--nx-ivory-dim)] hover:border-[var(--nx-gold)] hover:text-[var(--nx-gold)] transition-all duration-300"
+                  className="px-4 py-2.5 border border-[var(--nx-border)] bg-[var(--nx-black-alt)] text-[12px] tracking-[0.15em] uppercase text-[var(--nx-ivory-dim)] hover:border-[var(--nx-accent-from)] hover:text-[var(--nx-accent-from)] transition-all duration-300"
                   style={{ fontFamily: "var(--font-mono)" }}
                 >
                   {tech}

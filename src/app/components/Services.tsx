@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { SplitText, SlideIn } from "./AnimatedText";
+import GlowBorder from "./GlowBorder";
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -80,7 +81,7 @@ export default function Services() {
                 DES SOLUTIONS,
               </SplitText>
             </span>
-            <span className="block text-[var(--nx-gold)]">
+            <span className="block text-gradient">
               <SplitText animate={isInView} delay={0.2}>
                 PAS DES TEMPLATES
               </SplitText>
@@ -104,9 +105,10 @@ export default function Services() {
                 service.featured ? "md:col-span-2 lg:col-span-2 lg:row-span-1" : ""
               }`}
             >
+              <GlowBorder />
               {/* Icon */}
               <span
-                className="text-3xl text-[var(--nx-gold)] block mb-6 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110"
+                className="text-3xl text-gradient block mb-6 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110"
                 aria-hidden="true"
               >
                 {service.icon}
@@ -130,9 +132,9 @@ export default function Services() {
 
               {/* Bottom tag */}
               <div className="mt-8 flex items-center gap-2">
-                <div className="h-px flex-1 bg-[var(--nx-border)] group-hover:bg-[var(--nx-gold)] transition-colors duration-500" />
+                <div className="h-px flex-1 bg-[var(--nx-border)] group-hover:bg-[var(--nx-accent-from)] transition-colors duration-500" />
                 <span
-                  className="text-[9px] tracking-[0.3em] uppercase text-[var(--nx-ivory-ghost)] group-hover:text-[var(--nx-gold)] transition-colors duration-500"
+                  className="text-[9px] tracking-[0.3em] uppercase text-[var(--nx-ivory-ghost)] group-hover:text-[var(--nx-accent-from)] transition-colors duration-500"
                   style={{ fontFamily: "var(--font-mono)" }}
                 >
                   En savoir plus

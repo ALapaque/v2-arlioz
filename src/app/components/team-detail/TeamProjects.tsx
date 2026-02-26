@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import type { Project } from "@/data/projects";
+import GlowBorder from "../GlowBorder";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
@@ -37,7 +38,7 @@ export default function TeamProjects({
           >
             PROJETS
             <br />
-            <span className="text-[var(--nx-gold)]">ASSOCIÉS</span>
+            <span className="text-gradient">ASSOCIÉS</span>
           </h2>
         </motion.div>
 
@@ -54,15 +55,16 @@ export default function TeamProjects({
                 duration: 0.6,
                 ease,
               }}
-              className="group relative border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500"
+              className="group relative border border-[var(--nx-border)] overflow-hidden transition-colors duration-500"
             >
+              <GlowBorder />
               {/* Image */}
               <div
                 className="relative aspect-[16/10] overflow-hidden"
                 style={{
                   background:
                     project.gallery[0]?.gradient ||
-                    "linear-gradient(135deg, #0D1117 0%, #111827 100%)",
+                    "linear-gradient(135deg, var(--nx-bg) 0%, var(--nx-bg-alt) 100%)",
                 }}
               >
                 {project.image && (
@@ -87,7 +89,7 @@ export default function TeamProjects({
                   {project.category}
                 </span>
                 <h3
-                  className="text-[clamp(1.5rem,3vw,2.2rem)] tracking-tight mb-2 md:group-hover:text-[var(--nx-gold)] transition-colors duration-300"
+                  className="text-[clamp(1.5rem,3vw,2.2rem)] tracking-tight mb-2 md:group-hover:text-[var(--nx-accent-from)] transition-colors duration-300"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   {project.name}
@@ -100,7 +102,7 @@ export default function TeamProjects({
                 </p>
 
                 {/* Arrow */}
-                <div className="mt-6 flex items-center gap-2 text-[var(--nx-ivory-ghost)] md:group-hover:text-[var(--nx-gold)] transition-colors duration-300">
+                <div className="mt-6 flex items-center gap-2 text-[var(--nx-ivory-ghost)] md:group-hover:text-[var(--nx-accent-from)] transition-colors duration-300">
                   <span
                     className="text-[10px] tracking-[0.25em] uppercase"
                     style={{ fontFamily: "var(--font-mono)" }}

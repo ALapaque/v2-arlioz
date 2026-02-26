@@ -46,7 +46,7 @@ export default function TeamExperience({
           >
             PARCOURS
             <br />
-            <span className="text-[var(--nx-gold)]">PROFESSIONNEL</span>
+            <span className="text-gradient">PROFESSIONNEL</span>
           </h2>
         </motion.div>
 
@@ -212,7 +212,7 @@ export default function TeamExperience({
                       duration: 0.5,
                       ease,
                     }}
-                    className="flex items-center justify-between py-3 border-b border-[rgba(255,255,255,0.04)]"
+                    className="flex items-center justify-between py-3 border-b border-[var(--nx-fg-faint)]"
                   >
                     <div>
                       <span

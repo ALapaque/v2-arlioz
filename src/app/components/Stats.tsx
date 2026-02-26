@@ -54,7 +54,7 @@ function AnimatedCounter({
       style={{ fontFamily: "var(--font-display)" }}
     >
       {count}
-      <span className="text-[var(--nx-gold)]">{suffix}</span>
+      <span className="text-gradient">{suffix}</span>
     </span>
   );
 }

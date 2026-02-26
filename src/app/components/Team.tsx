@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { SplitText, SlideIn, FadeUp } from "./AnimatedText";
+import GlowBorder from "./GlowBorder";
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -67,7 +68,7 @@ export default function Team() {
                   MEET OUR
                 </SplitText>
               </span>
-              <span className="block text-[var(--nx-gold)]">
+              <span className="block text-gradient">
                 <SplitText animate={isInView} delay={0.2}>
                   TEAM
                 </SplitText>
@@ -97,8 +98,9 @@ export default function Team() {
                 duration: 0.6,
                 ease,
               }}
-              className="group relative border border-[var(--nx-border)] bg-[var(--nx-black)] overflow-hidden md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500 block"
+              className="group relative border border-[var(--nx-border)] bg-[var(--nx-black)] overflow-hidden transition-colors duration-500 block"
             >
+              <GlowBorder />
               {/* Photo */}
               <div className="relative aspect-[3/4] md:aspect-auto md:h-[480px] overflow-hidden">
                 <img
@@ -108,14 +110,14 @@ export default function Team() {
                   className="w-full h-full object-cover object-top will-change-transform md:group-hover:scale-[1.03] transition-transform duration-700"
                 />
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--nx-black)] via-[rgba(8,8,8,0.2)] to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--nx-overlay-from)] via-[var(--nx-overlay-via)] to-transparent" />
 
                 {/* Specialties floating over image */}
                 <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 flex flex-wrap gap-1.5 md:gap-2">
                   {member.specialties.map((spec) => (
                     <span
                       key={spec}
-                      className="px-2.5 py-1 md:px-3 bg-[rgba(8,8,8,0.7)] backdrop-blur-sm border border-[var(--nx-border)] text-[8px] md:text-[9px] tracking-[0.2em] uppercase text-[var(--nx-ivory-dim)] md:group-hover:border-[var(--nx-gold-dim)] md:group-hover:text-[var(--nx-gold)] transition-colors duration-500"
+                      className="px-2.5 py-1 md:px-3 bg-[var(--nx-surface-card)] backdrop-blur-sm border border-[var(--nx-border)] text-[8px] md:text-[9px] tracking-[0.2em] uppercase text-[var(--nx-ivory-dim)] md:group-hover:border-[var(--nx-accent-dim)] md:group-hover:text-[var(--nx-accent-from)] transition-colors duration-500"
                       style={{ fontFamily: "var(--font-mono)" }}
                     >
                       {spec}
@@ -133,7 +135,7 @@ export default function Team() {
                   {member.name}
                 </h3>
                 <span
-                  className="inline-block text-[10px] tracking-[0.25em] uppercase text-[var(--nx-gold)] mb-4 md:mb-5"
+                  className="inline-block text-[10px] tracking-[0.25em] uppercase text-gradient mb-4 md:mb-5"
                   style={{ fontFamily: "var(--font-mono)" }}
                 >
                   {member.role}
@@ -144,7 +146,7 @@ export default function Team() {
                 >
                   {member.description}
                 </p>
-                <div className="flex items-center gap-2 text-[var(--nx-ivory-ghost)] md:group-hover:text-[var(--nx-gold)] transition-colors duration-300">
+                <div className="flex items-center gap-2 text-[var(--nx-ivory-ghost)] md:group-hover:text-[var(--nx-accent-from)] transition-colors duration-300">
                   <span
                     className="text-[10px] tracking-[0.25em] uppercase"
                     style={{ fontFamily: "var(--font-mono)" }}
@@ -165,18 +167,19 @@ export default function Team() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.55, duration: 0.6, ease }}
-          className="mt-6 md:mt-8 relative aspect-[16/9] md:aspect-[21/9] border border-[var(--nx-border)] overflow-hidden group md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500"
+          className="mt-6 md:mt-8 relative aspect-[16/9] md:aspect-[21/9] border border-[var(--nx-border)] overflow-hidden group transition-colors duration-500"
         >
+          <GlowBorder />
           <img
             src="/assets/meeting.jpg"
             alt="L'équipe Arlioz en réunion"
             loading="lazy"
             className="w-full h-full object-cover will-change-transform md:group-hover:scale-[1.03] transition-transform duration-700"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[rgba(8,8,8,0.7)] via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--nx-overlay-side)] via-transparent to-transparent" />
           <div className="absolute bottom-6 left-6 md:bottom-12 md:left-12">
             <span
-              className="text-[9px] md:text-[10px] tracking-[0.3em] uppercase text-[var(--nx-gold)] block mb-1.5 md:mb-2"
+              className="text-[9px] md:text-[10px] tracking-[0.3em] uppercase text-gradient block mb-1.5 md:mb-2"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Collaboration

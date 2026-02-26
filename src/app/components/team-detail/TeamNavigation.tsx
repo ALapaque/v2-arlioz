@@ -33,16 +33,16 @@ export default function TeamNavigation({
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6, ease }}
-            className="group flex flex-col justify-center px-8 md:px-14 py-16 md:py-24 hover:bg-[#111111] transition-colors duration-500"
+            className="group flex flex-col justify-center px-8 md:px-14 py-16 md:py-24 hover:bg-[var(--nx-bg-alt)] transition-colors duration-500"
           >
             <span
-              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-ivory-ghost)] group-hover:text-[var(--nx-gold)] transition-colors duration-300 flex items-center gap-2 mb-4"
+              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-ivory-ghost)] group-hover:text-[var(--nx-accent-from)] transition-colors duration-300 flex items-center gap-2 mb-4"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               <span>&larr;</span> Membre précédent
             </span>
             <span
-              className="text-[clamp(1.8rem,3vw,3rem)] tracking-tight text-[var(--nx-ivory)] group-hover:text-[var(--nx-gold)] transition-colors duration-300"
+              className="text-[clamp(1.8rem,3vw,3rem)] tracking-tight text-[var(--nx-ivory)] group-hover:text-[var(--nx-accent-from)] transition-colors duration-300"
               style={{ fontFamily: "var(--font-display)" }}
             >
               {prev.name}
@@ -63,16 +63,16 @@ export default function TeamNavigation({
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ delay: 0.08, duration: 0.6, ease }}
-            className="group flex flex-col justify-center items-end text-right px-8 md:px-14 py-16 md:py-24 hover:bg-[#111111] transition-colors duration-500 border-t md:border-t-0 border-[var(--nx-border)]"
+            className="group flex flex-col justify-center items-end text-right px-8 md:px-14 py-16 md:py-24 hover:bg-[var(--nx-bg-alt)] transition-colors duration-500 border-t md:border-t-0 border-[var(--nx-border)]"
           >
             <span
-              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-ivory-ghost)] group-hover:text-[var(--nx-gold)] transition-colors duration-300 flex items-center gap-2 mb-4"
+              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-ivory-ghost)] group-hover:text-[var(--nx-accent-from)] transition-colors duration-300 flex items-center gap-2 mb-4"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Membre suivant <span>&rarr;</span>
             </span>
             <span
-              className="text-[clamp(1.8rem,3vw,3rem)] tracking-tight text-[var(--nx-ivory)] group-hover:text-[var(--nx-gold)] transition-colors duration-300"
+              className="text-[clamp(1.8rem,3vw,3rem)] tracking-tight text-[var(--nx-ivory)] group-hover:text-[var(--nx-accent-from)] transition-colors duration-300"
               style={{ fontFamily: "var(--font-display)" }}
             >
               {next.name}

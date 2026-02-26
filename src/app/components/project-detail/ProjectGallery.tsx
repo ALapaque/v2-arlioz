@@ -27,7 +27,7 @@ function GalleryItem({
             className="w-full h-full object-cover object-top will-change-transform md:group-hover:scale-[1.03] transition-transform duration-700"
           />
           {/* Hover overlay — desktop only */}
-          <div className="absolute inset-0 bg-[rgba(8,8,8,0.8)] opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 hidden md:flex items-center justify-center">
+          <div className="absolute inset-0 bg-[var(--nx-surface)] opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 hidden md:flex items-center justify-center">
             <div className="text-center px-8">
               <h4
                 className="text-[clamp(1.2rem,2vw,1.8rem)] mb-2 tracking-tight"
@@ -44,9 +44,9 @@ function GalleryItem({
             </div>
           </div>
           {/* Mobile label */}
-          <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[rgba(8,8,8,0.9)] to-transparent md:hidden">
+          <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[rgba(6,6,6,0.85)] to-transparent md:hidden">
             <span
-              className="text-[11px] tracking-[0.15em] uppercase text-[var(--nx-ivory-dim)]"
+              className="text-[11px] tracking-[0.15em] uppercase text-[rgba(237,235,230,0.75)]"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               {image.label}
@@ -74,7 +74,7 @@ function GalleryItem({
                 {(image.uiElements || []).map((el, i) => (
                   <div
                     key={i}
-                    className="px-4 py-2 border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)]"
+                    className="px-4 py-2 border border-[var(--nx-tag-border)] bg-[var(--nx-tag-bg)]"
                   >
                     <span
                       className="text-[clamp(0.8rem,1.5vw,1.1rem)]"
@@ -108,7 +108,7 @@ function GalleryItem({
               ))}
             </div>
           </div>
-          <div className="absolute inset-0 bg-[rgba(8,8,8,0.75)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+          <div className="absolute inset-0 bg-[var(--nx-surface)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
             <div className="text-center px-8">
               <h4
                 className="text-[clamp(1.2rem,2vw,1.8rem)] mb-2 tracking-tight"
@@ -162,7 +162,7 @@ export default function ProjectGallery({
           >
             GALERIE
             <br />
-            <span className="text-[var(--nx-gold)]">VISUELLE</span>
+            <span className="text-gradient">VISUELLE</span>
           </h2>
         </motion.div>
 
@@ -173,7 +173,7 @@ export default function ProjectGallery({
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.1, duration: 0.6, ease }}
-              className="aspect-[4/3] md:aspect-[16/9] border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500"
+              className="aspect-[4/3] md:aspect-[16/9] border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-accent-dim)] transition-colors duration-500"
             >
               <GalleryItem image={fullImages[0]} accentColor={accentColor} />
             </motion.div>
@@ -186,7 +186,7 @@ export default function ProjectGallery({
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.2, duration: 0.6, ease }}
-                className="md:col-span-5 aspect-[4/3] md:aspect-auto md:h-[480px] border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500"
+                className="md:col-span-5 aspect-[4/3] md:aspect-auto md:h-[480px] border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-accent-dim)] transition-colors duration-500"
               >
                 <GalleryItem image={splitLeft} accentColor={accentColor} />
               </motion.div>
@@ -194,7 +194,7 @@ export default function ProjectGallery({
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.3, duration: 0.6, ease }}
-                className="md:col-span-7 aspect-[4/3] md:aspect-auto md:h-[480px] border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500"
+                className="md:col-span-7 aspect-[4/3] md:aspect-auto md:h-[480px] border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-accent-dim)] transition-colors duration-500"
               >
                 <GalleryItem image={splitRight} accentColor={accentColor} />
               </motion.div>
@@ -209,7 +209,7 @@ export default function ProjectGallery({
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.4, duration: 0.6, ease }}
-                className="md:col-span-8 aspect-[4/3] md:aspect-[16/10] border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500"
+                className="md:col-span-8 aspect-[4/3] md:aspect-[16/10] border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-accent-dim)] transition-colors duration-500"
               >
                 <GalleryItem image={offsetRight} accentColor={accentColor} />
               </motion.div>
@@ -222,7 +222,7 @@ export default function ProjectGallery({
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.5, duration: 0.6, ease }}
-              className="aspect-[4/3] md:aspect-[16/9] border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500"
+              className="aspect-[4/3] md:aspect-[16/9] border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-accent-dim)] transition-colors duration-500"
             >
               <GalleryItem image={fullImages[1]} accentColor={accentColor} />
             </motion.div>
