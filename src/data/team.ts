@@ -262,80 +262,157 @@ export const teamMembers: TeamMember[] = [
     name: "Guy Moins",
     role: "IT Architect & GDPR Expert",
     headline:
-      "Architecte IT et expert RGPD, accompagnant les entreprises dans la sécurisation et la conformité de leurs systèmes d\u2019information.",
+      "Architecte IT et Security Specialist avec +30 ans d\u2019expérience, passionné par l\u2019enseignement et l\u2019accompagnement des entreprises.",
     bio: [
-      "Guy est un expert reconnu en architecture IT et protection des données personnelles. Avec plus de 15 ans d\u2019expérience dans le secteur, il maîtrise les enjeux de sécurité informatique et de conformité réglementaire qui touchent les entreprises de toutes tailles.",
-      "Sa double compétence technique et juridique lui permet d\u2019accompagner les organisations dans leur mise en conformité RGPD de manière pragmatique : audit, cartographie des traitements, mise en place de mesures techniques et organisationnelles, formation des équipes.",
-      "Au sein d\u2019Arlioz, Guy assure que chaque projet respecte les standards les plus élevés en matière de protection des données. Son expertise garantit que les solutions développées sont non seulement performantes, mais aussi conformes et sécurisées dès la conception.",
+      "Guy possède plus de 30 ans d\u2019expérience dans le secteur IT, depuis ses débuts chez Ordiges et BIM en passant par SWIFT, Syntegra et près de 14 ans chez IBM. Son parcours couvre l\u2019architecture de sécurité, le leadership technique et l\u2019ingénierie des systèmes d\u2019information.",
+      "Depuis 2015, Guy s\u2019est tourné vers l\u2019enseignement en parallèle de ses activités entrepreneuriales. Il est professeur en informatique à l\u2019EICPN, à l\u2019ATC Promotion Sociale et maître de formation pratique à la HELHa, partageant son expertise en e-commerce, bases de données, algorithmique et développement web.",
+      "Au sein d\u2019Arlioz qu\u2019il a co-fondé en 2018, Guy apporte sa vision stratégique et son expertise en architecture IT et sécurité. Il a également été Senior Partner chez Agoraz, renforçant son expérience en gestion d\u2019entreprise et consulting.",
     ],
     image: "/assets/team-guy.jpg",
     accentColor: "#3B7DD8",
-    location: "Bruxelles, Belgique",
+    location: "Charleroi, Belgique",
     languages: [
       { name: "Français", level: "Natif" },
       { name: "Anglais", level: "Courant" },
       { name: "Néerlandais", level: "Professionnel" },
     ],
-    specialties: ["Architecture IT", "RGPD", "Data Protection", "Consulting"],
+    specialties: [
+      "Architecture IT",
+      "Sécurité informatique",
+      "Enseignement",
+      "Consulting",
+    ],
     skills: [
       {
-        category: "Sécurité & Conformité",
+        category: "Sécurité & Architecture",
         items: [
-          "RGPD / GDPR",
-          "Privacy by Design",
-          "Data Protection Impact Assessment",
-          "Audit de conformité",
-          "Politique de sécurité",
-          "ISO 27001",
-        ],
-      },
-      {
-        category: "Architecture IT",
-        items: [
-          "Architecture d\u2019entreprise",
-          "Cloud Architecture",
+          "Architecture de sécurité",
           "Infrastructure réseau",
+          "RGPD / GDPR",
+          "Politique de sécurité",
+          "Cloud Architecture",
           "Active Directory",
-          "Azure / AWS",
-          "Virtualisation",
         ],
       },
       {
-        category: "Consulting",
+        category: "Enseignement",
+        items: [
+          "E-Commerce",
+          "Algorithmique & programmation",
+          "Bases de données SQL",
+          "Analyse",
+          "Développement Web",
+          "Droit relatif au numérique",
+        ],
+      },
+      {
+        category: "Management & Consulting",
         items: [
           "Gestion de projet",
-          "Formation RGPD",
-          "Analyse de risques",
-          "Transformation digitale",
+          "Team leadership",
+          "Consulting IT",
           "Accompagnement PME",
-          "DPO externalisé",
+          "Transformation digitale",
+          "Formation",
         ],
       },
     ],
     experience: [
       {
-        role: "Co-fondateur & IT Architect",
+        role: "Maître de formation pratique",
+        company: "HELHa",
+        period: "Sep 2022 \u2013 Présent",
+        location: "Charleroi, Belgique \u00b7 Sur site",
+        description:
+          "Enseignement pratique au sein de la Haute École Louvain en Hainaut, formation des étudiants en informatique.",
+      },
+      {
+        role: "Cofounder",
         company: "Arlioz",
-        period: "2023 \u2013 Présent",
-        location: "Belgique",
+        period: "Mars 2018 \u2013 Présent",
+        location: "Belgique \u00b7 Freelance",
         description:
-          "Direction technique et conseil en architecture IT et conformité RGPD. Accompagnement des clients dans la sécurisation de leurs projets digitaux.",
+          "Co-fondation et direction stratégique. Consulting IT, architecture et accompagnement des clients.",
       },
       {
-        role: "Consultant RGPD & IT Architect",
-        company: "Indépendant",
-        period: "2018 \u2013 2023",
-        location: "Bruxelles, Belgique",
+        role: "Professeur \u2013 Bachelier en informatique",
+        company: "EICPN",
+        period: "Mars 2020 \u2013 Présent",
+        location: "Namur, Belgique",
         description:
-          "Missions d\u2019audit RGPD, mise en conformité et architecture IT pour des PME et organisations publiques en Belgique.",
+          "Enseignement en bachelier informatique : programmation, bases de données, développement web.",
       },
       {
-        role: "IT Architect",
-        company: "Entreprise IT",
-        period: "2010 \u2013 2018",
+        role: "Senior Partner",
+        company: "Agoraz",
+        period: "Sep 2020 \u2013 Déc 2021",
+        location: "Charleroi, Belgique",
+        description:
+          "Partenaire senior au sein d\u2019Agoraz, contribuant à la stratégie et au développement de l\u2019entreprise.",
+      },
+      {
+        role: "Professeur \u2013 Bachelier en informatique",
+        company: "ATC \u2013 Promotion Sociale",
+        period: "Sep 2017 \u2013 Nov 2019",
+        location: "Charleroi, Belgique",
+        description:
+          "Enseignement en e-commerce et droit relatif au numérique, algorithmique et programmation, bases de données SQL, analyse et développement web.",
+      },
+      {
+        role: "Professeur",
+        company: "Institut de la Providence \u2013 GPH",
+        period: "Mars 2015 \u2013 Sep 2017",
+        location: "Charleroi Gosselies, Belgique",
+        description:
+          "Enseignement en informatique dans le cadre des humanités générales.",
+      },
+      {
+        role: "Employee",
+        company: "IBM",
+        period: "Juin 2001 \u2013 Avr 2015",
         location: "Belgique",
         description:
-          "Conception et déploiement d\u2019infrastructures IT pour des entreprises de taille moyenne. Migration cloud, virtualisation et sécurisation des systèmes.",
+          "Près de 14 ans au sein d\u2019IBM, couvrant des rôles variés en architecture IT, sécurité et ingénierie des systèmes.",
+      },
+      {
+        role: "Senior Security Architect",
+        company: "Syntegra",
+        period: "Mars 1999 \u2013 Juin 2001",
+        location: "Zaventem, Belgique",
+        description:
+          "Architecture de sécurité de haut niveau pour les systèmes d\u2019information d\u2019entreprise.",
+      },
+      {
+        role: "Team-leader / Security Specialist",
+        company: "SWIFT",
+        period: "Juin 1997 \u2013 Juin 1999",
+        location: "Louvain-la-Neuve, Belgique",
+        description:
+          "Leadership d\u2019équipe et spécialisation en sécurité des systèmes au sein de SWIFT, réseau mondial de messagerie financière.",
+      },
+      {
+        role: "IT and Security Specialist",
+        company: "BIM Engineering Europe",
+        period: "Déc 1995 \u2013 Juin 1997",
+        location: "Louvain-la-Neuve, Belgique",
+        description:
+          "Spécialiste IT et sécurité, conception et déploiement de solutions d\u2019infrastructure.",
+      },
+      {
+        role: "Information Technology Engineer",
+        company: "BIM",
+        period: "Juil 1994 \u2013 Mars 1995",
+        location: "Zaventem, Belgique",
+        description:
+          "Ingénierie des technologies de l\u2019information et support technique.",
+      },
+      {
+        role: "Sales and Technical Support",
+        company: "Ordiges",
+        period: "Sep 1991 \u2013 Sep 1994",
+        location: "Zaventem, Belgique",
+        description:
+          "Support technique et commercial, premiers pas dans le secteur IT.",
       },
     ],
     education: [
