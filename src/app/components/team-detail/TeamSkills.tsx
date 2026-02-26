@@ -2,38 +2,45 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import type { TeamMember } from "@/data/team";
 
-const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
-
-interface SkillGroup { category: string; items: string[]; }
-
-export default function TeamSkills({ skills, accentColor }: { skills: SkillGroup[]; accentColor: string }) {
+export default function TeamSkills({ member }: { member: TeamMember }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="relative py-28 md:py-40 bg-[var(--ar-bg-alt)]">
-      <div className="line-decorative absolute top-0 left-0 right-0" />
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, ease }} className="mb-16 md:mb-20">
-          <span className="section-label block mb-4">02 — Comp&eacute;tences</span>
-          <h2 className="text-[clamp(2rem,4vw,3.5rem)] leading-[0.95] tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-            Stack <em className="text-[var(--ar-accent)]" style={{ fontStyle: "italic" }}>technique</em>
-          </h2>
-        </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {skills.map((group, gi) => (
-            <motion.div key={group.category} initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1 + gi * 0.1, duration: 0.6, ease }}
-              className="p-8 md:p-10 bg-[var(--ar-bg)] border border-[var(--ar-border)] hover:border-[var(--ar-border-hover)] transition-colors duration-500">
-              <span className="text-[10px] tracking-[0.3em] uppercase block mb-8" style={{ fontFamily: "var(--font-mono)", color: accentColor }}>
-                {group.category}
-              </span>
+    <section ref={ref} className="py-20 md:py-32 bg-[var(--ar-bg-alt)]">
+      <div className="max-w-[var(--width-content)] mx-auto px-6 md:px-10">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.4 }}
+          className="section-label mb-4"
+        >
+          Compétences
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.1, duration: 0.5 }}
+          className="text-[clamp(28px,3.5vw,40px)] font-medium tracking-tight mb-12"
+        >
+          Stack technique
+        </motion.h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {member.skills.map((cat, i) => (
+            <motion.div
+              key={cat.category}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.15 + i * 0.1, duration: 0.5 }}
+              className="p-8 rounded-3xl bg-[var(--ar-bg)] border border-[var(--ar-border)]"
+            >
+              <h3 className="text-[16px] font-medium mb-5">{cat.category}</h3>
               <div className="flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <span key={item} className="px-3 py-1.5 bg-[var(--ar-fg-faint)] border border-[var(--ar-tag-border)] text-[12px] text-[var(--ar-fg-dim)]" style={{ fontFamily: "var(--font-mono)" }}>
-                    {item}
-                  </span>
+                {cat.items.map((item) => (
+                  <span key={item} className="tag text-[11px]">{item}</span>
                 ))}
               </div>
             </motion.div>

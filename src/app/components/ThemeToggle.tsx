@@ -23,7 +23,6 @@ export default function ThemeToggle() {
         strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
-        style={{ color: "var(--ar-fg-dim)" }}
         initial={{ rotate: -45, opacity: 0, scale: 0.6 }}
         animate={{ rotate: 0, opacity: 1, scale: 1 }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}

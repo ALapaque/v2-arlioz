@@ -2,33 +2,43 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import type { TeamMember } from "@/data/team";
 
-const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
-
-export default function TeamBio({ paragraphs }: { paragraphs: string[] }) {
+export default function TeamBio({ member }: { member: TeamMember }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="relative py-28 md:py-40">
-      <div className="line-decorative absolute top-0 left-0 right-0" />
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, ease }} className="lg:col-span-4">
-            <span className="section-label block mb-4">01 — &Agrave; propos</span>
-            <h2 className="text-[clamp(2rem,4vw,3.5rem)] leading-[0.95] tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-              Parcours <em className="text-[var(--ar-accent)]" style={{ fontStyle: "italic" }}>&amp; vision</em>
-            </h2>
-          </motion.div>
-          <div className="lg:col-span-8 space-y-8">
-            {paragraphs.map((p, i) => (
-              <motion.p key={i} initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.1 + i * 0.1, duration: 0.6, ease }}
-                className="text-[16px] md:text-[17px] leading-[1.9] text-[var(--ar-fg-dim)]">
-                {p}
-              </motion.p>
-            ))}
-          </div>
+    <section ref={ref} className="py-20 md:py-32">
+      <div className="max-w-[var(--width-content)] mx-auto px-6 md:px-10">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.4 }}
+          className="section-label mb-4"
+        >
+          Biographie
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.1, duration: 0.5 }}
+          className="text-[clamp(28px,3.5vw,40px)] font-medium tracking-tight mb-10"
+        >
+          Parcours
+        </motion.h2>
+        <div className="space-y-6 max-w-[720px]">
+          {member.bio.map((p, i) => (
+            <motion.p
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.15 + i * 0.08, duration: 0.5 }}
+              className="text-[16px] leading-[1.7] text-[var(--ar-fg-dim)]"
+            >
+              {p}
+            </motion.p>
+          ))}
         </div>
       </div>
     </section>

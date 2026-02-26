@@ -3,157 +3,94 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
-
 export default function Hero() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-end overflow-hidden pb-20 pt-32">
-      {/* Subtle background accent circle */}
+    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden pt-[72px]">
+      {/* Decorative blur orbs */}
       <div
-        className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] rounded-full pointer-events-none opacity-[0.06]"
-        style={{
-          background: "radial-gradient(circle, var(--ar-accent) 0%, transparent 70%)",
-          filter: "blur(100px)",
-        }}
-        aria-hidden="true"
+        className="blur-orb w-[600px] h-[600px] top-[10%] left-[-15%]"
+        style={{ background: "var(--ar-purple)" }}
+      />
+      <div
+        className="blur-orb w-[400px] h-[400px] bottom-[15%] right-[-10%]"
+        style={{ background: "var(--ar-purple)", opacity: 0.08 }}
       />
 
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-end">
-          {/* Left — Main content */}
-          <div className="lg:col-span-8">
-            {/* Label */}
-            <motion.span
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, ease }}
-              className="section-label block mb-8"
-            >
-              Agence digitale &mdash; Belgique
-            </motion.span>
+      <div className="relative z-10 max-w-[var(--width-wide)] mx-auto px-6 md:px-10 w-full py-20 md:py-32">
+        <div className="max-w-[900px]">
+          {/* Eyebrow */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="text-[14px] font-medium text-[var(--ar-fg-dim)] mb-8"
+          >
+            Agence digitale — Charleroi, Belgique
+          </motion.p>
 
-            {/* Title */}
-            <motion.h1
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1, duration: 0.9, ease }}
-              className="text-[clamp(3rem,8vw,7.5rem)] leading-[0.92] tracking-tight mb-8"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Nous cr&eacute;ons des
-              <br />
-              <em className="text-[var(--ar-accent)]" style={{ fontStyle: "italic" }}>
-                exp&eacute;riences
-              </em>
-              <br />
-              digitales.
-            </motion.h1>
+          {/* Main heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-[clamp(40px,6vw,72px)] font-medium leading-[1.05] tracking-[-2px] mb-8"
+          >
+            Nous construisons des{" "}
+            <span className="text-[var(--ar-purple)]">applications digitales</span>{" "}
+            qui transforment les entreprises.
+          </motion.h1>
 
-            {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.3, duration: 0.7, ease }}
-              className="text-[clamp(1rem,1.8vw,1.2rem)] leading-relaxed text-[var(--ar-fg-dim)] max-w-[500px] mb-12"
-            >
-              Privacy &amp; digital design r&eacute;unis pour aider les entreprises
-              &agrave; grandir en s&eacute;curit&eacute; et intelligemment.
-            </motion.p>
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.35 }}
+            className="text-[clamp(16px,1.2vw,20px)] text-[var(--ar-fg-dim)] leading-[1.5] max-w-[600px] mb-12"
+          >
+            Privacy et digital design réunis pour aider les entreprises à grandir
+            en sécurité et intelligemment. Applications web, mobile, RGPD.
+          </motion.p>
 
-            {/* CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.45, duration: 0.6, ease }}
-              className="flex flex-wrap gap-4"
-            >
-              <a href="#portfolio" className="btn-primary">
-                <span>Nos r&eacute;alisations</span>
-              </a>
-              <a href="#process" className="btn-outline">
-                <span>Notre approche</span>
-                <span>&#8594;</span>
-              </a>
-            </motion.div>
-          </div>
-
-          {/* Right — Info column */}
-          <div className="lg:col-span-4 flex flex-col gap-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.5, duration: 0.6, ease }}
-              className="border-l-2 border-[var(--ar-accent)] pl-6"
-            >
-              <span
-                className="text-[10px] tracking-[0.3em] uppercase text-[var(--ar-fg-ghost)] block mb-2"
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                Available
-              </span>
-              <span
-                className="text-4xl tracking-tight text-[var(--ar-fg)]"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                2026
-              </span>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.6, duration: 0.6, ease }}
-              className="border-l-2 border-[var(--ar-border)] pl-6"
-            >
-              <span
-                className="text-[10px] tracking-[0.3em] uppercase text-[var(--ar-fg-ghost)] block mb-2"
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                Expertise
-              </span>
-              <p className="text-[14px] leading-relaxed text-[var(--ar-fg-dim)]">
-                Applications web, mobile cross-platform, architecture IT &amp; RGPD
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.7, duration: 0.6, ease }}
-              className="border-l-2 border-[var(--ar-border)] pl-6"
-            >
-              <span
-                className="text-[10px] tracking-[0.3em] uppercase text-[var(--ar-fg-ghost)] block mb-2"
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                Localisation
-              </span>
-              <p className="text-[14px] text-[var(--ar-fg-dim)]">
-                Charleroi, Belgique
-              </p>
-            </motion.div>
-          </div>
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="flex flex-wrap gap-4"
+          >
+            <a href="#portfolio" className="btn-primary text-[15px] px-8 py-4">
+              Voir nos projets
+            </a>
+            <a href="#services" className="btn-secondary text-[15px] px-8 py-4">
+              Nos services
+            </a>
+          </motion.div>
         </div>
-      </div>
 
-      {/* Bottom scroll line */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ delay: 0.9, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
-      >
-        <span
-          className="text-[9px] tracking-[0.3em] uppercase text-[var(--ar-fg-ghost)]"
-          style={{ fontFamily: "var(--font-mono)" }}
+        {/* Stats row at bottom */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.65 }}
+          className="mt-20 md:mt-32 flex flex-wrap gap-12 md:gap-20"
         >
-          Scroll
-        </span>
-        <div className="w-px h-10 bg-gradient-to-b from-[var(--ar-accent)] to-transparent" />
-      </motion.div>
+          {[
+            { value: "7+", label: "Années d'expérience" },
+            { value: "100%", label: "Clients satisfaits" },
+            { value: "4", label: "Projets livrés" },
+          ].map((stat) => (
+            <div key={stat.label}>
+              <span className="text-[32px] font-medium tracking-tight text-[var(--ar-fg)]">
+                {stat.value}
+              </span>
+              <p className="text-[13px] text-[var(--ar-fg-dim)] mt-1">{stat.label}</p>
+            </div>
+          ))}
+        </motion.div>
+      </div>
     </section>
   );
 }

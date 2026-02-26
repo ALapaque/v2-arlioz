@@ -2,89 +2,102 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import type { Experience, Education, Certification } from "@/data/team";
+import type { TeamMember } from "@/data/team";
 
-const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
-
-export default function TeamExperience({ experience, education, certifications, accentColor }: {
-  experience: Experience[]; education: Education[]; certifications: Certification[]; accentColor: string;
-}) {
+export default function TeamExperience({ member }: { member: TeamMember }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="relative py-28 md:py-40">
-      <div className="line-decorative absolute top-0 left-0 right-0" />
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, ease }} className="mb-16 md:mb-20">
-          <span className="section-label block mb-4">03 — Exp&eacute;rience</span>
-          <h2 className="text-[clamp(2rem,4vw,3.5rem)] leading-[0.95] tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-            Parcours <em className="text-[var(--ar-accent)]" style={{ fontStyle: "italic" }}>professionnel</em>
-          </h2>
-        </motion.div>
+    <section ref={ref} className="py-20 md:py-32">
+      <div className="max-w-[var(--width-content)] mx-auto px-6 md:px-10">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.4 }}
+          className="section-label mb-4"
+        >
+          Expérience
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.1, duration: 0.5 }}
+          className="text-[clamp(28px,3.5vw,40px)] font-medium tracking-tight mb-12"
+        >
+          Parcours professionnel
+        </motion.h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
-          <div className="lg:col-span-7">
-            <motion.span initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ delay: 0.1, duration: 0.6, ease }}
-              className="text-[10px] tracking-[0.3em] uppercase block mb-8" style={{ fontFamily: "var(--font-mono)", color: accentColor }}>
-              Exp&eacute;rience
-            </motion.span>
-            <div className="space-y-0">
-              {experience.map((exp, i) => (
-                <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.15 + i * 0.08, duration: 0.6, ease }}
-                  className="relative border-l border-[var(--ar-border)] pl-8 pb-12 last:pb-0">
-                  <div className="absolute left-0 top-1 w-2 h-2 -translate-x-1/2 rounded-full" style={{ background: i === 0 ? accentColor : "var(--ar-border)" }} />
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-2">
-                    <span className="text-[10px] tracking-[0.25em] uppercase text-[var(--ar-fg-ghost)]" style={{ fontFamily: "var(--font-mono)" }}>{exp.period}</span>
-                    {exp.location && <span className="text-[10px] tracking-[0.15em] uppercase text-[var(--ar-fg-ghost)] opacity-60" style={{ fontFamily: "var(--font-mono)" }}>{exp.location}</span>}
-                  </div>
-                  <h3 className="text-[clamp(1.3rem,2vw,1.8rem)] tracking-tight mb-1" style={{ fontFamily: "var(--font-display)" }}>{exp.role}</h3>
-                  <span className="text-[11px] tracking-[0.2em] uppercase block mb-4" style={{ fontFamily: "var(--font-mono)", color: accentColor }}>{exp.company}</span>
-                  <p className="text-[14px] leading-[1.8] text-[var(--ar-fg-dim)] max-w-[500px]">{exp.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          <div className="lg:col-span-5 space-y-16">
-            <div>
-              <motion.span initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ delay: 0.2, duration: 0.6, ease }}
-                className="text-[10px] tracking-[0.3em] uppercase block mb-8" style={{ fontFamily: "var(--font-mono)", color: accentColor }}>
-                Formation
-              </motion.span>
-              {education.map((edu, i) => (
-                <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.25 + i * 0.08, duration: 0.6, ease }}
-                  className="border border-[var(--ar-border)] p-6 md:p-8 mb-4">
-                  <span className="text-[10px] tracking-[0.25em] uppercase text-[var(--ar-fg-ghost)] block mb-2" style={{ fontFamily: "var(--font-mono)" }}>{edu.period}</span>
-                  <h4 className="text-[clamp(1.1rem,2vw,1.4rem)] tracking-tight mb-1" style={{ fontFamily: "var(--font-display)" }}>{edu.degree}</h4>
-                  <span className="text-[12px] text-[var(--ar-fg-dim)] block mb-3" style={{ fontFamily: "var(--font-mono)" }}>{edu.school}</span>
-                  {edu.details && <p className="text-[13px] leading-[1.7] text-[var(--ar-fg-ghost)]">{edu.details}</p>}
-                </motion.div>
-              ))}
-            </div>
-            <div>
-              <motion.span initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ delay: 0.3, duration: 0.6, ease }}
-                className="text-[10px] tracking-[0.3em] uppercase block mb-8" style={{ fontFamily: "var(--font-mono)", color: accentColor }}>
-                Certifications
-              </motion.span>
-              <div className="space-y-3">
-                {certifications.map((cert, i) => (
-                  <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.35 + i * 0.05, duration: 0.5, ease }}
-                    className="flex items-center justify-between py-3 border-b border-[var(--ar-fg-faint)]">
-                    <div>
-                      <span className="text-[13px] text-[var(--ar-fg)] block">{cert.name}</span>
-                      <span className="text-[10px] tracking-[0.15em] uppercase text-[var(--ar-fg-ghost)]" style={{ fontFamily: "var(--font-mono)" }}>{cert.issuer}</span>
-                    </div>
-                    <span className="text-[10px] tracking-[0.2em] text-[var(--ar-fg-ghost)] shrink-0 ml-4" style={{ fontFamily: "var(--font-mono)" }}>{cert.year}</span>
-                  </motion.div>
-                ))}
+        <div className="space-y-0">
+          {member.experience.map((exp, i) => (
+            <motion.div
+              key={`${exp.company}-${exp.period}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.1 + i * 0.06, duration: 0.4 }}
+              className="group grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 border-b border-[var(--ar-border)] first:border-t"
+            >
+              <div className="md:col-span-3">
+                <p className="text-[13px] text-[var(--ar-fg-ghost)]">{exp.period}</p>
               </div>
-            </div>
-          </div>
+              <div className="md:col-span-3">
+                <p className="text-[15px] font-medium">{exp.role}</p>
+                <p className="text-[13px] text-[var(--ar-purple)] mt-1">{exp.company}</p>
+              </div>
+              <div className="md:col-span-6">
+                <p className="text-[14px] leading-[1.6] text-[var(--ar-fg-dim)]">{exp.description}</p>
+                {exp.location && (
+                  <p className="text-[12px] text-[var(--ar-fg-ghost)] mt-2">{exp.location}</p>
+                )}
+              </div>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Education & Certifications */}
+        {(member.education.length > 0 || member.certifications.length > 0) && (
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10">
+            {member.education.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.3, duration: 0.4 }}
+              >
+                <h3 className="text-[18px] font-medium mb-6">Formation</h3>
+                {member.education.map((edu) => (
+                  <div key={edu.school} className="mb-4">
+                    <p className="text-[14px] font-medium">{edu.degree}</p>
+                    <p className="text-[13px] text-[var(--ar-purple)]">{edu.school}</p>
+                    <p className="text-[12px] text-[var(--ar-fg-ghost)] mt-1">{edu.period}</p>
+                    {edu.details && (
+                      <p className="text-[13px] text-[var(--ar-fg-dim)] mt-2">{edu.details}</p>
+                    )}
+                  </div>
+                ))}
+              </motion.div>
+            )}
+            {member.certifications.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.35, duration: 0.4 }}
+              >
+                <h3 className="text-[18px] font-medium mb-6">Certifications</h3>
+                <div className="space-y-3">
+                  {member.certifications.map((cert) => (
+                    <div key={cert.name} className="flex items-baseline justify-between gap-4">
+                      <div>
+                        <p className="text-[14px] font-medium">{cert.name}</p>
+                        <p className="text-[12px] text-[var(--ar-fg-ghost)]">{cert.issuer}</p>
+                      </div>
+                      <span className="text-[12px] text-[var(--ar-fg-ghost)] whitespace-nowrap">{cert.year}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </div>
+        )}
       </div>
     </section>
   );

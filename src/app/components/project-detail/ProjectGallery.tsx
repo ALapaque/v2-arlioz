@@ -2,132 +2,57 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import type { GalleryImage } from "@/data/projects";
+import type { Project } from "@/data/projects";
 
-const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
-
-function GalleryItem({ image }: { image: GalleryImage }) {
-  return (
-    <div className="relative w-full h-full overflow-hidden group" style={{ background: image.gradient }}>
-      {image.imageSrc ? (
-        <>
-          <img
-            src={image.imageSrc}
-            alt={image.label}
-            loading="lazy"
-            className="w-full h-full object-cover object-top will-change-transform group-hover:scale-[1.03] transition-transform duration-700"
-          />
-          <div className="absolute inset-0 bg-[var(--ar-overlay-dark)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 hidden md:flex items-center justify-center">
-            <div className="text-center px-8">
-              <h4 className="text-[clamp(1.2rem,2vw,1.8rem)] mb-2 tracking-tight text-white" style={{ fontFamily: "var(--font-display)" }}>
-                {image.label}
-              </h4>
-              <p className="text-[13px] text-white/70 max-w-[400px]">{image.description}</p>
-            </div>
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent md:hidden">
-            <span className="text-[11px] tracking-[0.15em] uppercase text-white/75" style={{ fontFamily: "var(--font-mono)" }}>
-              {image.label}
-            </span>
-          </div>
-        </>
-      ) : (
-        <div className="absolute inset-0 flex items-center justify-center p-6">
-          <div className="text-center">
-            <h4 className="text-[clamp(1rem,2vw,1.5rem)] mb-2 tracking-tight text-white/80" style={{ fontFamily: "var(--font-display)" }}>
-              {image.label}
-            </h4>
-            <p className="text-[12px] text-white/50">{image.description}</p>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-export default function ProjectGallery({ images, accentColor }: { images: GalleryImage[]; accentColor: string }) {
+export default function ProjectGallery({ project }: { project: Project }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
-  const fullImages = images.filter((img) => img.type === "full");
-  const splitLeft = images.find((img) => img.type === "split-left");
-  const splitRight = images.find((img) => img.type === "split-right");
-  const offsetRight = images.find((img) => img.type === "offset-right");
-
   return (
-    <section ref={ref} className="relative py-28 md:py-40">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <motion.div
+    <section ref={ref} className="py-20 md:py-32">
+      <div className="max-w-[var(--width-wide)] mx-auto px-6 md:px-10">
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease }}
-          className="mb-20"
+          transition={{ duration: 0.4 }}
+          className="section-label mb-4"
         >
-          <span className="section-label block mb-4">03 — Aper&ccedil;u</span>
-          <h2 className="text-[clamp(2rem,4vw,3.5rem)] leading-[0.95] tracking-tight max-w-[500px]" style={{ fontFamily: "var(--font-display)" }}>
-            Galerie
-            <br />
-            <em className="text-[var(--ar-accent)]" style={{ fontStyle: "italic" }}>visuelle</em>
-          </h2>
-        </motion.div>
+          Galerie
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.1, duration: 0.5 }}
+          className="text-[clamp(28px,3.5vw,40px)] font-medium tracking-tight mb-12"
+        >
+          Aperçu du projet
+        </motion.h2>
 
-        <div className="space-y-4 md:space-y-6">
-          {fullImages[0] && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {project.gallery.map((item, i) => (
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              key={item.label}
+              initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1, duration: 0.6, ease }}
-              className="aspect-[4/3] md:aspect-[16/9] border border-[var(--ar-border)] overflow-hidden hover:border-[var(--ar-border-hover)] transition-colors duration-500"
+              transition={{ delay: 0.1 + i * 0.08, duration: 0.5 }}
+              className={`group rounded-3xl overflow-hidden ${item.type === "full" ? "md:col-span-2" : ""}`}
             >
-              <GalleryItem image={fullImages[0]} />
+              <div className="relative h-[300px] md:h-[400px] overflow-hidden" style={{ background: item.gradient }}>
+                {item.imageSrc && (
+                  <img
+                    src={item.imageSrc}
+                    alt={item.label}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-contain p-8 group-hover:scale-[1.04] transition-transform duration-500"
+                  />
+                )}
+              </div>
+              <div className="p-6 bg-[var(--ar-bg-card)]">
+                <h4 className="text-[15px] font-medium mb-1">{item.label}</h4>
+                <p className="text-[13px] text-[var(--ar-fg-dim)] leading-[1.5]">{item.description}</p>
+              </div>
             </motion.div>
-          )}
-
-          {splitLeft && splitRight && (
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.2, duration: 0.6, ease }}
-                className="md:col-span-5 aspect-[4/3] md:aspect-auto md:h-[480px] border border-[var(--ar-border)] overflow-hidden hover:border-[var(--ar-border-hover)] transition-colors duration-500"
-              >
-                <GalleryItem image={splitLeft} />
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.3, duration: 0.6, ease }}
-                className="md:col-span-7 aspect-[4/3] md:aspect-auto md:h-[480px] border border-[var(--ar-border)] overflow-hidden hover:border-[var(--ar-border-hover)] transition-colors duration-500"
-              >
-                <GalleryItem image={splitRight} />
-              </motion.div>
-            </div>
-          )}
-
-          {offsetRight && (
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
-              <div className="hidden md:block md:col-span-4" />
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.4, duration: 0.6, ease }}
-                className="md:col-span-8 aspect-[4/3] md:aspect-[16/10] border border-[var(--ar-border)] overflow-hidden hover:border-[var(--ar-border-hover)] transition-colors duration-500"
-              >
-                <GalleryItem image={offsetRight} />
-              </motion.div>
-            </div>
-          )}
-
-          {fullImages[1] && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.5, duration: 0.6, ease }}
-              className="aspect-[4/3] md:aspect-[16/9] border border-[var(--ar-border)] overflow-hidden hover:border-[var(--ar-border-hover)] transition-colors duration-500"
-            >
-              <GalleryItem image={fullImages[1]} />
-            </motion.div>
-          )}
+          ))}
         </div>
       </div>
     </section>

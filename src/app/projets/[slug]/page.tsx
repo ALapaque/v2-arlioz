@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import type { Metadata } from "next";
 import { projects, getProjectBySlug, getAdjacentProjects } from "@/data/projects";
 import Navigation from "@/app/components/Navigation";
 import Footer from "@/app/components/Footer";
@@ -14,79 +13,38 @@ import ProjectTestimonial from "@/app/components/project-detail/ProjectTestimoni
 import ProjectNavigation from "@/app/components/project-detail/ProjectNavigation";
 import ProjectCTA from "@/app/components/project-detail/ProjectCTA";
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
   if (!project) return {};
-
   return {
     title: `${project.name} — Arlioz`,
     description: project.headline,
-    openGraph: {
-      title: `${project.name} — Arlioz`,
-      description: project.headline,
-      url: `https://arlioz.be/projets/${project.slug}`,
-      siteName: "Arlioz",
-      locale: "fr_FR",
-      type: "article",
-    },
   };
 }
 
-export default async function ProjectPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
   if (!project) notFound();
-
   const { prev, next } = getAdjacentProjects(slug);
-
-  const hasContent =
-    project.challenge.length > 0 &&
-    project.solution.length > 0 &&
-    project.gallery.length > 0;
 
   return (
     <>
       <Navigation />
       <main>
         <ProjectHero project={project} />
-        <ProjectMeta meta={project.meta} />
-
-        {hasContent ? (
-          <>
-            <ProjectChallenge paragraphs={project.challenge} />
-            <ProjectSolution steps={project.solution} />
-            <ProjectGallery images={project.gallery} accentColor={project.accentColor} />
-            <ProjectResults results={project.results} />
-            <ProjectStack techStack={project.techStack} />
-            {project.testimonial.quote && (
-              <ProjectTestimonial testimonial={project.testimonial} />
-            )}
-          </>
-        ) : (
-          <section className="py-28 md:py-40 text-center">
-            <span className="section-label block mb-6">Bient&ocirc;t disponible</span>
-            <h2
-              className="text-[clamp(2rem,4vw,3.5rem)] leading-[0.95] tracking-tight text-[var(--ar-fg-ghost)]"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              &Eacute;tude de cas en cours de r&eacute;daction
-            </h2>
-          </section>
-        )}
-
+        <ProjectMeta project={project} />
+        <ProjectChallenge project={project} />
+        <ProjectSolution project={project} />
+        <ProjectGallery project={project} />
+        <ProjectResults project={project} />
+        <ProjectStack project={project} />
+        <ProjectTestimonial project={project} />
         <ProjectNavigation prev={prev} next={next} />
         <ProjectCTA />
       </main>
