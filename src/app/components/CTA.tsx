@@ -22,7 +22,7 @@ export default function CTA() {
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-15 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(201,168,76,0.2) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(245,166,35,0.2) 0%, transparent 70%)",
           filter: "blur(80px)",
         }}
         aria-hidden="true"
@@ -73,7 +73,7 @@ export default function CTA() {
           <ScaleReveal animate={isInView} delay={0.55}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <a
-                href="mailto:hello@nexora.studio"
+                href="mailto:hello@arlioz.com"
                 className="btn-slide inline-flex items-center gap-3 px-10 py-5 bg-[var(--nx-gold)] text-[var(--nx-black)] text-[12px] tracking-[0.2em] uppercase font-medium transition-colors duration-300"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
@@ -86,11 +86,11 @@ export default function CTA() {
           {/* Email */}
           <FadeUp animate={isInView} delay={0.7} className="mt-12">
             <a
-              href="mailto:hello@nexora.studio"
+              href="mailto:hello@arlioz.com"
               className="text-[var(--nx-ivory-ghost)] hover:text-[var(--nx-gold)] transition-colors duration-300 text-[14px] tracking-[0.1em]"
               style={{ fontFamily: "var(--font-mono)" }}
             >
-              hello@nexora.studio
+              hello@arlioz.com
             </a>
           </FadeUp>
         </div>

@@ -28,13 +28,13 @@ export async function generateMetadata({
   if (!project) return {};
 
   return {
-    title: `${project.name} — NEXORA Studio`,
+    title: `${project.name} — Arlioz`,
     description: project.headline,
     openGraph: {
-      title: `${project.name} — NEXORA Studio`,
+      title: `${project.name} — Arlioz`,
       description: project.headline,
-      url: `https://nexora.studio/projets/${project.slug}`,
-      siteName: "NEXORA Studio",
+      url: `https://arlioz.com/projets/${project.slug}`,
+      siteName: "Arlioz",
       locale: "fr_FR",
       type: "article",
     },

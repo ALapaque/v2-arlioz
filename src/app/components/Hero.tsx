@@ -23,7 +23,7 @@ export default function Hero() {
           {/* Top label — slides in from left */}
           <SlideIn animate={isLoaderDone} delay={0} className="mb-8">
             <span className="section-label">
-              NEXORA STUDIO &mdash; DIGITAL CRAFTMANSHIP
+              ARLIOZ &mdash; DIGITAL CRAFTMANSHIP
             </span>
           </SlideIn>
 
@@ -94,7 +94,7 @@ export default function Hero() {
               className="text-2xl text-[var(--nx-ivory)] tracking-wider"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              2025
+              2026
             </span>
           </div>
         </FadeUp>

@@ -5,7 +5,7 @@ import CustomCursor from "./components/CustomCursor";
 import ScrollProgress from "./components/ScrollProgress";
 
 export const metadata: Metadata = {
-  title: "NEXORA Studio — We Build Digital Empires",
+  title: "Arlioz — We Build Digital Empires",
   description:
     "Agence de développement web sur-mesure pour startups et scale-ups ambitieux. Applications React, Next.js, SaaS, e-commerce premium. Paris, France.",
   keywords: [
@@ -18,19 +18,20 @@ export const metadata: Metadata = {
     "startup",
     "scale-up",
     "Paris",
+    "Arlioz",
   ],
   openGraph: {
-    title: "NEXORA Studio — We Build Digital Empires",
+    title: "Arlioz — We Build Digital Empires",
     description:
       "Applications web sur-mesure pour les marques qui refusent d'être ordinaires.",
-    url: "https://nexora.studio",
-    siteName: "NEXORA Studio",
+    url: "https://arlioz.com",
+    siteName: "Arlioz",
     locale: "fr_FR",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "NEXORA Studio — We Build Digital Empires",
+    title: "Arlioz — We Build Digital Empires",
     description:
       "Applications web sur-mesure pour les marques qui refusent d'être ordinaires.",
   },

@@ -17,7 +17,7 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     quote:
-      "NEXORA a transformé notre vision en une plateforme qui a dépassé toutes nos attentes. Leur attention au détail et leur rigueur technique sont incomparables.",
+      "Arlioz a transformé notre vision en une plateforme qui a dépassé toutes nos attentes. Leur attention au détail et leur rigueur technique sont incomparables.",
     name: "Mathieu Renard",
     title: "CEO & Co-founder",
     company: "Vaultify",
@@ -25,7 +25,7 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Travailler avec NEXORA, c'est comme avoir une équipe technique interne d'élite. Ils ne codent pas, ils architecturent des expériences.",
+      "Travailler avec Arlioz, c'est comme avoir une équipe technique interne d'élite. Ils ne codent pas, ils architecturent des expériences.",
     name: "Clara Dubois",
     title: "Directrice Digitale",
     company: "Maison Lumière",

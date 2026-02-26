@@ -8,18 +8,17 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-12">
           {/* Left — Logo & tagline */}
           <div>
-            <div className="flex items-baseline gap-2 mb-4">
+            <div className="flex items-center gap-3 mb-4">
+              <img
+                src="/logo-arlioz.svg"
+                alt="Arlioz"
+                className="h-9 w-auto"
+              />
               <span
                 className="text-2xl tracking-[0.08em] text-[var(--nx-ivory)]"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                NEXORA
-              </span>
-              <span
-                className="text-[9px] tracking-[0.3em] uppercase text-[var(--nx-gold)] border border-[var(--nx-gold)] px-1.5 py-0.5 leading-none"
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                STUDIO
+                ARLIOZ
               </span>
             </div>
             <p
@@ -97,7 +96,7 @@ export default function Footer() {
               className="text-[11px] text-[var(--nx-ivory-ghost)]"
               style={{ fontFamily: "var(--font-mono)" }}
             >
-              &copy; 2025 NEXORA Studio. Tous droits réservés.
+              &copy; 2026 Arlioz. Tous droits réservés.
             </span>
           </div>
         </div>

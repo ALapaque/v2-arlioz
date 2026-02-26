@@ -34,18 +34,17 @@ export default function Navigation() {
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="flex items-baseline gap-2 group">
+          <a href="/" className="flex items-center gap-3 group">
+            <img
+              src="/logo-arlioz.svg"
+              alt="Arlioz"
+              className="h-9 w-auto"
+            />
             <span
               className="text-2xl tracking-[0.08em] text-[var(--nx-ivory)]"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              NEXORA
-            </span>
-            <span
-              className="text-[9px] tracking-[0.3em] uppercase text-[var(--nx-gold)] border border-[var(--nx-gold)] px-1.5 py-0.5 leading-none"
-              style={{ fontFamily: "var(--font-mono)" }}
-            >
-              STUDIO
+              ARLIOZ
             </span>
           </a>
 

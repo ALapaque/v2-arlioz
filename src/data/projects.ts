@@ -176,7 +176,7 @@ export const projects: Project[] = [
     },
     testimonial: {
       quote:
-        "NEXORA a transformé notre façon de piloter l\u2019entreprise. En 8 semaines, nous avions un outil que nous pensions impossible à livrer en moins de 6 mois.",
+        "Arlioz a transformé notre façon de piloter l\u2019entreprise. En 8 semaines, nous avions un outil que nous pensions impossible à livrer en moins de 6 mois.",
       name: "Marc Lefebvre",
       title: "CEO @ Vaultify Inc.",
       initials: "ML",

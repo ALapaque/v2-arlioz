@@ -79,7 +79,7 @@ export default function BrandLoader({
           height: 400,
           borderRadius: "50%",
           background:
-            "radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(245,166,35,0.12) 0%, transparent 70%)",
           filter: "blur(80px)",
         }}
         initial={{ opacity: 0, scale: 0.5 }}

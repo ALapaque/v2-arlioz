@@ -47,7 +47,7 @@ export default function ProjectSolution({ steps }: { steps: ProjectStep[] }) {
                 duration: 0.7,
                 ease,
               }}
-              className="group p-8 md:p-10 border border-[var(--nx-border)] bg-[var(--nx-black)] hover:border-[var(--nx-gold)] hover:bg-[rgba(201,168,76,0.02)] transition-all duration-500"
+              className="group p-8 md:p-10 border border-[var(--nx-border)] bg-[var(--nx-black)] hover:border-[var(--nx-gold)] hover:bg-[rgba(245,166,35,0.02)] transition-all duration-500"
             >
               {/* Icon */}
               <span
