@@ -6,7 +6,8 @@ import { SplitText, SlideIn, FadeUp } from "./AnimatedText";
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-interface TeamMember {
+interface TeamMemberCard {
+  slug: string;
   name: string;
   role: string;
   description: string;
@@ -14,8 +15,9 @@ interface TeamMember {
   specialties: string[];
 }
 
-const team: TeamMember[] = [
+const team: TeamMemberCard[] = [
   {
+    slug: "guy-moins",
     name: "Guy Moins",
     role: "IT Architect & GDPR Expert",
     description:
@@ -24,6 +26,7 @@ const team: TeamMember[] = [
     specialties: ["Architecture IT", "RGPD", "Data Protection", "Consulting"],
   },
   {
+    slug: "amaury-lapaque",
     name: "Amaury Lapaque",
     role: "Fullstack Developer",
     description:
@@ -38,7 +41,7 @@ export default function Team() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-28 md:py-40 bg-[var(--nx-black-alt)]" ref={ref}>
+    <section id="equipe" className="relative py-28 md:py-40 bg-[var(--nx-black-alt)]" ref={ref}>
       {/* Top line */}
       <div className="line-decorative absolute top-0 left-0 right-0" />
 
@@ -84,8 +87,9 @@ export default function Team() {
         {/* Team grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {team.map((member, i) => (
-            <motion.div
+            <motion.a
               key={member.name}
+              href={`/equipe/${member.slug}`}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
@@ -93,7 +97,7 @@ export default function Team() {
                 duration: 0.6,
                 ease,
               }}
-              className="group relative border border-[var(--nx-border)] bg-[var(--nx-black)] overflow-hidden md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500"
+              className="group relative border border-[var(--nx-border)] bg-[var(--nx-black)] overflow-hidden md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500 block"
             >
               {/* Photo */}
               <div className="relative aspect-[3/4] md:aspect-auto md:h-[480px] overflow-hidden">
@@ -135,13 +139,24 @@ export default function Team() {
                   {member.role}
                 </span>
                 <p
-                  className="text-[13px] md:text-[14px] leading-[1.7] text-[var(--nx-ivory-dim)]"
+                  className="text-[13px] md:text-[14px] leading-[1.7] text-[var(--nx-ivory-dim)] mb-6"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   {member.description}
                 </p>
+                <div className="flex items-center gap-2 text-[var(--nx-ivory-ghost)] md:group-hover:text-[var(--nx-gold)] transition-colors duration-300">
+                  <span
+                    className="text-[10px] tracking-[0.25em] uppercase"
+                    style={{ fontFamily: "var(--font-mono)" }}
+                  >
+                    Voir le profil
+                  </span>
+                  <span className="md:group-hover:translate-x-1 transition-transform duration-300">
+                    &rarr;
+                  </span>
+                </div>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
 
