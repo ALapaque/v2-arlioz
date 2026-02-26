@@ -2,8 +2,6 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { SplitText, SlideIn, FadeUp } from "./AnimatedText";
-import GlowBorder from "./GlowBorder";
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -42,82 +40,69 @@ export default function Team() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="equipe" className="relative py-28 md:py-40 bg-[var(--nx-black-alt)]" ref={ref}>
-      {/* Top line */}
-      <div className="line-decorative absolute top-0 left-0 right-0" />
-
-      {/* Decorative vertical line */}
-      <div
-        className="absolute left-[12%] top-0 h-full line-vertical hidden lg:block"
-        aria-hidden="true"
-      />
-
+    <section id="equipe" className="relative py-28 md:py-40" ref={ref}>
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        {/* Section header */}
-        <div className="mb-14 md:mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <div>
-            <SlideIn animate={isInView} delay={0} className="mb-4">
-              <span className="section-label">04 &mdash; L&rsquo;ÉQUIPE</span>
-            </SlideIn>
+        {/* Header */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 md:mb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, ease }}
+            className="lg:col-span-6"
+          >
+            <span className="section-label block mb-4">L&rsquo;&eacute;quipe</span>
             <h2
-              className="text-[clamp(2.5rem,5vw,5rem)] leading-[0.95] tracking-tight"
+              className="text-[clamp(2.5rem,5vw,4.5rem)] leading-[0.95] tracking-tight"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              <span className="block">
-                <SplitText animate={isInView} delay={0.1}>
-                  MEET OUR
-                </SplitText>
-              </span>
-              <span className="block text-gradient">
-                <SplitText animate={isInView} delay={0.2}>
-                  TEAM
-                </SplitText>
-              </span>
+              Deux experts,
+              <br />
+              une{" "}
+              <em className="text-[var(--ar-accent)]" style={{ fontStyle: "italic" }}>
+                vision
+              </em>
             </h2>
-          </div>
-          <FadeUp animate={isInView} delay={0.3}>
-            <p
-              className="text-[13px] tracking-[0.15em] uppercase text-[var(--nx-ivory-ghost)] max-w-[340px]"
-              style={{ fontFamily: "var(--font-mono)" }}
-            >
-              Deux experts complémentaires — privacy et développement — pour des projets qui allient sécurité et performance.
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.15, duration: 0.7, ease }}
+            className="lg:col-span-4 lg:col-start-9 flex items-end"
+          >
+            <p className="text-[14px] leading-[1.8] text-[var(--ar-fg-dim)]">
+              Privacy et d&eacute;veloppement — deux piliers compl&eacute;mentaires pour des projets qui allient s&eacute;curit&eacute; et performance.
             </p>
-          </FadeUp>
+          </motion.div>
         </div>
 
-        {/* Team grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        {/* Team cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {team.map((member, i) => (
             <motion.a
-              key={member.name}
+              key={member.slug}
               href={`/equipe/${member.slug}`}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                delay: 0.3 + i * 0.12,
-                duration: 0.6,
-                ease,
-              }}
-              className="group relative border border-[var(--nx-border)] bg-[var(--nx-black)] overflow-hidden transition-colors duration-500 block"
+              transition={{ delay: 0.2 + i * 0.15, duration: 0.7, ease }}
+              className="group block card-editorial overflow-hidden"
             >
-              <GlowBorder />
               {/* Photo */}
-              <div className="relative aspect-[3/4] md:aspect-auto md:h-[480px] overflow-hidden">
+              <div className="relative aspect-[3/4] md:aspect-auto md:h-[500px] overflow-hidden">
                 <img
                   src={member.image}
                   alt={member.name}
                   loading="lazy"
-                  className="w-full h-full object-cover object-top will-change-transform md:group-hover:scale-[1.03] transition-transform duration-700"
+                  className="w-full h-full object-cover object-top will-change-transform group-hover:scale-[1.03] transition-transform duration-700"
                 />
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--nx-overlay-from)] via-[var(--nx-overlay-via)] to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--ar-overlay-dark)] via-transparent to-transparent" />
 
-                {/* Specialties floating over image */}
-                <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 flex flex-wrap gap-1.5 md:gap-2">
+                {/* Specialties floating on image */}
+                <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 flex flex-wrap gap-2">
                   {member.specialties.map((spec) => (
                     <span
                       key={spec}
-                      className="px-2.5 py-1 md:px-3 bg-[var(--nx-surface-card)] backdrop-blur-sm border border-[var(--nx-border)] text-[8px] md:text-[9px] tracking-[0.2em] uppercase text-[var(--nx-ivory-dim)] md:group-hover:border-[var(--nx-accent-dim)] md:group-hover:text-[var(--nx-accent-from)] transition-colors duration-500"
+                      className="px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/15 text-[9px] tracking-[0.2em] uppercase text-white/80 group-hover:border-[var(--ar-accent)] group-hover:text-white transition-colors duration-500"
                       style={{ fontFamily: "var(--font-mono)" }}
                     >
                       {spec}
@@ -127,35 +112,27 @@ export default function Team() {
               </div>
 
               {/* Info */}
-              <div className="p-6 md:p-10">
-                <h3
-                  className="text-[clamp(1.6rem,3vw,2.5rem)] leading-none tracking-tight mb-2"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  {member.name}
-                </h3>
+              <div className="p-8 md:p-10">
                 <span
-                  className="inline-block text-[10px] tracking-[0.25em] uppercase text-gradient mb-4 md:mb-5"
+                  className="text-[10px] tracking-[0.3em] uppercase text-[var(--ar-accent)] block mb-3"
                   style={{ fontFamily: "var(--font-mono)" }}
                 >
                   {member.role}
                 </span>
-                <p
-                  className="text-[13px] md:text-[14px] leading-[1.7] text-[var(--nx-ivory-dim)] mb-6"
-                  style={{ fontFamily: "var(--font-body)" }}
+                <h3
+                  className="text-[clamp(1.8rem,3vw,2.5rem)] leading-none tracking-tight mb-4 group-hover:text-[var(--ar-accent)] transition-colors duration-300"
+                  style={{ fontFamily: "var(--font-display)" }}
                 >
+                  {member.name}
+                </h3>
+                <p className="text-[14px] leading-[1.7] text-[var(--ar-fg-dim)] mb-6">
                   {member.description}
                 </p>
-                <div className="flex items-center gap-2 text-[var(--nx-ivory-ghost)] md:group-hover:text-[var(--nx-accent-from)] transition-colors duration-300">
-                  <span
-                    className="text-[10px] tracking-[0.25em] uppercase"
-                    style={{ fontFamily: "var(--font-mono)" }}
-                  >
+                <div className="flex items-center gap-2 text-[var(--ar-fg-ghost)] group-hover:text-[var(--ar-accent)] transition-colors duration-300">
+                  <span className="text-[10px] tracking-[0.25em] uppercase" style={{ fontFamily: "var(--font-mono)" }}>
                     Voir le profil
                   </span>
-                  <span className="md:group-hover:translate-x-1 transition-transform duration-300">
-                    &rarr;
-                  </span>
+                  <span className="group-hover:translate-x-1 transition-transform duration-300">&rarr;</span>
                 </div>
               </div>
             </motion.a>
@@ -166,36 +143,32 @@ export default function Team() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.55, duration: 0.6, ease }}
-          className="mt-6 md:mt-8 relative aspect-[16/9] md:aspect-[21/9] border border-[var(--nx-border)] overflow-hidden group transition-colors duration-500"
+          transition={{ delay: 0.5, duration: 0.7, ease }}
+          className="mt-8 relative aspect-[16/9] md:aspect-[21/9] card-editorial overflow-hidden group"
         >
-          <GlowBorder />
           <img
             src="/assets/meeting.jpg"
             alt="L'équipe Arlioz en réunion"
             loading="lazy"
-            className="w-full h-full object-cover will-change-transform md:group-hover:scale-[1.03] transition-transform duration-700"
+            className="w-full h-full object-cover will-change-transform group-hover:scale-[1.02] transition-transform duration-700"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[var(--nx-overlay-side)] via-transparent to-transparent" />
-          <div className="absolute bottom-6 left-6 md:bottom-12 md:left-12">
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--ar-overlay-dark)] via-transparent to-transparent" />
+          <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12">
             <span
-              className="text-[9px] md:text-[10px] tracking-[0.3em] uppercase text-gradient block mb-1.5 md:mb-2"
+              className="text-[10px] tracking-[0.3em] uppercase text-[var(--ar-accent)] block mb-2"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Collaboration
             </span>
             <span
-              className="text-[clamp(1.2rem,3vw,2.5rem)] tracking-tight"
+              className="text-[clamp(1.2rem,3vw,2.5rem)] tracking-tight text-white"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              TOUJOURS À L&rsquo;ÉCOUTE
+              Toujours &agrave; l&rsquo;&eacute;coute
             </span>
           </div>
         </motion.div>
       </div>
-
-      {/* Bottom line */}
-      <div className="line-decorative absolute bottom-0 left-0 right-0" />
     </section>
   );
 }

@@ -1,10 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import {
-  teamMembers,
-  getTeamMemberBySlug,
-  getAdjacentTeamMembers,
-} from "@/data/team";
+import { teamMembers, getTeamMemberBySlug, getAdjacentTeamMembers } from "@/data/team";
 import { projects } from "@/data/projects";
 import Navigation from "@/app/components/Navigation";
 import Footer from "@/app/components/Footer";

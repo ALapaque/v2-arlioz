@@ -1,82 +1,55 @@
 "use client";
 
 import { useRef } from "react";
-import { useInView } from "framer-motion";
-import { SplitText, SlideIn } from "./AnimatedText";
+import { motion, useInView } from "framer-motion";
+
+const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const technologies = [
-  "Angular",
-  "ReactJS",
-  "NextJS",
-  "VueJS",
-  "NuxtJS",
-  "NestJS",
-  "TypeScript",
-  "React Native",
-  "PostgreSQL",
-  "Tailwind CSS",
-  "Docker",
-  "Vercel",
+  "Angular", "ReactJS", "NextJS", "VueJS", "NuxtJS", "NestJS",
+  "TypeScript", "React Native", "PostgreSQL", "Tailwind CSS", "Docker", "Vercel",
 ];
 
 export default function TechStack() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
-  // Double the array for seamless marquee loop
-  const doubled = [...technologies, ...technologies];
-
   return (
-    <section className="relative py-24 md:py-32 bg-[var(--nx-black-alt)] overflow-hidden" ref={ref}>
-      {/* Top line */}
+    <section className="relative py-20 md:py-28 overflow-hidden bg-[var(--ar-bg-alt)]" ref={ref}>
       <div className="line-decorative absolute top-0 left-0 right-0" />
 
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10 mb-16">
-        <div className="text-center">
-          <SlideIn animate={isInView} delay={0} direction="right" className="mb-4 flex justify-center">
-            <span className="section-label">TECHNOLOGIES</span>
-          </SlideIn>
-          <h2
-            className="text-[clamp(2rem,4vw,3.5rem)] leading-[0.95] tracking-tight"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            <SplitText animate={isInView} delay={0.1}>
-              TECHNOLOGIES
-            </SplitText>{" "}
-            <span className="text-gradient">
-              <SplitText animate={isInView} delay={0.18}>
-                DE POINTE
-              </SplitText>
-            </span>
-          </h2>
-        </div>
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10 mb-10">
+        <motion.span
+          initial={{ opacity: 0, x: -20 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.6, ease }}
+          className="section-label block"
+        >
+          Technologies
+        </motion.span>
       </div>
 
       {/* Marquee */}
-      <div className="relative">
-        {/* Fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[var(--nx-black-alt)] to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[var(--nx-black-alt)] to-transparent z-10 pointer-events-none" />
-
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ delay: 0.2, duration: 0.8 }}
+        className="overflow-hidden"
+      >
         <div className="marquee-track">
-          {doubled.map((tech, i) => (
-            <div
+          {[...technologies, ...technologies].map((tech, i) => (
+            <span
               key={`${tech}-${i}`}
-              className="flex-shrink-0 px-8 md:px-12 py-6 flex items-center gap-3 group"
+              className="text-[clamp(2rem,5vw,4rem)] tracking-tight px-6 md:px-10 whitespace-nowrap text-[var(--ar-fg-ghost)] hover:text-[var(--ar-accent)] transition-colors duration-300 cursor-default"
+              style={{ fontFamily: "var(--font-display)" }}
             >
-              <span className="w-1.5 h-1.5 bg-[var(--nx-accent-from)] rotate-45 opacity-40 group-hover:opacity-100 transition-opacity" />
-              <span
-                className="text-[clamp(1.2rem,2vw,1.8rem)] tracking-wide text-[var(--nx-ivory-ghost)] group-hover:text-[var(--nx-ivory)] transition-colors duration-300 whitespace-nowrap"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {tech}
-              </span>
-            </div>
+              {tech}
+              <span className="text-[var(--ar-accent)] mx-4 text-[0.5em]">&#9679;</span>
+            </span>
           ))}
         </div>
-      </div>
+      </motion.div>
 
-      {/* Bottom line */}
       <div className="line-decorative absolute bottom-0 left-0 right-0" />
     </section>
   );

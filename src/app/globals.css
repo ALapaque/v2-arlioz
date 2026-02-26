@@ -1,588 +1,166 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 /* ============================================
-   ARLIOZ — Design Tokens
-   Primary gradient: warm amber → orange → deep orange
+   ARLIOZ — Editorial Redesign v1
+   Palette: Off-white + Deep Indigo + Coral
    ============================================ */
 
-/* ---------- SHARED (both themes) ---------- */
 :root {
-  /* Gradient accent — the brand signature */
-  --nx-accent-from: #F59E0B;
-  --nx-accent-via: #F97316;
-  --nx-accent-to: #EA580C;
-  --nx-accent: linear-gradient(135deg, var(--nx-accent-from), var(--nx-accent-via), var(--nx-accent-to));
-  --nx-accent-flat: #F59E0B;
-
-  /* Accent opacity variants */
-  --nx-accent-dim: rgba(249, 115, 22, 0.15);
-  --nx-accent-glow: rgba(249, 115, 22, 0.3);
-
-  /* Secondary colors */
-  --nx-blue: #3B7DD8;
-  --nx-teal: #2EBD8E;
-
-  --font-display: 'Bebas Neue', sans-serif;
-  --font-mono: 'DM Mono', monospace;
-  --font-body: 'DM Sans', sans-serif;
-
-  /* Legacy aliases */
-  --nx-gold: var(--nx-accent-flat);
-  --nx-gold-dim: var(--nx-accent-dim);
-  --nx-gold-glow: var(--nx-accent-glow);
+  --ar-accent: #FF6B6B;
+  --ar-accent-hover: #E85D5D;
+  --ar-accent-dim: rgba(255, 107, 107, 0.12);
+  --ar-indigo: #1a1a2e;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
-/* ---------- DARK THEME ---------- */
-[data-theme="dark"] {
-  --nx-bg: #060606;
-  --nx-bg-alt: #0C0C0C;
-  --nx-fg: #EDEBE6;
-  --nx-fg-dim: rgba(237, 235, 230, 0.55);
-  --nx-fg-ghost: rgba(237, 235, 230, 0.14);
-  --nx-fg-faint: rgba(237, 235, 230, 0.07);
-  --nx-border: rgba(249, 115, 22, 0.14);
-  --nx-border-subtle: rgba(237, 235, 230, 0.06);
-  --nx-surface: rgba(6, 6, 6, 0.88);
-  --nx-surface-card: rgba(6, 6, 6, 0.72);
-  --nx-overlay-from: rgba(6, 6, 6, 1);
-  --nx-overlay-via: rgba(6, 6, 6, 0.5);
-  --nx-overlay-side: rgba(6, 6, 6, 0.75);
-  --nx-tag-bg: rgba(255, 255, 255, 0.04);
-  --nx-tag-border: rgba(255, 255, 255, 0.08);
-  --nx-card-hover-shadow: 0 0 60px rgba(249, 115, 22, 0.06), inset 0 0 60px rgba(249, 115, 22, 0.02);
-
-  color-scheme: dark;
-}
-
-/* ---------- LIGHT THEME ---------- */
 [data-theme="light"] {
-  --nx-bg: #FDFCFA;
-  --nx-bg-alt: #F5F2ED;
-  --nx-fg: #18170F;
-  --nx-fg-dim: rgba(24, 23, 15, 0.55);
-  --nx-fg-ghost: rgba(24, 23, 15, 0.14);
-  --nx-fg-faint: rgba(24, 23, 15, 0.06);
-  --nx-border: rgba(249, 115, 22, 0.18);
-  --nx-border-subtle: rgba(24, 23, 15, 0.06);
-  --nx-surface: rgba(253, 252, 250, 0.92);
-  --nx-surface-card: rgba(253, 252, 250, 0.85);
-  --nx-overlay-from: rgba(253, 252, 250, 1);
-  --nx-overlay-via: rgba(253, 252, 250, 0.5);
-  --nx-overlay-side: rgba(253, 252, 250, 0.75);
-  --nx-tag-bg: rgba(0, 0, 0, 0.03);
-  --nx-tag-border: rgba(0, 0, 0, 0.07);
-  --nx-card-hover-shadow: 0 8px 40px rgba(249, 115, 22, 0.08), 0 0 0 1px rgba(249, 115, 22, 0.12);
-
+  --ar-bg: #FAFAF8;
+  --ar-bg-alt: #F0EDE8;
+  --ar-fg: #1a1a2e;
+  --ar-fg-dim: rgba(26, 26, 46, 0.6);
+  --ar-fg-ghost: rgba(26, 26, 46, 0.2);
+  --ar-fg-faint: rgba(26, 26, 46, 0.07);
+  --ar-border: rgba(26, 26, 46, 0.1);
+  --ar-border-hover: rgba(26, 26, 46, 0.25);
+  --ar-surface: rgba(250, 250, 248, 0.92);
+  --ar-surface-card: rgba(240, 237, 232, 0.6);
+  --ar-tag-bg: rgba(26, 26, 46, 0.04);
+  --ar-tag-border: rgba(26, 26, 46, 0.08);
+  --ar-card-shadow: 0 2px 20px rgba(26, 26, 46, 0.04);
+  --ar-card-hover-shadow: 0 8px 40px rgba(26, 26, 46, 0.08);
+  --ar-overlay-from: rgba(250, 250, 248, 0.95);
+  --ar-overlay-dark: rgba(26, 26, 46, 0.85);
   color-scheme: light;
 }
 
-/* Legacy aliases */
-:root {
-  --nx-black: var(--nx-bg);
-  --nx-black-alt: var(--nx-bg-alt);
-  --nx-ivory: var(--nx-fg);
-  --nx-ivory-dim: var(--nx-fg-dim);
-  --nx-ivory-ghost: var(--nx-fg-ghost);
-  --nx-ivory-faint: var(--nx-fg-faint);
-}
-
-/* ============================================
-   GRADIENT TEXT UTILITY
-   ============================================ */
-.text-gradient {
-  background: var(--nx-accent);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.bg-gradient-accent {
-  background: var(--nx-accent);
-}
-
-/* ============================================
-   GLOBAL RESET & BASE
-   ============================================ */
-* {
-  cursor: none !important;
+[data-theme="dark"] {
+  --ar-bg: #0f0f1a;
+  --ar-bg-alt: #161625;
+  --ar-fg: #E8E6E1;
+  --ar-fg-dim: rgba(232, 230, 225, 0.6);
+  --ar-fg-ghost: rgba(232, 230, 225, 0.2);
+  --ar-fg-faint: rgba(232, 230, 225, 0.07);
+  --ar-border: rgba(232, 230, 225, 0.1);
+  --ar-border-hover: rgba(232, 230, 225, 0.25);
+  --ar-surface: rgba(15, 15, 26, 0.92);
+  --ar-surface-card: rgba(22, 22, 37, 0.8);
+  --ar-tag-bg: rgba(232, 230, 225, 0.05);
+  --ar-tag-border: rgba(232, 230, 225, 0.08);
+  --ar-card-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  --ar-card-hover-shadow: 0 8px 40px rgba(255, 107, 107, 0.06);
+  --ar-overlay-from: rgba(15, 15, 26, 0.95);
+  --ar-overlay-dark: rgba(15, 15, 26, 0.85);
+  color-scheme: dark;
 }
 
 html {
   scroll-behavior: smooth;
-  background: var(--nx-bg);
-  transition: background-color 0.4s ease, color 0.4s ease;
+  background: var(--ar-bg);
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 body {
-  background: var(--nx-bg);
-  color: var(--nx-fg);
+  background: var(--ar-bg);
+  color: var(--ar-fg);
   font-family: var(--font-body);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.4s ease, color 0.4s ease;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* ============================================
-   CUSTOM CURSOR — dot + ring
-   ============================================ */
-
-/* Inner dot — instant, no lag */
-.nx-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 6px;
-  height: 6px;
-  background: var(--nx-accent-from);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 100000;
-  will-change: transform;
-}
-
-.nx-dot--expand {
-  opacity: 0;
-}
-
-/* Outer ring — smooth lerp via JS, expand on interactive */
-.nx-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 40px;
-  height: 40px;
-  margin: -20px 0 0 -20px;
-  border: 1px solid var(--nx-accent-from);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99999;
-  opacity: 0.5;
-  will-change: transform;
-  transition:
-    width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    margin 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.3s ease,
-    border-color 0.3s ease,
-    background-color 0.3s ease;
-}
-
-/* Expanded state — on cards, links, buttons */
-.nx-ring--expand {
-  width: 60px;
-  height: 60px;
-  margin: -30px 0 0 -30px;
-  opacity: 0.8;
-  background: var(--nx-fg);
-  border-color: transparent;
-  mix-blend-mode: difference;
-}
-
-/* Press state */
-.nx-ring--press {
-  width: 30px;
-  height: 30px;
-  margin: -15px 0 0 -15px;
-  opacity: 0.6;
-}
-
-/* ============================================
-   SCROLL PROGRESS BAR — uses gradient
-   ============================================ */
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 2px;
-  background: var(--nx-accent);
-  z-index: 10000;
-  transition: width 0.05s linear;
-}
-
-/* ============================================
-   NOISE TEXTURE OVERLAY
-   ============================================ */
-.noise-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9998;
-  opacity: 0.02;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
-}
-
-/* ============================================
-   DECORATIVE LINES — gradient accent
-   ============================================ */
-.line-decorative {
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--nx-border) 15%,
-    var(--nx-accent-from) 35%,
-    var(--nx-accent-via) 50%,
-    var(--nx-accent-to) 65%,
-    var(--nx-border) 85%,
-    transparent 100%
-  );
-}
-
-.line-vertical {
-  width: 1px;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    var(--nx-border) 15%,
-    var(--nx-accent-from) 35%,
-    var(--nx-accent-via) 50%,
-    var(--nx-accent-to) 65%,
-    var(--nx-border) 85%,
-    transparent 100%
-  );
-}
-
-/* ============================================
-   SELECTION STYLE
-   ============================================ */
-::selection {
-  background: var(--nx-accent-from);
-  color: var(--nx-bg);
-}
-
-::-moz-selection {
-  background: var(--nx-accent-from);
-  color: var(--nx-bg);
-}
-
-/* ============================================
-   CUSTOM SCROLLBAR
-   ============================================ */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--nx-bg);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--nx-accent-dim);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--nx-accent-from);
-}
-
-/* ============================================
-   SECTION LABEL — gradient text
-   ============================================ */
 .section-label {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  background: var(--nx-accent);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--ar-accent);
 }
 
-/* ============================================
-   GRADIENT MESH for HERO
-   ============================================ */
-@keyframes meshPulse {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0.2;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.15);
-    opacity: 0.35;
-  }
+.line-decorative {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--ar-border) 20%, var(--ar-border-hover) 50%, var(--ar-border) 80%, transparent 100%);
 }
 
-@keyframes meshRotate {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg) scale(1);
-  }
-  50% {
-    transform: translate(-50%, -50%) rotate(180deg) scale(1.1);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg) scale(1);
-  }
+.line-vertical {
+  width: 1px;
+  background: linear-gradient(180deg, transparent 0%, var(--ar-border) 20%, var(--ar-border-hover) 50%, var(--ar-border) 80%, transparent 100%);
 }
 
-.hero-mesh {
-  position: absolute;
-  top: 50%;
-  left: 55%;
-  width: 700px;
-  height: 700px;
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(249, 115, 22, 0.12) 0%,
-    rgba(245, 158, 11, 0.06) 30%,
-    rgba(234, 88, 12, 0.03) 50%,
-    transparent 70%
-  );
-  animation: meshPulse 8s ease-in-out infinite;
-  filter: blur(80px);
-}
+::selection { background: var(--ar-accent); color: white; }
+::-moz-selection { background: var(--ar-accent); color: white; }
 
-.hero-mesh-secondary {
-  position: absolute;
-  top: 40%;
-  left: 45%;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(234, 88, 12, 0.07) 0%,
-    rgba(249, 115, 22, 0.03) 40%,
-    transparent 60%
-  );
-  animation: meshRotate 20s linear infinite;
-  filter: blur(60px);
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--ar-bg); }
+::-webkit-scrollbar-thumb { background: var(--ar-fg-ghost); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ar-accent); }
 
-/* ============================================
-   MARQUEE ANIMATION
-   ============================================ */
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-
 .marquee-track {
   display: flex;
-  animation: marquee 30s linear infinite;
+  animation: marquee 35s linear infinite;
   width: max-content;
 }
+.marquee-track:hover { animation-play-state: paused; }
 
-.marquee-track:hover {
-  animation-play-state: paused;
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: var(--ar-accent); z-index: 10000;
+  transition: width 0.05s linear;
 }
 
-/* ============================================
-   SCROLL INDICATOR
-   ============================================ */
-@keyframes scrollBounce {
-  0%, 100% { transform: translateY(0); opacity: 1; }
-  50% { transform: translateY(8px); opacity: 0.4; }
-}
-
-.scroll-indicator {
-  animation: scrollBounce 2s ease-in-out infinite;
-}
-
-/* ============================================
-   BADGE FLOAT
-   ============================================ */
-@keyframes badgeFloat {
-  0%, 100% { transform: translateY(0) rotate(-2deg); }
-  50% { transform: translateY(-12px) rotate(1deg); }
-}
-
-.badge-float {
-  animation: badgeFloat 4s ease-in-out infinite;
-}
-
-/* ============================================
-   SERVICE CARD
-   ============================================ */
-@property --angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
-}
-
-@keyframes borderRotate {
-  to { --angle: 360deg; }
-}
-
-.card-border-animated {
+.card-editorial {
   position: relative;
-  background: var(--nx-bg-alt);
-  border: 1px solid var(--nx-border-subtle);
+  background: var(--ar-bg);
+  border: 1px solid var(--ar-border);
+  box-shadow: var(--ar-card-shadow);
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
-.card-border-animated:hover {
-  border-color: var(--nx-accent-from);
-  box-shadow: var(--nx-card-hover-shadow);
+.card-editorial:hover {
+  border-color: var(--ar-border-hover);
+  box-shadow: var(--ar-card-hover-shadow);
   transform: translateY(-4px);
 }
 
-/* ============================================
-   GLOW BORDER — cursor-following radial glow
-   ============================================ */
-.glow-border-overlay {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 2;
-  opacity: 0;
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  padding: 1rem 2rem; background: var(--ar-accent); color: white;
+  font-family: var(--font-mono); font-size: 12px;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  border: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-primary:hover {
+  background: var(--ar-accent-hover); transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--ar-accent-dim);
 }
 
-/* Border glow — masked to only show at edges */
-.glow-border-overlay::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    500px circle at var(--glow-x, 50%) var(--glow-y, 50%),
-    var(--nx-accent-from),
-    transparent 40%
-  );
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  padding: 1px;
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  padding: 1rem 2rem; background: transparent; color: var(--ar-fg);
+  font-family: var(--font-mono); font-size: 12px;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  border: 1px solid var(--ar-border-hover);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-outline:hover {
+  border-color: var(--ar-accent); color: var(--ar-accent);
+  transform: translateY(-2px);
 }
 
-/* Subtle surface glow — soft spotlight on card content */
-.glow-border-overlay::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    350px circle at var(--glow-x, 50%) var(--glow-y, 50%),
-    var(--nx-accent-dim),
-    transparent 40%
-  );
-}
-
-/* ============================================
-   BUTTON SLIDE FILL EFFECT
-   ============================================ */
-.btn-slide {
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.btn-slide > * {
-  position: relative;
-  z-index: 2;
-}
-
-.btn-slide::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: var(--nx-fg);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.btn-slide:hover::before {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-.btn-slide:hover {
-  color: var(--nx-bg) !important;
-}
-
-.btn-outline-slide {
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.btn-outline-slide > * {
-  position: relative;
-  z-index: 2;
-}
-
-.btn-outline-slide::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: var(--nx-accent);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.btn-outline-slide:hover::before {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-.btn-outline-slide:hover {
-  color: var(--nx-bg) !important;
-  border-color: var(--nx-accent-from) !important;
-}
-
-/* ============================================
-   THEME TOGGLE
-   ============================================ */
 .theme-toggle {
-  position: relative;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--nx-border-subtle);
-  background: transparent;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 36px; height: 36px; display: flex; align-items: center;
+  justify-content: center; border: 1px solid var(--ar-border);
+  border-radius: 50%; background: transparent; cursor: pointer;
+  transition: border-color 0.3s ease;
 }
-
-.theme-toggle:hover {
-  border-color: var(--nx-accent-from);
-  box-shadow: 0 0 20px var(--nx-accent-dim);
-}
-
+.theme-toggle:hover { border-color: var(--ar-accent); }
 .theme-toggle svg {
-  width: 16px;
-  height: 16px;
+  width: 16px; height: 16px;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-}
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
-@media (max-width: 768px) {
-  .hero-mesh {
-    width: 400px;
-    height: 400px;
-    left: 50%;
-  }
-  .hero-mesh-secondary {
-    width: 300px;
-    height: 300px;
-  }
-  * {
-    cursor: auto !important;
-  }
-  .nx-dot,
-  .nx-ring {
-    display: none !important;
-  }
 }

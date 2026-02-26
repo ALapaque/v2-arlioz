@@ -1,117 +1,159 @@
 "use client";
 
-import { useLoaderState } from "./LoaderProvider";
-import { SplitText, SlideIn, FadeUp, ScaleReveal } from "./AnimatedText";
-import HeroBlob from "./HeroBlob";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+
+const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export default function Hero() {
-  const { isLoaderDone } = useLoaderState();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* WebGL gradient blob */}
-      <HeroBlob />
-
-      {/* Decorative vertical line */}
+    <section ref={ref} className="relative min-h-screen flex items-end overflow-hidden pb-20 pt-32">
+      {/* Subtle background accent circle */}
       <div
-        className="absolute left-[15%] top-0 h-full line-vertical hidden lg:block"
+        className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] rounded-full pointer-events-none opacity-[0.06]"
+        style={{
+          background: "radial-gradient(circle, var(--ar-accent) 0%, transparent 70%)",
+          filter: "blur(100px)",
+        }}
         aria-hidden="true"
       />
 
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-10 w-full pt-32 pb-20">
-        <div className="max-w-[900px]">
-          {/* Top label — slides in from left */}
-          <SlideIn animate={isLoaderDone} delay={0} className="mb-8">
-            <span className="section-label">
-              ARLIOZ &mdash; PRIVACY &amp; DIGITAL DEVELOPMENT
-            </span>
-          </SlideIn>
+      <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-end">
+          {/* Left — Main content */}
+          <div className="lg:col-span-8">
+            {/* Label */}
+            <motion.span
+              initial={{ opacity: 0, x: -20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, ease }}
+              className="section-label block mb-8"
+            >
+              Agence digitale &mdash; Belgique
+            </motion.span>
 
-          {/* Main title — word-by-word reveal */}
-          <h1
-            className="text-[clamp(3.2rem,10vw,9rem)] leading-[0.9] tracking-tight mb-8"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            <span className="block">
-              <SplitText animate={isLoaderDone} delay={0.12}>
-                WE BUILD
-              </SplitText>
-            </span>
-            <span className="block text-gradient">
-              <SplitText animate={isLoaderDone} delay={0.22} stagger={0.04}>
-                DIGITAL EMPIRES
-              </SplitText>
-            </span>
-          </h1>
+            {/* Title */}
+            <motion.h1
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.1, duration: 0.9, ease }}
+              className="text-[clamp(3rem,8vw,7.5rem)] leading-[0.92] tracking-tight mb-8"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Nous cr&eacute;ons des
+              <br />
+              <em className="text-[var(--ar-accent)]" style={{ fontStyle: "italic" }}>
+                exp&eacute;riences
+              </em>
+              <br />
+              digitales.
+            </motion.h1>
 
-          {/* Subtitle — subtle fade up */}
-          <FadeUp animate={isLoaderDone} delay={0.5} className="mb-12">
-            <p
-              className="text-[clamp(1rem,2vw,1.25rem)] leading-relaxed text-[var(--nx-ivory-dim)] max-w-[540px]"
-              style={{ fontFamily: "var(--font-body)" }}
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3, duration: 0.7, ease }}
+              className="text-[clamp(1rem,1.8vw,1.2rem)] leading-relaxed text-[var(--ar-fg-dim)] max-w-[500px] mb-12"
             >
               Privacy &amp; digital design r&eacute;unis pour aider les entreprises
               &agrave; grandir en s&eacute;curit&eacute; et intelligemment.
-            </p>
-          </FadeUp>
+            </motion.p>
 
-          {/* CTAs — scale reveal, last in sequence */}
-          <ScaleReveal animate={isLoaderDone} delay={0.65}>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="#portfolio"
-                className="btn-slide inline-flex items-center gap-3 px-8 py-4 bg-gradient-accent text-[#060606] text-[12px] tracking-[0.2em] uppercase font-medium transition-colors duration-300"
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                <span>Voir nos réalisations</span>
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.45, duration: 0.6, ease }}
+              className="flex flex-wrap gap-4"
+            >
+              <a href="#portfolio" className="btn-primary">
+                <span>Nos r&eacute;alisations</span>
               </a>
-              <a
-                href="#process"
-                className="btn-outline-slide inline-flex items-center gap-3 px-8 py-4 border border-[var(--nx-ivory-ghost)] text-[var(--nx-ivory)] text-[12px] tracking-[0.2em] uppercase transition-all duration-300"
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                <span>Notre process</span>
+              <a href="#process" className="btn-outline">
+                <span>Notre approche</span>
                 <span>&#8594;</span>
               </a>
-            </div>
-          </ScaleReveal>
-        </div>
-
-        {/* Floating badge */}
-        <FadeUp
-          animate={isLoaderDone}
-          delay={0.8}
-          className="absolute right-8 md:right-16 top-[35%] hidden lg:block"
-        >
-          <div className="badge-float border border-[var(--nx-accent-from)] px-5 py-3 bg-[var(--nx-surface-card)] backdrop-blur-md">
-            <span
-              className="text-[10px] tracking-[0.25em] uppercase text-gradient block"
-              style={{ fontFamily: "var(--font-mono)" }}
-            >
-              Available for projects
-            </span>
-            <span
-              className="text-2xl text-[var(--nx-ivory)] tracking-wider"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              2026
-            </span>
+            </motion.div>
           </div>
-        </FadeUp>
+
+          {/* Right — Info column */}
+          <div className="lg:col-span-4 flex flex-col gap-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.5, duration: 0.6, ease }}
+              className="border-l-2 border-[var(--ar-accent)] pl-6"
+            >
+              <span
+                className="text-[10px] tracking-[0.3em] uppercase text-[var(--ar-fg-ghost)] block mb-2"
+                style={{ fontFamily: "var(--font-mono)" }}
+              >
+                Available
+              </span>
+              <span
+                className="text-4xl tracking-tight text-[var(--ar-fg)]"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                2026
+              </span>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.6, duration: 0.6, ease }}
+              className="border-l-2 border-[var(--ar-border)] pl-6"
+            >
+              <span
+                className="text-[10px] tracking-[0.3em] uppercase text-[var(--ar-fg-ghost)] block mb-2"
+                style={{ fontFamily: "var(--font-mono)" }}
+              >
+                Expertise
+              </span>
+              <p className="text-[14px] leading-relaxed text-[var(--ar-fg-dim)]">
+                Applications web, mobile cross-platform, architecture IT &amp; RGPD
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.7, duration: 0.6, ease }}
+              className="border-l-2 border-[var(--ar-border)] pl-6"
+            >
+              <span
+                className="text-[10px] tracking-[0.3em] uppercase text-[var(--ar-fg-ghost)] block mb-2"
+                style={{ fontFamily: "var(--font-mono)" }}
+              >
+                Localisation
+              </span>
+              <p className="text-[14px] text-[var(--ar-fg-dim)]">
+                Charleroi, Belgique
+              </p>
+            </motion.div>
+          </div>
+        </div>
       </div>
 
-      {/* Scroll indicator */}
-      <FadeUp animate={isLoaderDone} delay={0.9} className="absolute bottom-10 left-1/2 -translate-x-1/2">
-        <div className="flex flex-col items-center gap-3 scroll-indicator">
-          <span
-            className="text-[9px] tracking-[0.3em] uppercase text-[var(--nx-ivory-ghost)]"
-            style={{ fontFamily: "var(--font-mono)" }}
-          >
-            Scroll
-          </span>
-          <div className="w-px h-8 bg-gradient-to-b from-[var(--nx-accent-from)] to-transparent" />
-        </div>
-      </FadeUp>
+      {/* Bottom scroll line */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ delay: 0.9, duration: 0.6 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+      >
+        <span
+          className="text-[9px] tracking-[0.3em] uppercase text-[var(--ar-fg-ghost)]"
+          style={{ fontFamily: "var(--font-mono)" }}
+        >
+          Scroll
+        </span>
+        <div className="w-px h-10 bg-gradient-to-b from-[var(--ar-accent)] to-transparent" />
+      </motion.div>
     </section>
   );
 }

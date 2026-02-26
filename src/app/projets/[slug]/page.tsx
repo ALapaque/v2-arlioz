@@ -68,10 +68,7 @@ export default async function ProjectPage({
           <>
             <ProjectChallenge paragraphs={project.challenge} />
             <ProjectSolution steps={project.solution} />
-            <ProjectGallery
-              images={project.gallery}
-              accentColor={project.accentColor}
-            />
+            <ProjectGallery images={project.gallery} accentColor={project.accentColor} />
             <ProjectResults results={project.results} />
             <ProjectStack techStack={project.techStack} />
             {project.testimonial.quote && (
@@ -80,16 +77,12 @@ export default async function ProjectPage({
           </>
         ) : (
           <section className="py-28 md:py-40 text-center">
-            <span
-              className="section-label block mb-6"
-            >
-              BIENTÔT DISPONIBLE
-            </span>
+            <span className="section-label block mb-6">Bient&ocirc;t disponible</span>
             <h2
-              className="text-[clamp(2rem,4vw,3.5rem)] leading-[0.95] tracking-tight text-[var(--nx-ivory-ghost)]"
+              className="text-[clamp(2rem,4vw,3.5rem)] leading-[0.95] tracking-tight text-[var(--ar-fg-ghost)]"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              ÉTUDE DE CAS EN COURS DE RÉDACTION
+              &Eacute;tude de cas en cours de r&eacute;daction
             </h2>
           </section>
         )}

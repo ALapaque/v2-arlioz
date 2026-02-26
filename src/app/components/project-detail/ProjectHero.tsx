@@ -8,11 +8,11 @@ const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 export default function ProjectHero({ project }: { project: Project }) {
   return (
     <section className="relative min-h-screen flex flex-col justify-end overflow-hidden pb-16 pt-28">
-      {/* Ambient glow */}
+      {/* Subtle accent glow */}
       <div
-        className="absolute top-[30%] right-[10%] w-[600px] h-[600px] rounded-full opacity-15 pointer-events-none"
+        className="absolute top-[25%] right-[5%] w-[500px] h-[500px] rounded-full opacity-[0.05] pointer-events-none"
         style={{
-          background: `radial-gradient(circle, ${project.accentColor}33 0%, transparent 70%)`,
+          background: `radial-gradient(circle, ${project.accentColor} 0%, transparent 70%)`,
           filter: "blur(100px)",
         }}
         aria-hidden="true"
@@ -20,18 +20,12 @@ export default function ProjectHero({ project }: { project: Project }) {
 
       {/* Watermark number */}
       <div
-        className="absolute top-[12%] right-[5%] lg:right-[10%] text-[clamp(10rem,25vw,20rem)] leading-none text-[var(--nx-ivory-faint)] pointer-events-none select-none"
+        className="absolute top-[10%] right-[5%] lg:right-[8%] text-[clamp(10rem,25vw,20rem)] leading-none text-[var(--ar-fg-faint)] pointer-events-none select-none"
         style={{ fontFamily: "var(--font-display)" }}
         aria-hidden="true"
       >
         {project.number}
       </div>
-
-      {/* Decorative vertical line */}
-      <div
-        className="absolute left-[8%] top-0 h-full line-vertical hidden lg:block"
-        aria-hidden="true"
-      />
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-10 w-full">
         {/* Breadcrumb */}
@@ -41,18 +35,12 @@ export default function ProjectHero({ project }: { project: Project }) {
           transition={{ duration: 0.7, ease }}
           className="mb-12"
         >
-          <span
-            className="text-[11px] tracking-[0.25em] uppercase text-[var(--nx-ivory-ghost)]"
-            style={{ fontFamily: "var(--font-mono)" }}
-          >
-            <a
-              href="/#portfolio"
-              className="hover:text-[var(--nx-accent-from)] transition-colors duration-300"
-            >
-              Réalisations
+          <span className="text-[11px] tracking-[0.25em] uppercase text-[var(--ar-fg-ghost)]" style={{ fontFamily: "var(--font-mono)" }}>
+            <a href="/#portfolio" className="hover:text-[var(--ar-accent)] transition-colors duration-300">
+              Projets
             </a>
-            <span className="mx-3 text-[var(--nx-border)]">&rarr;</span>
-            <span className="text-[var(--nx-accent-from)]">{project.name}</span>
+            <span className="mx-3 text-[var(--ar-border)]">&rarr;</span>
+            <span className="text-[var(--ar-accent)]">{project.name}</span>
           </span>
         </motion.div>
 
@@ -66,12 +54,8 @@ export default function ProjectHero({ project }: { project: Project }) {
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1 border text-[9px] tracking-[0.3em] uppercase"
-              style={{
-                fontFamily: "var(--font-mono)",
-                borderColor: project.accentColor,
-                color: project.accentColor,
-              }}
+              className="px-3 py-1 border border-[var(--ar-border-hover)] text-[9px] tracking-[0.3em] uppercase text-[var(--ar-fg-dim)]"
+              style={{ fontFamily: "var(--font-mono)" }}
             >
               {tag}
             </span>
@@ -83,10 +67,10 @@ export default function ProjectHero({ project }: { project: Project }) {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 0.9, ease }}
-          className="text-[clamp(4rem,12vw,11rem)] leading-[0.88] tracking-tight mb-8"
+          className="text-[clamp(3.5rem,10vw,9rem)] leading-[0.88] tracking-tight mb-8"
           style={{ fontFamily: "var(--font-display)" }}
         >
-          {project.name.toUpperCase()}
+          {project.name}
         </motion.h1>
 
         {/* Headline */}
@@ -94,24 +78,22 @@ export default function ProjectHero({ project }: { project: Project }) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.8, ease }}
-          className="text-[clamp(1rem,2vw,1.35rem)] leading-relaxed text-[var(--nx-ivory-dim)] max-w-[600px] mb-16"
-          style={{ fontFamily: "var(--font-body)" }}
+          className="text-[clamp(1rem,2vw,1.35rem)] leading-relaxed text-[var(--ar-fg-dim)] max-w-[600px] mb-16"
         >
           {project.headline}
         </motion.p>
 
-        {/* Mockup area — project image */}
+        {/* Mockup area */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 1, ease }}
-          className="relative w-full aspect-[16/9] max-w-[1100px] mb-16 border border-[var(--nx-border)] overflow-hidden"
+          className="relative w-full aspect-[16/9] max-w-[1100px] mb-16 border border-[var(--ar-border)] overflow-hidden"
           style={{
-            background: project.gallery[0]?.gradient || `linear-gradient(135deg, var(--nx-bg) 0%, var(--nx-bg-alt) 100%)`,
+            background: project.gallery[0]?.gradient || "linear-gradient(135deg, #0D1117 0%, #161625 100%)",
           }}
         >
-          {/* Project image */}
-          {project.image ? (
+          {project.image && (
             <div className="absolute inset-0 flex items-center justify-center">
               <img
                 src={project.image}
@@ -119,106 +101,28 @@ export default function ProjectHero({ project }: { project: Project }) {
                 className="max-w-[50%] max-h-[85%] object-contain drop-shadow-2xl"
               />
             </div>
-          ) : (
-            <div className="absolute inset-0 p-6 md:p-10" style={{ transform: "rotateX(2deg)" }}>
-              {/* Top bar */}
-              <div className="flex items-center gap-3 mb-6">
-                <div className="flex gap-1.5">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57] opacity-70" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e] opacity-70" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#28c840] opacity-70" />
-                </div>
-                <div className="flex-1 h-6 bg-[var(--nx-tag-bg)] rounded-sm mx-8 max-w-[300px]" />
-              </div>
-
-              {/* Content grid */}
-              <div className="grid grid-cols-12 gap-4 h-[calc(100%-3rem)]">
-                <div className="col-span-12 flex flex-col gap-4">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    {(project.gallery[0]?.uiElements || []).slice(0, 4).map((el, i) => (
-                      <div
-                        key={i}
-                        className="p-3 md:p-4 border border-[var(--nx-tag-border)] bg-[var(--nx-tag-bg)]"
-                      >
-                        <div
-                          className="text-[clamp(0.9rem,2vw,1.3rem)]"
-                          style={{
-                            fontFamily: "var(--font-display)",
-                            color: i === 0 ? project.accentColor : "var(--nx-ivory)",
-                          }}
-                        >
-                          {el}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex-1 border border-[var(--nx-tag-border)] bg-[var(--nx-tag-bg)] p-4 flex items-end gap-1.5 min-h-[80px]">
-                    {[40, 55, 35, 68, 52, 78, 45, 82, 60, 90, 72, 95, 65, 88, 70, 85, 75, 92, 80, 98].map(
-                      (h, i) => (
-                        <div
-                          key={i}
-                          className="flex-1 rounded-t-sm"
-                          style={{
-                            height: `${h}%`,
-                            background:
-                              i >= 16
-                                ? project.accentColor
-                                : `rgba(255,255,255,${0.04 + (i / 20) * 0.06})`,
-                            opacity: 0.5 + (i / 20) * 0.5,
-                          }}
-                        />
-                      )
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
           )}
-
-          {/* Gradient overlay for depth */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--nx-black)] via-transparent to-transparent opacity-30 pointer-events-none" />
         </motion.div>
 
-        {/* Bottom info columns */}
+        {/* Bottom info */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.7, ease }}
           className="flex flex-col sm:flex-row gap-12 sm:gap-24"
         >
-          <div>
-            <span
-              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-accent-from)] block mb-2"
-              style={{ fontFamily: "var(--font-mono)" }}
-            >
-              Rôle
-            </span>
-            <span className="text-[15px] text-[var(--nx-ivory-dim)]">
-              {project.role}
-            </span>
-          </div>
-          <div>
-            <span
-              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-accent-from)] block mb-2"
-              style={{ fontFamily: "var(--font-mono)" }}
-            >
-              Année
-            </span>
-            <span className="text-[15px] text-[var(--nx-ivory-dim)]">
-              {project.year}
-            </span>
-          </div>
-          <div>
-            <span
-              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-accent-from)] block mb-2"
-              style={{ fontFamily: "var(--font-mono)" }}
-            >
-              Client
-            </span>
-            <span className="text-[15px] text-[var(--nx-ivory-dim)]">
-              {project.client}
-            </span>
-          </div>
+          {[
+            { label: "Rôle", value: project.role },
+            { label: "Année", value: project.year },
+            { label: "Client", value: project.client },
+          ].map((item) => (
+            <div key={item.label}>
+              <span className="text-[10px] tracking-[0.3em] uppercase text-[var(--ar-accent)] block mb-2" style={{ fontFamily: "var(--font-mono)" }}>
+                {item.label}
+              </span>
+              <span className="text-[15px] text-[var(--ar-fg-dim)]">{item.value}</span>
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>

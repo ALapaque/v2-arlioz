@@ -23,13 +23,12 @@ export default function ThemeToggle() {
         strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
-        style={{ color: "var(--nx-fg-dim)" }}
+        style={{ color: "var(--ar-fg-dim)" }}
         initial={{ rotate: -45, opacity: 0, scale: 0.6 }}
         animate={{ rotate: 0, opacity: 1, scale: 1 }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       >
         {isDark ? (
-          /* Sun icon */
           <>
             <circle cx="12" cy="12" r="4" />
             <path d="M12 2v2" />
@@ -42,7 +41,6 @@ export default function ThemeToggle() {
             <path d="m19.07 4.93-1.41 1.41" />
           </>
         ) : (
-          /* Moon icon */
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
         )}
       </motion.svg>

@@ -5,11 +5,6 @@ import { motion, useInView } from "framer-motion";
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-/* ============================================
-   SplitText — Word-by-word clip reveal
-   For headings. Each word slides up from behind
-   a mask, creating a cinematic text reveal.
-   ============================================ */
 interface SplitTextProps {
   children: string;
   className?: string;
@@ -18,43 +13,23 @@ interface SplitTextProps {
   animate?: boolean;
 }
 
-export function SplitText({
-  children,
-  className = "",
-  delay = 0,
-  stagger = 0.035,
-  animate,
-}: SplitTextProps) {
+export function SplitText({ children, className = "", delay = 0, stagger = 0.035, animate }: SplitTextProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const shouldAnimate = animate !== undefined ? animate : isInView;
-
   const words = children.split(" ");
 
   return (
     <span ref={ref} className={`${className} inline`} aria-label={children}>
       {words.map((word, i) => (
-        <span
-          key={i}
-          className="inline-block overflow-hidden align-top"
-          aria-hidden="true"
-        >
+        <span key={i} className="inline-block overflow-hidden align-top" aria-hidden="true">
           <motion.span
             className="inline-block"
             initial={{ y: "110%", opacity: 0 }}
-            animate={
-              shouldAnimate
-                ? { y: "0%", opacity: 1 }
-                : { y: "110%", opacity: 0 }
-            }
-            transition={{
-              delay: delay + i * stagger,
-              duration: 0.6,
-              ease,
-            }}
+            animate={shouldAnimate ? { y: "0%", opacity: 1 } : { y: "110%", opacity: 0 }}
+            transition={{ delay: delay + i * stagger, duration: 0.6, ease }}
           >
-            {word}
-            {i < words.length - 1 ? "\u00A0" : ""}
+            {word}{i < words.length - 1 ? "\u00A0" : ""}
           </motion.span>
         </span>
       ))}
@@ -62,10 +37,6 @@ export function SplitText({
   );
 }
 
-/* ============================================
-   SlideIn — Horizontal slide for labels/tags
-   Small lateral entrance before titles.
-   ============================================ */
 interface SlideInProps {
   children: React.ReactNode;
   className?: string;
@@ -74,13 +45,7 @@ interface SlideInProps {
   animate?: boolean;
 }
 
-export function SlideIn({
-  children,
-  className,
-  delay = 0,
-  direction = "left",
-  animate,
-}: SlideInProps) {
+export function SlideIn({ children, className, delay = 0, direction = "left", animate }: SlideInProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const shouldAnimate = animate !== undefined ? animate : isInView;
@@ -98,10 +63,6 @@ export function SlideIn({
   );
 }
 
-/* ============================================
-   FadeUp — Subtle fade + translateY
-   For paragraphs and general content blocks.
-   ============================================ */
 interface FadeUpProps {
   children: React.ReactNode;
   className?: string;
@@ -110,13 +71,7 @@ interface FadeUpProps {
   animate?: boolean;
 }
 
-export function FadeUp({
-  children,
-  className,
-  delay = 0,
-  offset = 24,
-  animate,
-}: FadeUpProps) {
+export function FadeUp({ children, className, delay = 0, offset = 24, animate }: FadeUpProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const shouldAnimate = animate !== undefined ? animate : isInView;
@@ -134,10 +89,6 @@ export function FadeUp({
   );
 }
 
-/* ============================================
-   ScaleReveal — Scale + opacity for CTAs
-   Buttons and interactive elements appear last.
-   ============================================ */
 interface ScaleRevealProps {
   children: React.ReactNode;
   className?: string;
@@ -145,12 +96,7 @@ interface ScaleRevealProps {
   animate?: boolean;
 }
 
-export function ScaleReveal({
-  children,
-  className,
-  delay = 0,
-  animate,
-}: ScaleRevealProps) {
+export function ScaleReveal({ children, className, delay = 0, animate }: ScaleRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const shouldAnimate = animate !== undefined ? animate : isInView;

@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ThemeProvider from "./components/ThemeProvider";
-import LoaderProvider from "./components/LoaderProvider";
-import CustomCursor from "./components/CustomCursor";
 import ScrollProgress from "./components/ScrollProgress";
 
 export const metadata: Metadata = {
@@ -38,10 +36,7 @@ export const metadata: Metadata = {
     description:
       "Privacy et digital design réunis pour aider les entreprises à grandir en sécurité et intelligemment.",
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -50,22 +45,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" data-theme="dark" suppressHydrationWarning>
+    <html lang="fr" data-theme="light" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('arlioz-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia('(prefers-color-scheme:light)').matches){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})()`,
+            __html: `(function(){try{var t=localStorage.getItem('arlioz-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}})()`,
           }}
         />
       </head>
       <body className="antialiased">
         <ThemeProvider>
-          <LoaderProvider>
-            <CustomCursor />
-            <ScrollProgress />
-            <div className="noise-overlay" aria-hidden="true" />
-            {children}
-          </LoaderProvider>
+          <ScrollProgress />
+          {children}
         </ThemeProvider>
       </body>
     </html>

@@ -6,8 +6,9 @@ import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { label: "Services", href: "/#services" },
-  { label: "Réalisations", href: "/#portfolio" },
+  { label: "Projets", href: "/#portfolio" },
   { label: "Process", href: "/#process" },
+  { label: "Equipe", href: "/#equipe" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -29,21 +30,17 @@ export default function Navigation() {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
           scrolled
-            ? "bg-[var(--nx-surface)] backdrop-blur-xl border-b border-[var(--nx-border)]"
+            ? "bg-[var(--ar-surface)] backdrop-blur-xl border-b border-[var(--ar-border)]"
             : "bg-transparent"
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
           {/* Logo */}
           <a href="/" className="flex items-center gap-3 group">
-            <img
-              src="/logo-arlioz.svg"
-              alt="Arlioz"
-              className="h-9 w-auto"
-            />
+            <img src="/logo-arlioz.svg" alt="Arlioz" className="h-8 w-auto" />
             <span
-              className="text-2xl tracking-[0.08em] text-[var(--nx-ivory)]"
-              style={{ fontFamily: "var(--font-display)" }}
+              className="text-lg tracking-[0.15em] text-[var(--ar-fg)]"
+              style={{ fontFamily: "var(--font-mono)", fontWeight: 500 }}
             >
               ARLIOZ
             </span>
@@ -55,8 +52,8 @@ export default function Navigation() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-[13px] tracking-[0.15em] uppercase text-[var(--nx-ivory-dim)] hover:text-[var(--nx-accent-from)] transition-colors duration-300"
-                style={{ fontFamily: "var(--font-mono)" }}
+                className="text-[13px] text-[var(--ar-fg-dim)] hover:text-[var(--ar-accent)] transition-colors duration-300"
+                style={{ fontFamily: "var(--font-body)", fontWeight: 500 }}
               >
                 {link.label}
               </a>
@@ -68,11 +65,10 @@ export default function Navigation() {
             <ThemeToggle />
             <a
               href="/#contact"
-              className="inline-flex items-center gap-2 px-6 py-2.5 border border-[var(--nx-accent-from)] text-[var(--nx-accent-from)] text-[12px] tracking-[0.2em] uppercase hover:bg-[var(--nx-accent-from)] hover:text-[var(--nx-bg)] transition-all duration-300"
-              style={{ fontFamily: "var(--font-mono)" }}
+              className="btn-primary text-[11px] py-3 px-6"
             >
               Démarrer un projet
-              <span className="text-sm">&#8594;</span>
+              <span>&#8594;</span>
             </a>
           </div>
 
@@ -83,12 +79,12 @@ export default function Navigation() {
             aria-label="Toggle menu"
           >
             <span
-              className={`w-6 h-px bg-[var(--nx-ivory)] transition-all duration-300 ${
+              className={`w-6 h-px bg-[var(--ar-fg)] transition-all duration-300 ${
                 mobileOpen ? "rotate-45 translate-y-[3px]" : ""
               }`}
             />
             <span
-              className={`w-6 h-px bg-[var(--nx-ivory)] transition-all duration-300 ${
+              className={`w-6 h-px bg-[var(--ar-fg)] transition-all duration-300 ${
                 mobileOpen ? "-rotate-45 -translate-y-[3px]" : ""
               }`}
             />
@@ -104,7 +100,7 @@ export default function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[99] bg-[var(--nx-bg)] pt-24 px-8 flex flex-col gap-8 md:hidden"
+            className="fixed inset-0 z-[99] bg-[var(--ar-bg)] pt-24 px-8 flex flex-col gap-8 md:hidden"
           >
             {navLinks.map((link, i) => (
               <motion.a
@@ -114,7 +110,7 @@ export default function Navigation() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.08 }}
-                className="text-3xl tracking-[0.05em] text-[var(--nx-ivory)] hover:text-[var(--nx-accent-from)] transition-colors"
+                className="text-3xl tracking-tight text-[var(--ar-fg)] hover:text-[var(--ar-accent)] transition-colors"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {link.label}
@@ -123,8 +119,7 @@ export default function Navigation() {
             <a
               href="/#contact"
               onClick={() => setMobileOpen(false)}
-              className="mt-8 inline-flex items-center gap-3 px-6 py-3 border border-[var(--nx-accent-from)] text-[var(--nx-accent-from)] text-[12px] tracking-[0.2em] uppercase self-start"
-              style={{ fontFamily: "var(--font-mono)" }}
+              className="btn-primary self-start mt-4"
             >
               Démarrer un projet &#8594;
             </a>
