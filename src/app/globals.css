@@ -325,6 +325,72 @@ body {
 }
 
 /* ============================================
+   BUTTON SLIDE FILL EFFECT
+   ============================================ */
+.btn-slide {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-slide > * {
+  position: relative;
+  z-index: 2;
+}
+
+.btn-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--nx-ivory);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-slide:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.btn-slide:hover {
+  color: var(--nx-black) !important;
+}
+
+.btn-outline-slide {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-outline-slide > * {
+  position: relative;
+  z-index: 2;
+}
+
+.btn-outline-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--nx-gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-outline-slide:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.btn-outline-slide:hover {
+  color: var(--nx-black) !important;
+  border-color: var(--nx-gold) !important;
+}
+
+/* ============================================
    RESPONSIVE HELPERS
    ============================================ */
 @media (max-width: 768px) {

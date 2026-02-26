@@ -2,6 +2,9 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { SplitText, SlideIn } from "./AnimatedText";
+
+const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 interface Step {
   number: string;
@@ -49,27 +52,31 @@ export default function Process() {
   return (
     <section id="process" className="relative py-28 md:py-40" ref={ref}>
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-20"
-        >
-          <span className="section-label block mb-4">03 &mdash; NOTRE MÉTHODE</span>
+        {/* Section header — sequenced */}
+        <div className="mb-20">
+          <SlideIn animate={isInView} delay={0} className="mb-4">
+            <span className="section-label">03 &mdash; NOTRE MÉTHODE</span>
+          </SlideIn>
           <h2
             className="text-[clamp(2.5rem,5vw,5rem)] leading-[0.95] tracking-tight max-w-[700px]"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            UN PROCESS ÉPROUVÉ,
-            <br />
-            <span className="text-[var(--nx-gold)]">DES RÉSULTATS GARANTIS</span>
+            <span className="block">
+              <SplitText animate={isInView} delay={0.1}>
+                UN PROCESS ÉPROUVÉ,
+              </SplitText>
+            </span>
+            <span className="block text-[var(--nx-gold)]">
+              <SplitText animate={isInView} delay={0.2}>
+                DES RÉSULTATS GARANTIS
+              </SplitText>
+            </span>
           </h2>
-        </motion.div>
+        </div>
 
         {/* Timeline */}
         <div className="relative">
-          {/* Connecting line — vertical on mobile, implied on desktop */}
+          {/* Connecting line */}
           <div
             className="absolute left-[23px] md:left-0 md:right-0 top-0 bottom-0 md:top-[40px] md:bottom-auto md:h-px line-vertical md:line-decorative"
             aria-hidden="true"
@@ -82,9 +89,9 @@ export default function Process() {
                 initial={{ opacity: 0, y: 40 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{
-                  delay: 0.3 + i * 0.12,
+                  delay: 0.35 + i * 0.1,
                   duration: 0.7,
-                  ease: [0.16, 1, 0.3, 1],
+                  ease,
                 }}
                 className="relative pl-16 md:pl-0 py-8 md:py-0 md:pr-6"
               >

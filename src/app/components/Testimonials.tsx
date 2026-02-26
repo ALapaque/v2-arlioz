@@ -2,6 +2,9 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { SplitText, SlideIn } from "./AnimatedText";
+
+const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 interface Testimonial {
   quote: string;
@@ -45,21 +48,25 @@ export default function Testimonials() {
   return (
     <section className="relative py-28 md:py-40" ref={ref}>
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-20 text-center"
-        >
-          <span className="section-label block mb-4">TÉMOIGNAGES</span>
+        {/* Header — sequenced */}
+        <div className="mb-20 text-center">
+          <SlideIn animate={isInView} delay={0} direction="right" className="mb-4 flex justify-center">
+            <span className="section-label">TÉMOIGNAGES</span>
+          </SlideIn>
           <h2
             className="text-[clamp(2rem,4vw,3.5rem)] leading-[0.95] tracking-tight"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            ILS NOUS FONT <span className="text-[var(--nx-gold)]">CONFIANCE</span>
+            <SplitText animate={isInView} delay={0.1}>
+              ILS NOUS FONT
+            </SplitText>{" "}
+            <span className="text-[var(--nx-gold)]">
+              <SplitText animate={isInView} delay={0.18}>
+                CONFIANCE
+              </SplitText>
+            </span>
           </h2>
-        </motion.div>
+        </div>
 
         {/* Testimonials grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -69,9 +76,9 @@ export default function Testimonials() {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
-                delay: 0.2 + i * 0.1,
+                delay: 0.3 + i * 0.1,
                 duration: 0.7,
-                ease: [0.16, 1, 0.3, 1],
+                ease,
               }}
               className="relative p-8 md:p-10 border border-[var(--nx-border)] bg-[var(--nx-black-alt)] group hover:border-[var(--nx-gold-dim)] transition-all duration-500"
             >

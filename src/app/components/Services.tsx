@@ -2,6 +2,9 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { SplitText, SlideIn } from "./AnimatedText";
+
+const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 interface Service {
   icon: string;
@@ -63,23 +66,27 @@ export default function Services() {
       />
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-20"
-        >
-          <span className="section-label block mb-4">01 &mdash; NOS EXPERTISES</span>
+        {/* Section header — sequenced: label → title */}
+        <div className="mb-20">
+          <SlideIn animate={isInView} delay={0} className="mb-4">
+            <span className="section-label">01 &mdash; NOS EXPERTISES</span>
+          </SlideIn>
           <h2
             className="text-[clamp(2.5rem,5vw,5rem)] leading-[0.95] tracking-tight max-w-[600px]"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            DES SOLUTIONS,
-            <br />
-            <span className="text-[var(--nx-gold)]">PAS DES TEMPLATES</span>
+            <span className="block">
+              <SplitText animate={isInView} delay={0.1}>
+                DES SOLUTIONS,
+              </SplitText>
+            </span>
+            <span className="block text-[var(--nx-gold)]">
+              <SplitText animate={isInView} delay={0.2}>
+                PAS DES TEMPLATES
+              </SplitText>
+            </span>
           </h2>
-        </motion.div>
+        </div>
 
         {/* Services grid — asymmetric */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -89,9 +96,9 @@ export default function Services() {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
-                delay: 0.15 + i * 0.08,
+                delay: 0.35 + i * 0.08,
                 duration: 0.7,
-                ease: [0.16, 1, 0.3, 1],
+                ease,
               }}
               className={`card-border-animated group p-8 md:p-10 ${
                 service.featured ? "md:col-span-2 lg:col-span-2 lg:row-span-1" : ""

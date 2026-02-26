@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
+const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
 interface StatItem {
   value: number;
   suffix: string;
@@ -79,7 +81,7 @@ export default function Stats() {
               transition={{
                 delay: i * 0.1,
                 duration: 0.7,
-                ease: [0.16, 1, 0.3, 1],
+                ease,
               }}
               className="text-center md:text-left"
             >

@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
+import { SplitText, SlideIn } from "./AnimatedText";
 
 const technologies = [
   "Next.js",
@@ -31,20 +32,24 @@ export default function TechStack() {
       <div className="line-decorative absolute top-0 left-0 right-0" />
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 mb-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center"
-        >
-          <span className="section-label block mb-4">TECHNOLOGIES</span>
+        <div className="text-center">
+          <SlideIn animate={isInView} delay={0} direction="right" className="mb-4 flex justify-center">
+            <span className="section-label">TECHNOLOGIES</span>
+          </SlideIn>
           <h2
             className="text-[clamp(2rem,4vw,3.5rem)] leading-[0.95] tracking-tight"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            TECHNOLOGIES <span className="text-[var(--nx-gold)]">DE POINTE</span>
+            <SplitText animate={isInView} delay={0.1}>
+              TECHNOLOGIES
+            </SplitText>{" "}
+            <span className="text-[var(--nx-gold)]">
+              <SplitText animate={isInView} delay={0.18}>
+                DE POINTE
+              </SplitText>
+            </span>
           </h2>
-        </motion.div>
+        </div>
       </div>
 
       {/* Marquee */}

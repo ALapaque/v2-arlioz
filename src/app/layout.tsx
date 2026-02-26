@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import LoaderProvider from "./components/LoaderProvider";
 import CustomCursor from "./components/CustomCursor";
 import ScrollProgress from "./components/ScrollProgress";
 
@@ -47,10 +48,12 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className="antialiased">
-        <CustomCursor />
-        <ScrollProgress />
-        <div className="noise-overlay" aria-hidden="true" />
-        {children}
+        <LoaderProvider>
+          <CustomCursor />
+          <ScrollProgress />
+          <div className="noise-overlay" aria-hidden="true" />
+          {children}
+        </LoaderProvider>
       </body>
     </html>
   );
