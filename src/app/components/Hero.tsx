@@ -83,7 +83,7 @@ export default function Hero() {
           delay={0.8}
           className="absolute right-8 md:right-16 top-[35%] hidden lg:block"
         >
-          <div className="badge-float border border-[var(--nx-gold)] px-5 py-3 bg-[rgba(8,8,8,0.7)] backdrop-blur-md">
+          <div className="badge-float border border-[var(--nx-gold)] px-5 py-3 bg-[var(--nx-surface-card)] backdrop-blur-md">
             <span
               className="text-[10px] tracking-[0.25em] uppercase text-[var(--nx-gold)] block"
               style={{ fontFamily: "var(--font-mono)" }}

@@ -129,7 +129,7 @@ export default function Portfolio() {
                 </div>
 
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--nx-black)] via-[rgba(8,8,8,0.4)] to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--nx-overlay-from)] via-[var(--nx-overlay-via)] to-transparent" />
 
                 {/* Content overlay */}
                 <div className="relative z-10 w-full">
@@ -159,7 +159,7 @@ export default function Portfolio() {
                       {project.stack.map((tech) => (
                         <span
                           key={tech}
-                          className="px-3 py-1 bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] text-[10px] tracking-[0.15em] uppercase text-[var(--nx-ivory-dim)]"
+                          className="px-3 py-1 bg-[var(--nx-tag-bg)] border border-[var(--nx-tag-border)] text-[10px] tracking-[0.15em] uppercase text-[var(--nx-ivory-dim)]"
                           style={{ fontFamily: "var(--font-mono)" }}
                         >
                           {tech}

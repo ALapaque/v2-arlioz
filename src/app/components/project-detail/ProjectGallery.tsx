@@ -27,7 +27,7 @@ function GalleryItem({
             className="w-full h-full object-cover object-top will-change-transform md:group-hover:scale-[1.03] transition-transform duration-700"
           />
           {/* Hover overlay — desktop only */}
-          <div className="absolute inset-0 bg-[rgba(8,8,8,0.8)] opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 hidden md:flex items-center justify-center">
+          <div className="absolute inset-0 bg-[var(--nx-surface)] opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 hidden md:flex items-center justify-center">
             <div className="text-center px-8">
               <h4
                 className="text-[clamp(1.2rem,2vw,1.8rem)] mb-2 tracking-tight"
@@ -44,7 +44,7 @@ function GalleryItem({
             </div>
           </div>
           {/* Mobile label */}
-          <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[rgba(8,8,8,0.9)] to-transparent md:hidden">
+          <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[var(--nx-overlay-from)] to-transparent md:hidden">
             <span
               className="text-[11px] tracking-[0.15em] uppercase text-[var(--nx-ivory-dim)]"
               style={{ fontFamily: "var(--font-mono)" }}
@@ -74,7 +74,7 @@ function GalleryItem({
                 {(image.uiElements || []).map((el, i) => (
                   <div
                     key={i}
-                    className="px-4 py-2 border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)]"
+                    className="px-4 py-2 border border-[var(--nx-tag-border)] bg-[var(--nx-tag-bg)]"
                   >
                     <span
                       className="text-[clamp(0.8rem,1.5vw,1.1rem)]"
@@ -108,7 +108,7 @@ function GalleryItem({
               ))}
             </div>
           </div>
-          <div className="absolute inset-0 bg-[rgba(8,8,8,0.75)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+          <div className="absolute inset-0 bg-[var(--nx-surface)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
             <div className="text-center px-8">
               <h4
                 className="text-[clamp(1.2rem,2vw,1.8rem)] mb-2 tracking-tight"

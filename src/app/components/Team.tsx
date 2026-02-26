@@ -108,14 +108,14 @@ export default function Team() {
                   className="w-full h-full object-cover object-top will-change-transform md:group-hover:scale-[1.03] transition-transform duration-700"
                 />
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--nx-black)] via-[rgba(8,8,8,0.2)] to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--nx-overlay-from)] via-[var(--nx-overlay-via)] to-transparent" />
 
                 {/* Specialties floating over image */}
                 <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 flex flex-wrap gap-1.5 md:gap-2">
                   {member.specialties.map((spec) => (
                     <span
                       key={spec}
-                      className="px-2.5 py-1 md:px-3 bg-[rgba(8,8,8,0.7)] backdrop-blur-sm border border-[var(--nx-border)] text-[8px] md:text-[9px] tracking-[0.2em] uppercase text-[var(--nx-ivory-dim)] md:group-hover:border-[var(--nx-gold-dim)] md:group-hover:text-[var(--nx-gold)] transition-colors duration-500"
+                      className="px-2.5 py-1 md:px-3 bg-[var(--nx-surface-card)] backdrop-blur-sm border border-[var(--nx-border)] text-[8px] md:text-[9px] tracking-[0.2em] uppercase text-[var(--nx-ivory-dim)] md:group-hover:border-[var(--nx-gold-dim)] md:group-hover:text-[var(--nx-gold)] transition-colors duration-500"
                       style={{ fontFamily: "var(--font-mono)" }}
                     >
                       {spec}
@@ -173,7 +173,7 @@ export default function Team() {
             loading="lazy"
             className="w-full h-full object-cover will-change-transform md:group-hover:scale-[1.03] transition-transform duration-700"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[rgba(8,8,8,0.7)] via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--nx-overlay-side)] via-transparent to-transparent" />
           <div className="absolute bottom-6 left-6 md:bottom-12 md:left-12">
             <span
               className="text-[9px] md:text-[10px] tracking-[0.3em] uppercase text-[var(--nx-gold)] block mb-1.5 md:mb-2"

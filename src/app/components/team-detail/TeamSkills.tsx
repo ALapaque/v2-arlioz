@@ -70,7 +70,7 @@ export default function TeamSkills({
                 {group.items.map((item) => (
                   <span
                     key={item}
-                    className="px-3 py-1.5 bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] text-[12px] text-[var(--nx-ivory-dim)]"
+                    className="px-3 py-1.5 bg-[var(--nx-fg-faint)] border border-[var(--nx-tag-border)] text-[12px] text-[var(--nx-ivory-dim)]"
                     style={{ fontFamily: "var(--font-mono)" }}
                   >
                     {item}

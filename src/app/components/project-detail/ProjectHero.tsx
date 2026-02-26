@@ -128,7 +128,7 @@ export default function ProjectHero({ project }: { project: Project }) {
                   <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e] opacity-70" />
                   <div className="w-2.5 h-2.5 rounded-full bg-[#28c840] opacity-70" />
                 </div>
-                <div className="flex-1 h-6 bg-[rgba(255,255,255,0.04)] rounded-sm mx-8 max-w-[300px]" />
+                <div className="flex-1 h-6 bg-[var(--nx-tag-bg)] rounded-sm mx-8 max-w-[300px]" />
               </div>
 
               {/* Content grid */}
@@ -138,7 +138,7 @@ export default function ProjectHero({ project }: { project: Project }) {
                     {(project.gallery[0]?.uiElements || []).slice(0, 4).map((el, i) => (
                       <div
                         key={i}
-                        className="p-3 md:p-4 border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)]"
+                        className="p-3 md:p-4 border border-[var(--nx-tag-border)] bg-[var(--nx-tag-bg)]"
                       >
                         <div
                           className="text-[clamp(0.9rem,2vw,1.3rem)]"
@@ -152,7 +152,7 @@ export default function ProjectHero({ project }: { project: Project }) {
                       </div>
                     ))}
                   </div>
-                  <div className="flex-1 border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.01)] p-4 flex items-end gap-1.5 min-h-[80px]">
+                  <div className="flex-1 border border-[var(--nx-tag-border)] bg-[var(--nx-tag-bg)] p-4 flex items-end gap-1.5 min-h-[80px]">
                     {[40, 55, 35, 68, 52, 78, 45, 82, 60, 90, 72, 95, 65, 88, 70, 85, 75, 92, 80, 98].map(
                       (h, i) => (
                         <div

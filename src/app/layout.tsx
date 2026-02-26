@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import ThemeProvider from "./components/ThemeProvider";
 import LoaderProvider from "./components/LoaderProvider";
 import CustomCursor from "./components/CustomCursor";
 import ScrollProgress from "./components/ScrollProgress";
@@ -49,14 +50,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="fr" data-theme="dark" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('arlioz-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia('(prefers-color-scheme:light)').matches){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})()`,
+          }}
+        />
+      </head>
       <body className="antialiased">
-        <LoaderProvider>
-          <CustomCursor />
-          <ScrollProgress />
-          <div className="noise-overlay" aria-hidden="true" />
-          {children}
-        </LoaderProvider>
+        <ThemeProvider>
+          <LoaderProvider>
+            <CustomCursor />
+            <ScrollProgress />
+            <div className="noise-overlay" aria-hidden="true" />
+            {children}
+          </LoaderProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

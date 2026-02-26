@@ -3,24 +3,70 @@
 
 /* ============================================
    ARLIOZ — Design Tokens
+   Logo-derived gold: #FEB111 / #F5A623
    ============================================ */
+
+/* ---------- SHARED (both themes) ---------- */
 :root {
-  --nx-black: #080808;
-  --nx-black-alt: #0D0D0D;
   --nx-gold: #F5A623;
   --nx-gold-dim: rgba(245, 166, 35, 0.15);
   --nx-gold-glow: rgba(245, 166, 35, 0.3);
   --nx-blue: #3B7DD8;
   --nx-teal: #2EBD8E;
-  --nx-ivory: #F5F0E8;
-  --nx-ivory-dim: rgba(245, 240, 232, 0.6);
-  --nx-ivory-ghost: rgba(245, 240, 232, 0.15);
-  --nx-ivory-faint: rgba(245, 240, 232, 0.08);
-  --nx-border: rgba(245, 166, 35, 0.2);
 
   --font-display: 'Bebas Neue', sans-serif;
   --font-mono: 'DM Mono', monospace;
   --font-body: 'DM Sans', sans-serif;
+}
+
+/* ---------- DARK THEME ---------- */
+[data-theme="dark"] {
+  --nx-bg: #080808;
+  --nx-bg-alt: #0D0D0D;
+  --nx-fg: #F5F0E8;
+  --nx-fg-dim: rgba(245, 240, 232, 0.6);
+  --nx-fg-ghost: rgba(245, 240, 232, 0.15);
+  --nx-fg-faint: rgba(245, 240, 232, 0.08);
+  --nx-border: rgba(245, 166, 35, 0.2);
+  --nx-surface: rgba(8, 8, 8, 0.85);
+  --nx-surface-card: rgba(8, 8, 8, 0.7);
+  --nx-overlay-from: rgba(8, 8, 8, 1);
+  --nx-overlay-via: rgba(8, 8, 8, 0.4);
+  --nx-overlay-side: rgba(8, 8, 8, 0.7);
+  --nx-tag-bg: rgba(255, 255, 255, 0.05);
+  --nx-tag-border: rgba(255, 255, 255, 0.1);
+
+  color-scheme: dark;
+}
+
+/* ---------- LIGHT THEME ---------- */
+[data-theme="light"] {
+  --nx-bg: #FAFAF7;
+  --nx-bg-alt: #F0EDE6;
+  --nx-fg: #1A1A18;
+  --nx-fg-dim: rgba(26, 26, 24, 0.6);
+  --nx-fg-ghost: rgba(26, 26, 24, 0.18);
+  --nx-fg-faint: rgba(26, 26, 24, 0.06);
+  --nx-border: rgba(245, 166, 35, 0.25);
+  --nx-surface: rgba(250, 250, 247, 0.9);
+  --nx-surface-card: rgba(250, 250, 247, 0.8);
+  --nx-overlay-from: rgba(250, 250, 247, 1);
+  --nx-overlay-via: rgba(250, 250, 247, 0.4);
+  --nx-overlay-side: rgba(250, 250, 247, 0.7);
+  --nx-tag-bg: rgba(0, 0, 0, 0.04);
+  --nx-tag-border: rgba(0, 0, 0, 0.08);
+
+  color-scheme: light;
+}
+
+/* Legacy aliases for backwards compat */
+:root {
+  --nx-black: var(--nx-bg);
+  --nx-black-alt: var(--nx-bg-alt);
+  --nx-ivory: var(--nx-fg);
+  --nx-ivory-dim: var(--nx-fg-dim);
+  --nx-ivory-ghost: var(--nx-fg-ghost);
+  --nx-ivory-faint: var(--nx-fg-faint);
 }
 
 /* ============================================
@@ -32,16 +78,18 @@
 
 html {
   scroll-behavior: smooth;
-  background: var(--nx-black);
+  background: var(--nx-bg);
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 body {
-  background: var(--nx-black);
-  color: var(--nx-ivory);
+  background: var(--nx-bg);
+  color: var(--nx-fg);
   font-family: var(--font-body);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* ============================================
@@ -90,7 +138,7 @@ body {
   top: 0;
   left: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--nx-gold), var(--nx-ivory));
+  background: linear-gradient(90deg, var(--nx-gold), var(--nx-fg));
   z-index: 10000;
   transition: width 0.05s linear;
 }
@@ -144,12 +192,12 @@ body {
    ============================================ */
 ::selection {
   background: var(--nx-gold);
-  color: var(--nx-black);
+  color: var(--nx-bg);
 }
 
 ::-moz-selection {
   background: var(--nx-gold);
-  color: var(--nx-black);
+  color: var(--nx-bg);
 }
 
 /* ============================================
@@ -160,7 +208,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--nx-black);
+  background: var(--nx-bg);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -315,7 +363,7 @@ body {
 
 .card-border-animated {
   position: relative;
-  background: var(--nx-black-alt);
+  background: var(--nx-bg-alt);
   border: 1px solid var(--nx-border);
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -345,7 +393,7 @@ body {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: var(--nx-ivory);
+  background: var(--nx-fg);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -357,7 +405,7 @@ body {
 }
 
 .btn-slide:hover {
-  color: var(--nx-black) !important;
+  color: var(--nx-bg) !important;
 }
 
 .btn-outline-slide {
@@ -388,8 +436,33 @@ body {
 }
 
 .btn-outline-slide:hover {
-  color: var(--nx-black) !important;
+  color: var(--nx-bg) !important;
   border-color: var(--nx-gold) !important;
+}
+
+/* ============================================
+   THEME TOGGLE
+   ============================================ */
+.theme-toggle {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--nx-fg-ghost);
+  background: transparent;
+  transition: border-color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--nx-gold);
+}
+
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 
 /* ============================================
