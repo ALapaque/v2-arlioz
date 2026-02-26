@@ -12,158 +12,128 @@ void main() {
 }
 `;
 
+// Gradient mesh approach — large smooth color fields, NOT noise-based blobs.
+// Each "source" is a moving color emitter with gaussian falloff.
+// Colors blend where sources overlap → Stripe/Linear-like gradient mesh.
 const FRAGMENT = `
 precision highp float;
 
 uniform vec2 u_resolution;
 uniform float u_time;
 uniform vec2 u_mouse;
-uniform float u_dark; // 1.0 = dark theme, 0.0 = light theme
+uniform float u_dark;
 
-// ── Simplex 3D noise (Ashima Arts) ──
-vec4 mod289(vec4 x){ return x - floor(x * (1.0/289.0)) * 289.0; }
-vec3 mod289(vec3 x){ return x - floor(x * (1.0/289.0)) * 289.0; }
-vec2 mod289(vec2 x){ return x - floor(x * (1.0/289.0)) * 289.0; }
-vec4 permute(vec4 x){ return mod289(((x*34.0)+1.0)*x); }
-vec4 taylorInvSqrt(vec4 r){ return 1.79284291400159 - 0.85373472095314*r; }
-
+// Soft simplex for subtle edge warping only
+vec3 mod289v3(vec3 x){ return x - floor(x*(1.0/289.0))*289.0; }
+vec4 mod289v4(vec4 x){ return x - floor(x*(1.0/289.0))*289.0; }
+vec4 perm(vec4 x){ return mod289v4(((x*34.0)+1.0)*x); }
 float snoise(vec3 v){
-  const vec2 C = vec2(1.0/6.0, 1.0/3.0);
-  const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
-
-  vec3 i  = floor(v + dot(v, C.yyy));
-  vec3 x0 = v - i + dot(i, C.xxx);
-
-  vec3 g = step(x0.yzx, x0.xyz);
-  vec3 l = 1.0 - g;
-  vec3 i1 = min(g.xyz, l.zxy);
-  vec3 i2 = max(g.xyz, l.zxy);
-
-  vec3 x1 = x0 - i1 + C.xxx;
-  vec3 x2 = x0 - i2 + C.yyy;
-  vec3 x3 = x0 - D.yyy;
-
-  i = mod289(i);
-  vec4 p = permute(permute(permute(
-    i.z + vec4(0.0, i1.z, i2.z, 1.0))
-  + i.y + vec4(0.0, i1.y, i2.y, 1.0))
-  + i.x + vec4(0.0, i1.x, i2.x, 1.0));
-
-  float n_ = 0.142857142857;
-  vec3 ns = n_ * D.wyz - D.xzx;
-
-  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
-
-  vec4 x_ = floor(j * ns.z);
-  vec4 y_ = floor(j - 7.0 * x_);
-
-  vec4 x = x_ * ns.x + ns.yyyy;
-  vec4 y = y_ * ns.x + ns.yyyy;
-  vec4 h = 1.0 - abs(x) - abs(y);
-
-  vec4 b0 = vec4(x.xy, y.xy);
-  vec4 b1 = vec4(x.zw, y.zw);
-
-  vec4 s0 = floor(b0)*2.0 + 1.0;
-  vec4 s1 = floor(b1)*2.0 + 1.0;
-  vec4 sh = -step(h, vec4(0.0));
-
-  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy;
-  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww;
-
-  vec3 p0 = vec3(a0.xy, h.x);
-  vec3 p1 = vec3(a0.zw, h.y);
-  vec3 p2 = vec3(a1.xy, h.z);
-  vec3 p3 = vec3(a1.zw, h.w);
-
-  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2,p2), dot(p3,p3)));
-  p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;
-
-  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
-  m = m * m;
-  return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
-}
-
-// ── FBM (fractal brownian motion) ──
-float fbm(vec3 p) {
-  float val = 0.0;
-  float amp = 0.5;
-  float freq = 1.0;
-  for (int i = 0; i < 4; i++) {
-    val += amp * snoise(p * freq);
-    freq *= 2.0;
-    amp *= 0.5;
-  }
-  return val;
+  const vec2 C=vec2(1.0/6.0,1.0/3.0);
+  vec3 i=floor(v+dot(v,C.yyy)),x0=v-i+dot(i,C.xxx);
+  vec3 g=step(x0.yzx,x0.xyz),l=1.0-g;
+  vec3 i1=min(g,l.zxy),i2=max(g,l.zxy);
+  vec3 x1=x0-i1+C.xxx,x2=x0-i2+C.yyy,x3=x0-0.5;
+  i=mod289v3(i);
+  vec4 p=perm(perm(perm(i.z+vec4(0,i1.z,i2.z,1))+i.y+vec4(0,i1.y,i2.y,1))+i.x+vec4(0,i1.x,i2.x,1));
+  vec4 j=p-49.0*floor(p/49.0);
+  vec4 gx=floor(j/7.0)/7.0-0.5,gy=floor(j-7.0*floor(j/7.0))/7.0-0.5;
+  vec4 gz=1.0-abs(gx)-abs(gy),tz=step(gz,vec4(0));
+  gx-=tz*(step(vec4(0),gx)-0.5);gy-=tz*(step(vec4(0),gy)-0.5);
+  vec3 g0=vec3(gx.x,gy.x,gz.x),g1=vec3(gx.y,gy.y,gz.y);
+  vec3 g2=vec3(gx.z,gy.z,gz.z),g3=vec3(gx.w,gy.w,gz.w);
+  vec4 norm=1.79284-0.85374*vec4(dot(g0,g0),dot(g1,g1),dot(g2,g2),dot(g3,g3));
+  g0*=norm.x;g1*=norm.y;g2*=norm.z;g3*=norm.w;
+  vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0);
+  m=m*m;return 42.0*dot(m*m,vec4(dot(g0,x0),dot(g1,x1),dot(g2,x2),dot(g3,x3)));
 }
 
 void main() {
   vec2 uv = gl_FragCoord.xy / u_resolution;
   float aspect = u_resolution.x / u_resolution.y;
-  vec2 st = (uv - 0.5) * vec2(aspect, 1.0);
+  vec2 st = uv * vec2(aspect, 1.0);
 
-  // Mouse influence — subtle pull toward cursor
-  vec2 mouse = (u_mouse - 0.5) * vec2(aspect, 1.0);
-  vec2 center = vec2(0.22 * aspect, 0.0) + mouse * 0.12;
-  vec2 pos = st - center;
+  float t = u_time * 0.08;
 
-  float t = u_time * 0.12;
+  // Mouse influence
+  vec2 mouseOffset = (u_mouse - 0.5) * 0.15;
 
-  // ── Primary blob ──
-  float dist = length(pos);
-  float noise1 = fbm(vec3(pos * 2.2, t));
-  float noise2 = fbm(vec3(pos * 1.4 + 3.0, t * 0.7 + 10.0));
-  float blobRadius = 0.35 + noise1 * 0.15 + noise2 * 0.08;
-  float blob = smoothstep(blobRadius + 0.15, blobRadius - 0.08, dist);
+  // ── Color sources: position + color + radius ──
+  // Each source orbits slowly on sinusoidal paths
 
-  // ── Secondary blob (offset) ──
-  vec2 center2 = center + vec2(0.15, -0.1) + vec2(sin(t * 0.5) * 0.06, cos(t * 0.4) * 0.05);
-  vec2 pos2 = st - center2;
-  float dist2 = length(pos2);
-  float noise3 = fbm(vec3(pos2 * 2.5, t * 0.8 + 5.0));
-  float blob2Radius = 0.22 + noise3 * 0.12;
-  float blob2 = smoothstep(blob2Radius + 0.12, blob2Radius - 0.06, dist2);
+  // Source 1 — Amber (top-right area)
+  vec2 p1 = vec2(
+    0.62 * aspect + sin(t * 0.7) * 0.18 + mouseOffset.x,
+    0.58 + cos(t * 0.5) * 0.15 + mouseOffset.y
+  );
+  vec3 c1 = vec3(0.961, 0.620, 0.043); // #F59E0B amber
 
-  // ── Tertiary accent (small) ──
-  vec2 center3 = center + vec2(-0.12, 0.15) + vec2(cos(t * 0.6) * 0.04, sin(t * 0.5) * 0.06);
-  vec2 pos3 = st - center3;
-  float dist3 = length(pos3);
-  float noise4 = fbm(vec3(pos3 * 3.0, t * 1.1 + 20.0));
-  float blob3Radius = 0.14 + noise4 * 0.08;
-  float blob3 = smoothstep(blob3Radius + 0.1, blob3Radius - 0.04, dist3);
+  // Source 2 — Orange (center-right)
+  vec2 p2 = vec2(
+    0.52 * aspect + cos(t * 0.6 + 1.0) * 0.22 + mouseOffset.x,
+    0.42 + sin(t * 0.45 + 2.0) * 0.18 + mouseOffset.y
+  );
+  vec3 c2 = vec3(0.976, 0.451, 0.086); // #F97316 orange
 
-  // ── Brand colors ──
-  vec3 amber    = vec3(0.961, 0.620, 0.043);  // #F59E0B
-  vec3 orange   = vec3(0.976, 0.451, 0.086);  // #F97316
-  vec3 deep     = vec3(0.918, 0.345, 0.047);  // #EA580C
+  // Source 3 — Deep orange (lower-right)
+  vec2 p3 = vec2(
+    0.7 * aspect + sin(t * 0.5 + 3.5) * 0.15 + mouseOffset.x,
+    0.35 + cos(t * 0.65 + 1.5) * 0.2 + mouseOffset.y
+  );
+  vec3 c3 = vec3(0.918, 0.345, 0.047); // #EA580C deep
 
-  // Color mixing per blob
-  float colorNoise = snoise(vec3(pos * 1.5, t * 0.3));
-  vec3 blobColor = mix(amber, orange, smoothstep(-0.3, 0.5, colorNoise));
-  blobColor = mix(blobColor, deep, smoothstep(0.2, 0.8, colorNoise + 0.2));
+  // Source 4 — Warm gold (accent, more subtle)
+  vec2 p4 = vec2(
+    0.45 * aspect + cos(t * 0.55 + 5.0) * 0.2 + mouseOffset.x,
+    0.6 + sin(t * 0.7 + 3.0) * 0.12 + mouseOffset.y
+  );
+  vec3 c4 = vec3(0.98, 0.72, 0.15); // warm gold
 
-  vec3 blob2Color = mix(orange, deep, 0.4 + 0.3 * sin(t * 0.5));
-  vec3 blob3Color = mix(amber, orange, 0.6);
+  // ── Compute influence per source (gaussian falloff) ──
+  // Very large sigma → ultra smooth gradients
+  float sigma = 0.32;
+  float sigma2 = sigma * sigma * 2.0;
 
-  // ── Compose ──
-  float alpha = blob * 0.55 + blob2 * 0.35 + blob3 * 0.2;
-  vec3 color = blobColor * blob * 0.55
-             + blob2Color * blob2 * 0.35
-             + blob3Color * blob3 * 0.2;
+  // Subtle warp for organic feel (very low freq noise)
+  vec2 warp = vec2(
+    snoise(vec3(st * 0.8, t * 0.3)) * 0.04,
+    snoise(vec3(st * 0.8 + 50.0, t * 0.3)) * 0.04
+  );
+  vec2 stw = st + warp;
 
-  // Normalize color when alpha > 0
-  color = alpha > 0.001 ? color / alpha : vec3(0.0);
+  float w1 = exp(-dot(stw - p1, stw - p1) / sigma2);
+  float w2 = exp(-dot(stw - p2, stw - p2) / sigma2);
+  float w3 = exp(-dot(stw - p3, stw - p3) / sigma2);
+  float w4 = exp(-dot(stw - p4, stw - p4) / (sigma2 * 0.7));
+
+  float totalW = w1 + w2 + w3 + w4;
+
+  // ── Blend colors by weighted influence ──
+  vec3 gradientColor = (c1 * w1 + c2 * w2 + c3 * w3 + c4 * w4);
+  gradientColor = totalW > 0.001 ? gradientColor / totalW : vec3(0.0);
+
+  // ── Total intensity (how much color vs background) ──
+  // Use max influence to determine opacity envelope
+  float intensity = max(max(w1, w2), max(w3, w4));
+  // Power curve for softer edges
+  intensity = pow(intensity, 0.45);
 
   // Theme-adapted opacity
-  float maxOpacity = mix(0.22, 0.35, u_dark);
-  alpha *= maxOpacity;
+  float baseOpacity = mix(0.35, 0.55, u_dark);
+  float alpha = intensity * baseOpacity;
 
-  // Soft glow at edges
-  float glow = exp(-dist * 2.2) * 0.06 * u_dark;
+  // ── Background ──
+  vec3 bg = mix(
+    vec3(0.992, 0.988, 0.98),  // light bg
+    vec3(0.024, 0.024, 0.024), // dark bg
+    u_dark
+  );
 
-  // Final output — premultiplied alpha
-  vec3 bg = mix(vec3(0.992, 0.988, 0.98), vec3(0.024), u_dark);
-  vec3 finalColor = mix(bg, color, alpha) + vec3(glow) * amber;
+  // ── Inner glow (dark mode only) — subtle ambient light ──
+  float glowIntensity = exp(-dot(st - vec2(0.55 * aspect, 0.48), st - vec2(0.55 * aspect, 0.48)) / 0.5) * 0.04 * u_dark;
+  vec3 glow = vec3(0.961, 0.620, 0.043) * glowIntensity;
+
+  // ── Compose ──
+  vec3 finalColor = mix(bg, gradientColor, alpha) + glow;
 
   gl_FragColor = vec4(finalColor, 1.0);
 }
@@ -196,7 +166,6 @@ export default function HeroBlob() {
     });
     if (!gl) return false;
 
-    // Compile shaders
     const vs = gl.createShader(gl.VERTEX_SHADER)!;
     gl.shaderSource(vs, VERTEX);
     gl.compileShader(vs);
@@ -216,7 +185,6 @@ export default function HeroBlob() {
     gl.linkProgram(program);
     gl.useProgram(program);
 
-    // Fullscreen quad
     const verts = new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]);
     const buf = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buf);
@@ -268,7 +236,6 @@ export default function HeroBlob() {
     const render = () => {
       const t = (performance.now() - startTime) * 0.001;
 
-      // Smooth mouse interpolation
       const s = mouseSmoothRef.current;
       const m = mouseRef.current;
       s.x += (m.x - s.x) * 0.03;
@@ -295,7 +262,6 @@ export default function HeroBlob() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ opacity: 1 }}
       aria-hidden="true"
     />
   );
