@@ -27,6 +27,7 @@ export interface GalleryImage {
   label: string;
   description: string;
   gradient: string;
+  imageSrc?: string;
   uiElements?: string[];
 }
 
@@ -102,35 +103,43 @@ export const projects: Project[] = [
     gallery: [
       {
         type: "full",
-        label: "Interface de réservation",
+        label: "Confirmation de réservation",
         description:
-          "Vue principale du widget avec sélection de date, créneau horaire et nombre de convives.",
+          "Réservation confirmée avec détails du restaurant, carte interactive et coordonnées.",
         gradient: "linear-gradient(135deg, #1A0A0A 0%, #0D1117 50%, #111827 100%)",
-        uiElements: ["Réserver", "19:30", "4 pers.", "Confirmer"],
+        imageSrc: "/assets/projects/restomax-book/2.png",
       },
       {
         type: "split-left",
-        label: "Vue mobile",
+        label: "Sélection de date",
         description:
-          "Widget optimisé pour smartphones avec navigation tactile intuitive.",
+          "Calendrier intuitif avec sélection de créneau horaire, powered by Restomax.",
         gradient: "linear-gradient(135deg, #0D1117 0%, #1A0A0A 100%)",
-        uiElements: ["Ce soir", "Demain", "2 pers."],
+        imageSrc: "/assets/projects/restomax-book/3.png",
       },
       {
         type: "split-right",
-        label: "Dashboard restaurateur",
+        label: "Gestion des réservations",
         description:
-          "Interface d\u2019administration pour gérer les réservations et les disponibilités.",
+          "Interface de gestion pour le restaurateur avec vue sur les réservations en cours.",
         gradient: "linear-gradient(135deg, #111827 0%, #0D1117 100%)",
-        uiElements: ["12 réservations", "Salle 1", "Complet"],
+        imageSrc: "/assets/projects/restomax-book/4.png",
+      },
+      {
+        type: "offset-right",
+        label: "Formulaire invité",
+        description:
+          "Saisie des informations client avec validation en temps réel.",
+        gradient: "linear-gradient(135deg, #080808 0%, #0D0D0D 50%, #1A0A0A 100%)",
+        imageSrc: "/assets/projects/restomax-book/5.png",
       },
       {
         type: "full",
-        label: "Intégration site restaurant",
+        label: "Vue multilingue",
         description:
-          "Le widget intégré directement sur le site du restaurant, s\u2019adaptant à son identité visuelle.",
-        gradient: "linear-gradient(135deg, #080808 0%, #0D0D0D 50%, #1A0A0A 100%)",
-        uiElements: ["Réserver une table", "Menu", "Contact"],
+          "Widget disponible en français et en anglais, adapté à une clientèle internationale.",
+        gradient: "linear-gradient(135deg, #0D1117 0%, #111827 100%)",
+        imageSrc: "/assets/projects/restomax-book/6.png",
       },
     ],
     results: [
@@ -208,35 +217,43 @@ export const projects: Project[] = [
     gallery: [
       {
         type: "full",
-        label: "Menu principal",
+        label: "Carte des restaurants",
         description:
-          "Vue catalogue avec les bowls signature et les créations personnalisées.",
+          "Vue carte interactive avec tous les points de vente Hawaiian Pokebowl.",
         gradient: "linear-gradient(135deg, #1A1500 0%, #0D1117 50%, #111827 100%)",
-        uiElements: ["Hawaiian Classic", "Salmon Lover", "Veggie Bowl", "Custom"],
+        imageSrc: "/assets/projects/hawaiian-pokebowl/2.png",
       },
       {
         type: "split-left",
-        label: "Configurateur de bowl",
+        label: "Menu & commande",
         description:
-          "Interface de composition étape par étape avec visuels appétissants.",
+          "Interface de commande avec les bowls signature, boissons et personnalisation.",
         gradient: "linear-gradient(135deg, #0D1117 0%, #1A1500 100%)",
-        uiElements: ["Base", "Protéine", "Toppings"],
+        imageSrc: "/assets/projects/hawaiian-pokebowl/3.png",
       },
       {
         type: "split-right",
-        label: "Suivi de commande",
+        label: "Détail produit",
         description:
-          "Suivi en temps réel de la préparation et estimation du temps d\u2019attente.",
+          "Fiche produit avec composition, allergènes et options de personnalisation.",
         gradient: "linear-gradient(135deg, #111827 0%, #0D1117 100%)",
-        uiElements: ["En préparation", "15 min", "Prêt !"],
+        imageSrc: "/assets/projects/hawaiian-pokebowl/4.png",
+      },
+      {
+        type: "offset-right",
+        label: "Panier & paiement",
+        description:
+          "Récapitulatif de commande avec options de livraison et paiement sécurisé.",
+        gradient: "linear-gradient(135deg, #080808 0%, #0D0D0D 50%, #1A1500 100%)",
+        imageSrc: "/assets/projects/hawaiian-pokebowl/5.png",
       },
       {
         type: "full",
-        label: "Écran paiement",
+        label: "Gestion de compte",
         description:
-          "Récapitulatif de commande avec paiement sécurisé intégré.",
-        gradient: "linear-gradient(135deg, #080808 0%, #0D0D0D 50%, #1A1500 100%)",
-        uiElements: ["\u20AC 14.90", "Apple Pay", "Confirmer"],
+          "Espace client avec historique de commandes et adresses enregistrées.",
+        gradient: "linear-gradient(135deg, #0D1117 0%, #111827 100%)",
+        imageSrc: "/assets/projects/hawaiian-pokebowl/6.png",
       },
     ],
     results: [
@@ -288,13 +305,93 @@ export const projects: Project[] = [
       team: "2 personnes",
       status: "En production \u2726",
     },
-    challenge: [],
-    solution: [],
-    gallery: [],
-    results: [],
-    techStack: { frontend: [], backend: [] },
+    challenge: [
+      "Les commerces de proximité peinaient à rivaliser avec les grandes enseignes en ligne. Il leur manquait une plateforme commune pour se rendre visibles et accessibles aux consommateurs locaux.",
+      "Le défi était de créer une marketplace multi-vendeurs intuitive, avec géolocalisation, catégories variées (alimentation, bien-être, bricolage, mode) et un système de commande unifié.",
+      "L\u2019application devait fonctionner sur iOS et Android tout en offrant une expérience fluide autant pour les commerçants que pour les consommateurs.",
+    ],
+    solution: [
+      {
+        title: "Marketplace multi-vendeurs",
+        description:
+          "Architecture multi-tenant permettant à chaque commerçant de gérer son catalogue, ses horaires et ses commandes de manière autonome.",
+      },
+      {
+        title: "Géolocalisation intelligente",
+        description:
+          "Recherche par proximité avec filtres par catégorie, vue carte et vue liste. Découverte facilitée des commerces autour de soi.",
+      },
+      {
+        title: "Système de commande unifié",
+        description:
+          "Panier multi-commerçants, suivi de commande en temps réel et notifications push pour commerçants et clients.",
+      },
+    ],
+    gallery: [
+      {
+        type: "full",
+        label: "Annuaire des commerces",
+        description:
+          "Vue liste avec catégories, filtres et horaires d\u2019ouverture des commerces locaux.",
+        gradient: "linear-gradient(135deg, #0C0D1A 0%, #0D1117 50%, #111827 100%)",
+        imageSrc: "/assets/projects/supermark-ett/2.png",
+      },
+      {
+        type: "split-left",
+        label: "Vue carte",
+        description:
+          "Géolocalisation des commerces de proximité avec filtres par catégorie.",
+        gradient: "linear-gradient(135deg, #0D1117 0%, #0C0D1A 100%)",
+        imageSrc: "/assets/projects/supermark-ett/3.png",
+      },
+      {
+        type: "split-right",
+        label: "Fiche commerçant",
+        description:
+          "Profil détaillé du commerçant avec produits, horaires et informations de contact.",
+        gradient: "linear-gradient(135deg, #111827 0%, #0D1117 100%)",
+        imageSrc: "/assets/projects/supermark-ett/4.png",
+      },
+      {
+        type: "offset-right",
+        label: "Catalogue produits",
+        description:
+          "Navigation par catégorie avec recherche et système de favoris.",
+        gradient: "linear-gradient(135deg, #080808 0%, #0D0D0D 50%, #0C0D1A 100%)",
+        imageSrc: "/assets/projects/supermark-ett/5.png",
+      },
+      {
+        type: "full",
+        label: "Espace utilisateur",
+        description:
+          "Profil, adresses, historique de commandes et paramètres de l\u2019application.",
+        gradient: "linear-gradient(135deg, #0D1117 0%, #111827 100%)",
+        imageSrc: "/assets/projects/supermark-ett/6.png",
+      },
+    ],
+    results: [
+      { value: "50+", label: "Commerces inscrits" },
+      { value: "+120%", label: "Visibilité locale" },
+      { value: "4.6\u2605", label: "Note App Store" },
+      { value: "< 3min", label: "Inscription commerçant" },
+    ],
+    techStack: {
+      frontend: [
+        "React Native",
+        "TypeScript",
+        "Expo",
+        "Reanimated",
+      ],
+      backend: [
+        "NestJS",
+        "PostgreSQL",
+        "Redis",
+        "Stripe Connect",
+      ],
+    },
     testimonial: {
-      quote: "",
+      quote:
+        "Supermark\u2019Ett a donné une nouvelle dimension à notre commerce. Nos clients nous trouvent facilement et les commandes en ligne sont un vrai plus.",
       name: "Sophie Martin",
       title: "CEO @ Supermark\u2019Ett",
       initials: "SM",
@@ -321,13 +418,92 @@ export const projects: Project[] = [
       team: "1 personne",
       status: "En production \u2726",
     },
-    challenge: [],
-    solution: [],
-    gallery: [],
-    results: [],
-    techStack: { frontend: [], backend: [] },
+    challenge: [
+      "JK Studio avait besoin d\u2019un portfolio en ligne qui reflète la qualité cinématographique de ses images. Les solutions template ne rendaient pas justice à son travail.",
+      "Le site devait offrir une navigation immersive, avec des transitions fluides, un chargement d\u2019images optimisé et un design sombre qui met en valeur les photographies.",
+      "L\u2019objectif était aussi d\u2019améliorer le référencement naturel pour attirer des clients dans la région, avec un blog intégré géré via un CMS headless.",
+    ],
+    solution: [
+      {
+        title: "Design immersif plein écran",
+        description:
+          "Navigation en plein écran avec sections verticales, typographie bold et transitions cinématographiques entre les galeries.",
+      },
+      {
+        title: "Galerie optimisée",
+        description:
+          "Chargement progressif des images haute résolution, lazy loading, formats WebP/AVIF automatiques. Performances optimales même avec des fichiers lourds.",
+      },
+      {
+        title: "CMS headless Sanity",
+        description:
+          "Interface d\u2019administration intuitive pour gérer les projets, galeries et articles de blog en toute autonomie.",
+      },
+    ],
+    gallery: [
+      {
+        type: "full",
+        label: "Page portfolio",
+        description:
+          "Vue portfolio avec navigation verticale et galerie plein écran.",
+        gradient: "linear-gradient(135deg, #0D0D0D 0%, #111827 50%, #0D1117 100%)",
+        imageSrc: "/assets/projects/jk-studio/2.png",
+      },
+      {
+        type: "split-left",
+        label: "Galerie immersive",
+        description:
+          "Navigation plein écran entre les projets photographiques.",
+        gradient: "linear-gradient(135deg, #0D1117 0%, #0D0D0D 100%)",
+        imageSrc: "/assets/projects/jk-studio/3.png",
+      },
+      {
+        type: "split-right",
+        label: "Page détail",
+        description:
+          "Présentation détaillée d\u2019un projet avec galerie lightbox et description.",
+        gradient: "linear-gradient(135deg, #111827 0%, #0D1117 100%)",
+        imageSrc: "/assets/projects/jk-studio/4.png",
+      },
+      {
+        type: "offset-right",
+        label: "Vue galerie verticale",
+        description:
+          "Scroll infini avec chargement progressif des images haute résolution.",
+        gradient: "linear-gradient(135deg, #080808 0%, #0D0D0D 50%, #111827 100%)",
+        imageSrc: "/assets/projects/jk-studio/5.png",
+      },
+      {
+        type: "full",
+        label: "Page contact",
+        description:
+          "Formulaire de contact épuré avec informations du studio et réseaux sociaux.",
+        gradient: "linear-gradient(135deg, #0D1117 0%, #0D0D0D 100%)",
+        imageSrc: "/assets/projects/jk-studio/6.png",
+      },
+    ],
+    results: [
+      { value: "+300%", label: "Trafic organique" },
+      { value: "1.2s", label: "Temps de chargement" },
+      { value: "+85%", label: "Demandes de contact" },
+      { value: "100", label: "Score Lighthouse" },
+    ],
+    techStack: {
+      frontend: [
+        "Next.js",
+        "TypeScript",
+        "Framer Motion",
+        "Tailwind CSS",
+      ],
+      backend: [
+        "Sanity CMS",
+        "Vercel",
+        "Cloudinary",
+      ],
+    },
     testimonial: {
-      quote: "",
+      quote:
+        "Un travail impeccable du début à la fin. Arlioz a su capturer l\u2019essence de mon univers photographique dans un site à la hauteur de mes images.",
       name: "Julie Kraemer",
       title: "Photographe @ JK Studio",
       initials: "JK",
