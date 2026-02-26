@@ -52,7 +52,7 @@ export default function CTA() {
             </span>
             <span className="block">
               D&rsquo;
-              <span className="text-[var(--nx-gold)]">
+              <span className="text-gradient">
                 <SplitText animate={isInView} delay={0.26}>
                   EXCEPTIONNEL
                 </SplitText>
@@ -74,7 +74,7 @@ export default function CTA() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <a
                 href="mailto:contact@arlioz.be"
-                className="btn-slide inline-flex items-center gap-3 px-10 py-5 bg-[var(--nx-gold)] text-[var(--nx-black)] text-[12px] tracking-[0.2em] uppercase font-medium transition-colors duration-300"
+                className="btn-slide inline-flex items-center gap-3 px-10 py-5 bg-gradient-accent text-[var(--nx-black)] text-[12px] tracking-[0.2em] uppercase font-medium transition-colors duration-300"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
                 <span>Lancer notre collaboration</span>
@@ -87,7 +87,7 @@ export default function CTA() {
           <FadeUp animate={isInView} delay={0.7} className="mt-12">
             <a
               href="mailto:contact@arlioz.be"
-              className="text-[var(--nx-ivory-ghost)] hover:text-[var(--nx-gold)] transition-colors duration-300 text-[14px] tracking-[0.1em]"
+              className="text-[var(--nx-ivory-ghost)] hover:text-[var(--nx-accent-from)] transition-colors duration-300 text-[14px] tracking-[0.1em]"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               contact@arlioz.be

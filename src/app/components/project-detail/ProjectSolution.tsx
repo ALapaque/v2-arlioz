@@ -31,7 +31,7 @@ export default function ProjectSolution({ steps }: { steps: ProjectStep[] }) {
           >
             NOTRE
             <br />
-            <span className="text-[var(--nx-gold)]">APPROCHE</span>
+            <span className="text-gradient">APPROCHE</span>
           </h2>
         </motion.div>
 
@@ -47,11 +47,11 @@ export default function ProjectSolution({ steps }: { steps: ProjectStep[] }) {
                 duration: 0.7,
                 ease,
               }}
-              className="group p-8 md:p-10 border border-[var(--nx-border)] bg-[var(--nx-black)] hover:border-[var(--nx-gold)] hover:bg-[rgba(245,166,35,0.02)] transition-all duration-500"
+              className="group p-8 md:p-10 border border-[var(--nx-border)] bg-[var(--nx-black)] hover:border-[var(--nx-accent-from)] hover:bg-[rgba(245,166,35,0.02)] transition-all duration-500"
             >
               {/* Icon */}
               <span
-                className="text-2xl text-[var(--nx-gold)] block mb-6 transition-transform duration-500 group-hover:scale-110"
+                className="text-2xl text-[var(--nx-accent-from)] block mb-6 transition-transform duration-500 group-hover:scale-110"
                 aria-hidden="true"
               >
                 {icons[i] || "◈"}

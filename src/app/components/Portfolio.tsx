@@ -82,7 +82,7 @@ export default function Portfolio() {
                   DES PROJETS,
                 </SplitText>
               </span>
-              <span className="block text-[var(--nx-gold)]">
+              <span className="block text-gradient">
                 <SplitText animate={isInView} delay={0.2}>
                   PAS DES MAQUETTES
                 </SplitText>
@@ -112,7 +112,7 @@ export default function Portfolio() {
                 duration: 0.8,
                 ease,
               }}
-              className="group block relative overflow-hidden border border-[var(--nx-border)] hover:border-[var(--nx-gold)] transition-all duration-500"
+              className="group block relative overflow-hidden border border-[var(--nx-border)] hover:border-[var(--nx-accent-from)] transition-all duration-500"
             >
               {/* Project mockup background */}
               <div

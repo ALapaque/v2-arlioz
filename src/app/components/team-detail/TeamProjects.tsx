@@ -37,7 +37,7 @@ export default function TeamProjects({
           >
             PROJETS
             <br />
-            <span className="text-[var(--nx-gold)]">ASSOCIÉS</span>
+            <span className="text-gradient">ASSOCIÉS</span>
           </h2>
         </motion.div>
 
@@ -54,7 +54,7 @@ export default function TeamProjects({
                 duration: 0.6,
                 ease,
               }}
-              className="group relative border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500"
+              className="group relative border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-accent-dim)] transition-colors duration-500"
             >
               {/* Image */}
               <div
@@ -87,7 +87,7 @@ export default function TeamProjects({
                   {project.category}
                 </span>
                 <h3
-                  className="text-[clamp(1.5rem,3vw,2.2rem)] tracking-tight mb-2 md:group-hover:text-[var(--nx-gold)] transition-colors duration-300"
+                  className="text-[clamp(1.5rem,3vw,2.2rem)] tracking-tight mb-2 md:group-hover:text-[var(--nx-accent-from)] transition-colors duration-300"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   {project.name}
@@ -100,7 +100,7 @@ export default function TeamProjects({
                 </p>
 
                 {/* Arrow */}
-                <div className="mt-6 flex items-center gap-2 text-[var(--nx-ivory-ghost)] md:group-hover:text-[var(--nx-gold)] transition-colors duration-300">
+                <div className="mt-6 flex items-center gap-2 text-[var(--nx-ivory-ghost)] md:group-hover:text-[var(--nx-accent-from)] transition-colors duration-300">
                   <span
                     className="text-[10px] tracking-[0.25em] uppercase"
                     style={{ fontFamily: "var(--font-mono)" }}

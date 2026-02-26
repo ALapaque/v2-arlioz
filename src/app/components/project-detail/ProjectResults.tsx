@@ -83,7 +83,7 @@ export default function ProjectResults({
           >
             L&rsquo;IMPACT,
             <br />
-            <span className="text-[var(--nx-gold)]">EN CHIFFRES</span>
+            <span className="text-gradient">EN CHIFFRES</span>
           </h2>
         </motion.div>
 
@@ -102,7 +102,7 @@ export default function ProjectResults({
               className="text-center md:text-left"
             >
               <span
-                className="text-[clamp(2.5rem,6vw,4.5rem)] leading-none text-[var(--nx-gold)]"
+                className="text-[clamp(2.5rem,6vw,4.5rem)] leading-none text-[var(--nx-accent-from)]"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 <AnimatedValue raw={result.value} isInView={isInView} />

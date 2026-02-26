@@ -25,7 +25,7 @@ export default function ProjectTestimonial({
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 0.1, scale: 1 } : {}}
             transition={{ duration: 1, ease }}
-            className="absolute -top-16 -left-8 md:-left-16 text-[12rem] md:text-[16rem] leading-none text-[var(--nx-gold)] select-none pointer-events-none"
+            className="absolute -top-16 -left-8 md:-left-16 text-[12rem] md:text-[16rem] leading-none text-[var(--nx-accent-from)] select-none pointer-events-none"
             style={{ fontFamily: "var(--font-display)" }}
             aria-hidden="true"
           >
@@ -55,9 +55,9 @@ export default function ProjectTestimonial({
             className="flex items-center gap-5 mt-12 relative z-10"
           >
             {/* Avatar */}
-            <div className="w-14 h-14 rounded-full border border-[var(--nx-gold)] flex items-center justify-center bg-[var(--nx-gold-dim)]">
+            <div className="w-14 h-14 rounded-full border border-[var(--nx-accent-from)] flex items-center justify-center bg-[var(--nx-accent-dim)]">
               <span
-                className="text-[13px] tracking-wider text-[var(--nx-gold)]"
+                className="text-[13px] tracking-wider text-[var(--nx-accent-from)]"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
                 {testimonial.initials}

@@ -38,12 +38,12 @@ export default function TeamHero({ member }: { member: TeamMember }) {
           >
             <a
               href="/#equipe"
-              className="hover:text-[var(--nx-gold)] transition-colors duration-300"
+              className="hover:text-[var(--nx-accent-from)] transition-colors duration-300"
             >
               L&rsquo;équipe
             </a>
             <span className="mx-3 text-[var(--nx-border)]">&rarr;</span>
-            <span className="text-[var(--nx-gold)]">{member.name}</span>
+            <span className="text-[var(--nx-accent-from)]">{member.name}</span>
           </span>
         </motion.div>
 
@@ -118,7 +118,7 @@ export default function TeamHero({ member }: { member: TeamMember }) {
         >
           <div>
             <span
-              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-gold)] block mb-2"
+              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-accent-from)] block mb-2"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Rôle
@@ -129,7 +129,7 @@ export default function TeamHero({ member }: { member: TeamMember }) {
           </div>
           <div>
             <span
-              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-gold)] block mb-2"
+              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-accent-from)] block mb-2"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Localisation
@@ -140,7 +140,7 @@ export default function TeamHero({ member }: { member: TeamMember }) {
           </div>
           <div>
             <span
-              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-gold)] block mb-2"
+              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-accent-from)] block mb-2"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Langues

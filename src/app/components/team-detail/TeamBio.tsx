@@ -34,7 +34,7 @@ export default function TeamBio({ paragraphs }: { paragraphs: string[] }) {
             >
               PARCOURS
               <br />
-              <span className="text-[var(--nx-gold)]">& VISION</span>
+              <span className="text-gradient">& VISION</span>
             </h2>
           </motion.div>
 

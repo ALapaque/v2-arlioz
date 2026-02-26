@@ -60,7 +60,7 @@ export default function Testimonials() {
             <SplitText animate={isInView} delay={0.1}>
               ILS NOUS FONT
             </SplitText>{" "}
-            <span className="text-[var(--nx-gold)]">
+            <span className="text-gradient">
               <SplitText animate={isInView} delay={0.18}>
                 CONFIANCE
               </SplitText>
@@ -80,11 +80,11 @@ export default function Testimonials() {
                 duration: 0.7,
                 ease,
               }}
-              className="relative p-8 md:p-10 border border-[var(--nx-border)] bg-[var(--nx-black-alt)] group hover:border-[var(--nx-gold-dim)] transition-all duration-500"
+              className="relative p-8 md:p-10 border border-[var(--nx-border)] bg-[var(--nx-black-alt)] group hover:border-[var(--nx-accent-dim)] transition-all duration-500"
             >
               {/* Large quote mark */}
               <span
-                className="absolute top-6 left-8 text-[5rem] leading-none text-[var(--nx-gold)] opacity-15 select-none"
+                className="absolute top-6 left-8 text-[5rem] leading-none text-[var(--nx-accent-from)] opacity-15 select-none"
                 style={{ fontFamily: "var(--font-display)" }}
                 aria-hidden="true"
               >
@@ -101,9 +101,9 @@ export default function Testimonials() {
               {/* Author */}
               <div className="flex items-center gap-4 relative z-10">
                 {/* Avatar placeholder */}
-                <div className="w-11 h-11 border border-[var(--nx-gold)] flex items-center justify-center bg-[var(--nx-gold-dim)]">
+                <div className="w-11 h-11 border border-[var(--nx-accent-from)] flex items-center justify-center bg-[var(--nx-accent-dim)]">
                   <span
-                    className="text-[11px] tracking-wider text-[var(--nx-gold)]"
+                    className="text-[11px] tracking-wider text-[var(--nx-accent-from)]"
                     style={{ fontFamily: "var(--font-mono)" }}
                   >
                     {testimonial.initials}

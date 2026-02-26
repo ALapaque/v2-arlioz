@@ -37,7 +37,7 @@ export default function Hero() {
                 WE BUILD
               </SplitText>
             </span>
-            <span className="block text-[var(--nx-gold)]">
+            <span className="block text-gradient">
               <SplitText animate={isLoaderDone} delay={0.22} stagger={0.04}>
                 DIGITAL EMPIRES
               </SplitText>
@@ -60,7 +60,7 @@ export default function Hero() {
             <div className="flex flex-wrap gap-4">
               <a
                 href="#portfolio"
-                className="btn-slide inline-flex items-center gap-3 px-8 py-4 bg-[var(--nx-gold)] text-[var(--nx-black)] text-[12px] tracking-[0.2em] uppercase font-medium transition-colors duration-300"
+                className="btn-slide inline-flex items-center gap-3 px-8 py-4 bg-gradient-accent text-[#060606] text-[12px] tracking-[0.2em] uppercase font-medium transition-colors duration-300"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
                 <span>Voir nos réalisations</span>
@@ -83,9 +83,9 @@ export default function Hero() {
           delay={0.8}
           className="absolute right-8 md:right-16 top-[35%] hidden lg:block"
         >
-          <div className="badge-float border border-[var(--nx-gold)] px-5 py-3 bg-[var(--nx-surface-card)] backdrop-blur-md">
+          <div className="badge-float border border-[var(--nx-accent-from)] px-5 py-3 bg-[var(--nx-surface-card)] backdrop-blur-md">
             <span
-              className="text-[10px] tracking-[0.25em] uppercase text-[var(--nx-gold)] block"
+              className="text-[10px] tracking-[0.25em] uppercase text-gradient block"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Available for projects
@@ -109,7 +109,7 @@ export default function Hero() {
           >
             Scroll
           </span>
-          <div className="w-px h-8 bg-gradient-to-b from-[var(--nx-gold)] to-transparent" />
+          <div className="w-px h-8 bg-gradient-to-b from-[var(--nx-accent-from)] to-transparent" />
         </div>
       </FadeUp>
     </section>

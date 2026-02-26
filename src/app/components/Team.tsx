@@ -67,7 +67,7 @@ export default function Team() {
                   MEET OUR
                 </SplitText>
               </span>
-              <span className="block text-[var(--nx-gold)]">
+              <span className="block text-gradient">
                 <SplitText animate={isInView} delay={0.2}>
                   TEAM
                 </SplitText>
@@ -97,7 +97,7 @@ export default function Team() {
                 duration: 0.6,
                 ease,
               }}
-              className="group relative border border-[var(--nx-border)] bg-[var(--nx-black)] overflow-hidden md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500 block"
+              className="group relative border border-[var(--nx-border)] bg-[var(--nx-black)] overflow-hidden md:hover:border-[var(--nx-accent-dim)] transition-colors duration-500 block"
             >
               {/* Photo */}
               <div className="relative aspect-[3/4] md:aspect-auto md:h-[480px] overflow-hidden">
@@ -115,7 +115,7 @@ export default function Team() {
                   {member.specialties.map((spec) => (
                     <span
                       key={spec}
-                      className="px-2.5 py-1 md:px-3 bg-[var(--nx-surface-card)] backdrop-blur-sm border border-[var(--nx-border)] text-[8px] md:text-[9px] tracking-[0.2em] uppercase text-[var(--nx-ivory-dim)] md:group-hover:border-[var(--nx-gold-dim)] md:group-hover:text-[var(--nx-gold)] transition-colors duration-500"
+                      className="px-2.5 py-1 md:px-3 bg-[var(--nx-surface-card)] backdrop-blur-sm border border-[var(--nx-border)] text-[8px] md:text-[9px] tracking-[0.2em] uppercase text-[var(--nx-ivory-dim)] md:group-hover:border-[var(--nx-accent-dim)] md:group-hover:text-[var(--nx-accent-from)] transition-colors duration-500"
                       style={{ fontFamily: "var(--font-mono)" }}
                     >
                       {spec}
@@ -133,7 +133,7 @@ export default function Team() {
                   {member.name}
                 </h3>
                 <span
-                  className="inline-block text-[10px] tracking-[0.25em] uppercase text-[var(--nx-gold)] mb-4 md:mb-5"
+                  className="inline-block text-[10px] tracking-[0.25em] uppercase text-gradient mb-4 md:mb-5"
                   style={{ fontFamily: "var(--font-mono)" }}
                 >
                   {member.role}
@@ -144,7 +144,7 @@ export default function Team() {
                 >
                   {member.description}
                 </p>
-                <div className="flex items-center gap-2 text-[var(--nx-ivory-ghost)] md:group-hover:text-[var(--nx-gold)] transition-colors duration-300">
+                <div className="flex items-center gap-2 text-[var(--nx-ivory-ghost)] md:group-hover:text-[var(--nx-accent-from)] transition-colors duration-300">
                   <span
                     className="text-[10px] tracking-[0.25em] uppercase"
                     style={{ fontFamily: "var(--font-mono)" }}
@@ -165,7 +165,7 @@ export default function Team() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.55, duration: 0.6, ease }}
-          className="mt-6 md:mt-8 relative aspect-[16/9] md:aspect-[21/9] border border-[var(--nx-border)] overflow-hidden group md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500"
+          className="mt-6 md:mt-8 relative aspect-[16/9] md:aspect-[21/9] border border-[var(--nx-border)] overflow-hidden group md:hover:border-[var(--nx-accent-dim)] transition-colors duration-500"
         >
           <img
             src="/assets/meeting.jpg"
@@ -176,7 +176,7 @@ export default function Team() {
           <div className="absolute inset-0 bg-gradient-to-r from-[var(--nx-overlay-side)] via-transparent to-transparent" />
           <div className="absolute bottom-6 left-6 md:bottom-12 md:left-12">
             <span
-              className="text-[9px] md:text-[10px] tracking-[0.3em] uppercase text-[var(--nx-gold)] block mb-1.5 md:mb-2"
+              className="text-[9px] md:text-[10px] tracking-[0.3em] uppercase text-gradient block mb-1.5 md:mb-2"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Collaboration

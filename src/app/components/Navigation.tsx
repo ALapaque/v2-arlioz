@@ -55,7 +55,7 @@ export default function Navigation() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-[13px] tracking-[0.15em] uppercase text-[var(--nx-ivory-dim)] hover:text-[var(--nx-gold)] transition-colors duration-300"
+                className="text-[13px] tracking-[0.15em] uppercase text-[var(--nx-ivory-dim)] hover:text-[var(--nx-accent-from)] transition-colors duration-300"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
                 {link.label}
@@ -68,7 +68,7 @@ export default function Navigation() {
             <ThemeToggle />
             <a
               href="/#contact"
-              className="inline-flex items-center gap-2 px-6 py-2.5 border border-[var(--nx-gold)] text-[var(--nx-gold)] text-[12px] tracking-[0.2em] uppercase hover:bg-[var(--nx-gold)] hover:text-[var(--nx-bg)] transition-all duration-300"
+              className="inline-flex items-center gap-2 px-6 py-2.5 border border-[var(--nx-accent-from)] text-[var(--nx-accent-from)] text-[12px] tracking-[0.2em] uppercase hover:bg-[var(--nx-accent-from)] hover:text-[var(--nx-bg)] transition-all duration-300"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Démarrer un projet
@@ -114,7 +114,7 @@ export default function Navigation() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.08 }}
-                className="text-3xl tracking-[0.05em] text-[var(--nx-ivory)] hover:text-[var(--nx-gold)] transition-colors"
+                className="text-3xl tracking-[0.05em] text-[var(--nx-ivory)] hover:text-[var(--nx-accent-from)] transition-colors"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {link.label}
@@ -123,7 +123,7 @@ export default function Navigation() {
             <a
               href="/#contact"
               onClick={() => setMobileOpen(false)}
-              className="mt-8 inline-flex items-center gap-3 px-6 py-3 border border-[var(--nx-gold)] text-[var(--nx-gold)] text-[12px] tracking-[0.2em] uppercase self-start"
+              className="mt-8 inline-flex items-center gap-3 px-6 py-3 border border-[var(--nx-accent-from)] text-[var(--nx-accent-from)] text-[12px] tracking-[0.2em] uppercase self-start"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Démarrer un projet &#8594;

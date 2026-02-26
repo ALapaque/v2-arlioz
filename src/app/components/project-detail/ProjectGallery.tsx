@@ -162,7 +162,7 @@ export default function ProjectGallery({
           >
             GALERIE
             <br />
-            <span className="text-[var(--nx-gold)]">VISUELLE</span>
+            <span className="text-gradient">VISUELLE</span>
           </h2>
         </motion.div>
 
@@ -173,7 +173,7 @@ export default function ProjectGallery({
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.1, duration: 0.6, ease }}
-              className="aspect-[4/3] md:aspect-[16/9] border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500"
+              className="aspect-[4/3] md:aspect-[16/9] border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-accent-dim)] transition-colors duration-500"
             >
               <GalleryItem image={fullImages[0]} accentColor={accentColor} />
             </motion.div>
@@ -186,7 +186,7 @@ export default function ProjectGallery({
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.2, duration: 0.6, ease }}
-                className="md:col-span-5 aspect-[4/3] md:aspect-auto md:h-[480px] border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500"
+                className="md:col-span-5 aspect-[4/3] md:aspect-auto md:h-[480px] border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-accent-dim)] transition-colors duration-500"
               >
                 <GalleryItem image={splitLeft} accentColor={accentColor} />
               </motion.div>
@@ -194,7 +194,7 @@ export default function ProjectGallery({
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.3, duration: 0.6, ease }}
-                className="md:col-span-7 aspect-[4/3] md:aspect-auto md:h-[480px] border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500"
+                className="md:col-span-7 aspect-[4/3] md:aspect-auto md:h-[480px] border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-accent-dim)] transition-colors duration-500"
               >
                 <GalleryItem image={splitRight} accentColor={accentColor} />
               </motion.div>
@@ -209,7 +209,7 @@ export default function ProjectGallery({
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.4, duration: 0.6, ease }}
-                className="md:col-span-8 aspect-[4/3] md:aspect-[16/10] border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500"
+                className="md:col-span-8 aspect-[4/3] md:aspect-[16/10] border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-accent-dim)] transition-colors duration-500"
               >
                 <GalleryItem image={offsetRight} accentColor={accentColor} />
               </motion.div>
@@ -222,7 +222,7 @@ export default function ProjectGallery({
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.5, duration: 0.6, ease }}
-              className="aspect-[4/3] md:aspect-[16/9] border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500"
+              className="aspect-[4/3] md:aspect-[16/9] border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-accent-dim)] transition-colors duration-500"
             >
               <GalleryItem image={fullImages[1]} accentColor={accentColor} />
             </motion.div>

@@ -44,7 +44,7 @@ export default function TeamRecommendations({
           >
             CE QU&rsquo;ILS
             <br />
-            <span className="text-[var(--nx-gold)]">EN DISENT</span>
+            <span className="text-gradient">EN DISENT</span>
           </h2>
         </motion.div>
 
@@ -60,7 +60,7 @@ export default function TeamRecommendations({
                 duration: 0.6,
                 ease,
               }}
-              className="relative border border-[var(--nx-border)] p-8 md:p-12 md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500"
+              className="relative border border-[var(--nx-border)] p-8 md:p-12 md:hover:border-[var(--nx-accent-dim)] transition-colors duration-500"
             >
               {/* Quote mark */}
               <div

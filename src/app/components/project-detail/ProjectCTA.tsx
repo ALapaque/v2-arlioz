@@ -44,7 +44,7 @@ export default function ProjectCTA() {
           >
             UN PROJET
             <br />
-            <span className="text-[var(--nx-gold)]">EN TÊTE ?</span>
+            <span className="text-gradient">EN TÊTE ?</span>
           </motion.h2>
 
           <motion.p
@@ -63,7 +63,7 @@ export default function ProjectCTA() {
           >
             <a
               href="mailto:contact@arlioz.be"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-[var(--nx-gold)] text-[var(--nx-black)] text-[12px] tracking-[0.2em] uppercase font-medium hover:bg-[var(--nx-ivory)] transition-colors duration-300"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-accent text-[var(--nx-black)] text-[12px] tracking-[0.2em] uppercase font-medium hover:bg-[var(--nx-ivory)] transition-colors duration-300"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Démarrer la conversation
@@ -79,7 +79,7 @@ export default function ProjectCTA() {
           >
             <a
               href="mailto:contact@arlioz.be"
-              className="text-[var(--nx-ivory-ghost)] hover:text-[var(--nx-gold)] transition-colors duration-300 text-[14px] tracking-[0.1em]"
+              className="text-[var(--nx-ivory-ghost)] hover:text-[var(--nx-accent-from)] transition-colors duration-300 text-[14px] tracking-[0.1em]"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               contact@arlioz.be

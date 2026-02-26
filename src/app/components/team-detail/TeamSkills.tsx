@@ -39,7 +39,7 @@ export default function TeamSkills({
           >
             STACK
             <br />
-            <span className="text-[var(--nx-gold)]">TECHNIQUE</span>
+            <span className="text-gradient">TECHNIQUE</span>
           </h2>
         </motion.div>
 
@@ -55,7 +55,7 @@ export default function TeamSkills({
                 duration: 0.6,
                 ease,
               }}
-              className="border border-[var(--nx-border)] p-8 md:p-10 md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500"
+              className="border border-[var(--nx-border)] p-8 md:p-10 md:hover:border-[var(--nx-accent-dim)] transition-colors duration-500"
             >
               <span
                 className="text-[10px] tracking-[0.3em] uppercase block mb-8"

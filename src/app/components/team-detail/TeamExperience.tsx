@@ -46,7 +46,7 @@ export default function TeamExperience({
           >
             PARCOURS
             <br />
-            <span className="text-[var(--nx-gold)]">PROFESSIONNEL</span>
+            <span className="text-gradient">PROFESSIONNEL</span>
           </h2>
         </motion.div>
 

@@ -35,7 +35,7 @@ export default function ProjectMeta({ meta }: { meta: ProjectMetaType }) {
               }`}
             >
               <span
-                className="text-[9px] tracking-[0.3em] uppercase text-[var(--nx-gold)] block mb-2"
+                className="text-[9px] tracking-[0.3em] uppercase text-[var(--nx-accent-from)] block mb-2"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
                 {item.label}
