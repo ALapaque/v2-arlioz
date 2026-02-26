@@ -5,35 +5,37 @@ import CustomCursor from "./components/CustomCursor";
 import ScrollProgress from "./components/ScrollProgress";
 
 export const metadata: Metadata = {
-  title: "Arlioz — We Build Digital Empires",
+  title: "Arlioz — Privacy & Digital Development",
   description:
-    "Agence de développement web sur-mesure pour startups et scale-ups ambitieux. Applications React, Next.js, SaaS, e-commerce premium. Paris, France.",
+    "Privacy et digital design réunis pour aider les entreprises à grandir en sécurité et intelligemment. Applications web, mobile cross-platform, RGPD. Belgique.",
   keywords: [
     "agence web",
     "développement application",
     "Next.js",
     "React",
-    "SaaS",
-    "e-commerce",
-    "startup",
-    "scale-up",
-    "Paris",
+    "Angular",
+    "Vue.js",
+    "NestJS",
+    "React Native",
+    "RGPD",
+    "protection des données",
     "Arlioz",
+    "Belgique",
   ],
   openGraph: {
-    title: "Arlioz — We Build Digital Empires",
+    title: "Arlioz — Privacy & Digital Development",
     description:
-      "Applications web sur-mesure pour les marques qui refusent d'être ordinaires.",
-    url: "https://arlioz.com",
+      "Privacy et digital design réunis pour aider les entreprises à grandir en sécurité et intelligemment.",
+    url: "https://arlioz.be",
     siteName: "Arlioz",
-    locale: "fr_FR",
+    locale: "fr_BE",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arlioz — We Build Digital Empires",
+    title: "Arlioz — Privacy & Digital Development",
     description:
-      "Applications web sur-mesure pour les marques qui refusent d'être ordinaires.",
+      "Privacy et digital design réunis pour aider les entreprises à grandir en sécurité et intelligemment.",
   },
   robots: {
     index: true,

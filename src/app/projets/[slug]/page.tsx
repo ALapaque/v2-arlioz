@@ -33,7 +33,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${project.name} — Arlioz`,
       description: project.headline,
-      url: `https://arlioz.com/projets/${project.slug}`,
+      url: `https://arlioz.be/projets/${project.slug}`,
       siteName: "Arlioz",
       locale: "fr_FR",
       type: "article",

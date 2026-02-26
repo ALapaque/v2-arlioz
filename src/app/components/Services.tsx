@@ -18,38 +18,38 @@ const services: Service[] = [
     icon: "◈",
     title: "Applications Web sur-mesure",
     description:
-      "React, Next.js, Vue — des interfaces ultra-performantes taillées pour vos ambitions. Chaque pixel est intentionnel.",
+      "React, Next.js, Angular, Vue, Nuxt — des interfaces ultra-performantes taillées pour vos ambitions. Chaque pixel est intentionnel.",
     featured: true,
   },
   {
     icon: "△",
-    title: "Plateformes SaaS & MVP",
+    title: "Applications Cross-platform",
     description:
-      "Du concept au lancement. Architecture scalable, UX pensée pour la conversion, infrastructure cloud-native.",
+      "React Native, Expo — une seule codebase pour iOS et Android. Des apps mobiles natives, performantes et élégantes.",
   },
   {
     icon: "◇",
-    title: "E-commerce Premium",
+    title: "Backend & API robustes",
     description:
-      "Shopify Plus, headless commerce — des expériences d'achat mémorables qui transforment les visiteurs en clients fidèles.",
+      "NestJS, Node.js, TypeScript — architectures API solides, microservices, intégrations tierces. La plomberie invisible qui fait tout fonctionner.",
   },
   {
     icon: "⬡",
+    title: "Protection des données & RGPD",
+    description:
+      "Audit de conformité, mise en place des processus RGPD, protection des données personnelles. La sécurité au cœur de chaque projet.",
+  },
+  {
+    icon: "◉",
     title: "Design System & UI/UX",
     description:
       "Systèmes de design cohérents et scalables. De la recherche utilisateur aux composants pixel-perfect.",
   },
   {
-    icon: "◉",
-    title: "Performance & Optimisation",
-    description:
-      "Core Web Vitals, SSR, edge computing — chaque milliseconde compte. Nous optimisons ce qui compte.",
-  },
-  {
     icon: "⬢",
-    title: "API & Intégrations complexes",
+    title: "Widgets & Intégrables",
     description:
-      "Architectures API robustes, intégrations tierces, microservices — la plomberie invisible qui fait tout fonctionner.",
+      "Composants légers et autonomes intégrables en quelques minutes sur n'importe quel site existant. Personnalisables et performants.",
   },
 ];
 

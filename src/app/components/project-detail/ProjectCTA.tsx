@@ -62,7 +62,7 @@ export default function ProjectCTA() {
             transition={{ delay: 0.3, duration: 0.7, ease }}
           >
             <a
-              href="mailto:hello@arlioz.com"
+              href="mailto:contact@arlioz.be"
               className="inline-flex items-center gap-3 px-10 py-5 bg-[var(--nx-gold)] text-[var(--nx-black)] text-[12px] tracking-[0.2em] uppercase font-medium hover:bg-[var(--nx-ivory)] transition-colors duration-300"
               style={{ fontFamily: "var(--font-mono)" }}
             >
@@ -78,11 +78,11 @@ export default function ProjectCTA() {
             className="mt-10"
           >
             <a
-              href="mailto:hello@arlioz.com"
+              href="mailto:contact@arlioz.be"
               className="text-[var(--nx-ivory-ghost)] hover:text-[var(--nx-gold)] transition-colors duration-300 text-[14px] tracking-[0.1em]"
               style={{ fontFamily: "var(--font-mono)" }}
             >
-              hello@arlioz.com
+              contact@arlioz.be
             </a>
           </motion.div>
         </div>

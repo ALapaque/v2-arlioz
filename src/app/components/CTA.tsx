@@ -73,7 +73,7 @@ export default function CTA() {
           <ScaleReveal animate={isInView} delay={0.55}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <a
-                href="mailto:hello@arlioz.com"
+                href="mailto:contact@arlioz.be"
                 className="btn-slide inline-flex items-center gap-3 px-10 py-5 bg-[var(--nx-gold)] text-[var(--nx-black)] text-[12px] tracking-[0.2em] uppercase font-medium transition-colors duration-300"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
@@ -86,11 +86,11 @@ export default function CTA() {
           {/* Email */}
           <FadeUp animate={isInView} delay={0.7} className="mt-12">
             <a
-              href="mailto:hello@arlioz.com"
+              href="mailto:contact@arlioz.be"
               className="text-[var(--nx-ivory-ghost)] hover:text-[var(--nx-gold)] transition-colors duration-300 text-[14px] tracking-[0.1em]"
               style={{ fontFamily: "var(--font-mono)" }}
             >
-              hello@arlioz.com
+              contact@arlioz.be
             </a>
           </FadeUp>
         </div>

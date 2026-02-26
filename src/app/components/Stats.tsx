@@ -12,9 +12,9 @@ interface StatItem {
 }
 
 const stats: StatItem[] = [
-  { value: 47, suffix: "+", label: "Projets livrés" },
-  { value: 98, suffix: "%", label: "Clients satisfaits" },
-  { value: 12, suffix: "x", label: "ROI moyen client" },
+  { value: 7, suffix: "+", label: "Années d'expérience" },
+  { value: 2, suffix: "", label: "Experts dédiés" },
+  { value: 100, suffix: "%", label: "Clients satisfaits" },
   { value: 5, suffix: "★", label: "Note moyenne" },
 ];
 

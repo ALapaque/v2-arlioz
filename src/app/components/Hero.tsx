@@ -23,7 +23,7 @@ export default function Hero() {
           {/* Top label — slides in from left */}
           <SlideIn animate={isLoaderDone} delay={0} className="mb-8">
             <span className="section-label">
-              ARLIOZ &mdash; DIGITAL CRAFTMANSHIP
+              ARLIOZ &mdash; PRIVACY &amp; DIGITAL DEVELOPMENT
             </span>
           </SlideIn>
 
@@ -50,8 +50,8 @@ export default function Hero() {
               className="text-[clamp(1rem,2vw,1.25rem)] leading-relaxed text-[var(--nx-ivory-dim)] max-w-[540px]"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Applications web sur-mesure pour les marques qui refusent
-              d&rsquo;&ecirc;tre ordinaires.
+              Privacy &amp; digital design r&eacute;unis pour aider les entreprises
+              &agrave; grandir en s&eacute;curit&eacute; et intelligemment.
             </p>
           </FadeUp>
 

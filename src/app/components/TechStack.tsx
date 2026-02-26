@@ -5,18 +5,18 @@ import { useInView } from "framer-motion";
 import { SplitText, SlideIn } from "./AnimatedText";
 
 const technologies = [
-  "Next.js",
-  "React",
+  "Angular",
+  "ReactJS",
+  "NextJS",
+  "VueJS",
+  "NuxtJS",
+  "NestJS",
   "TypeScript",
-  "Node.js",
+  "React Native",
   "PostgreSQL",
-  "Prisma",
   "Tailwind CSS",
-  "Figma",
-  "AWS",
-  "Vercel",
-  "GraphQL",
   "Docker",
+  "Vercel",
 ];
 
 export default function TechStack() {

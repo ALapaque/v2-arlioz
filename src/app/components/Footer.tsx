@@ -25,7 +25,7 @@ export default function Footer() {
               className="text-[13px] text-[var(--nx-ivory-ghost)] max-w-[300px] leading-relaxed"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              We build digital empires for brands that refuse to be ordinary.
+              Privacy &amp; digital design réunis pour aider les entreprises à grandir en sécurité.
             </p>
           </div>
 

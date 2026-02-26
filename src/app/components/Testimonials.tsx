@@ -17,27 +17,27 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     quote:
-      "Arlioz a transformé notre vision en une plateforme qui a dépassé toutes nos attentes. Leur attention au détail et leur rigueur technique sont incomparables.",
-    name: "Mathieu Renard",
-    title: "CEO & Co-founder",
-    company: "Vaultify",
-    initials: "MR",
+      "Arlioz a parfaitement compris nos besoins. Le widget s\u2019intègre en quelques minutes et nos restaurateurs l\u2019adorent. Les réservations en ligne ont explosé.",
+    name: "Thomas Dupont",
+    title: "Product Manager",
+    company: "Restomax",
+    initials: "TD",
   },
   {
     quote:
-      "Travailler avec Arlioz, c'est comme avoir une équipe technique interne d'élite. Ils ne codent pas, ils architecturent des expériences.",
-    name: "Clara Dubois",
-    title: "Directrice Digitale",
-    company: "Maison Lumière",
-    initials: "CD",
+      "L\u2019application a transformé notre business. Nos clients adorent la facilité de commande et notre panier moyen a augmenté de 32% en trois mois.",
+    name: "Kevin Tran",
+    title: "Gérant",
+    company: "Hawaiian Pokebowl",
+    initials: "KT",
   },
   {
     quote:
-      "Notre MVP était prêt en 8 semaines. 6 mois plus tard, 10 000 utilisateurs actifs. Le ROI parle de lui-même.",
-    name: "Antoine Mercier",
-    title: "CTO",
-    company: "Orbyt",
-    initials: "AM",
+      "Un travail impeccable du début à la fin. Arlioz a su capturer l\u2019essence de mon univers photographique dans un site à la hauteur de mes images.",
+    name: "Julie Kraemer",
+    title: "Photographe",
+    company: "JK Studio",
+    initials: "JK",
   },
 ];
 
