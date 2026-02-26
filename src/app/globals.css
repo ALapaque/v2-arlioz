@@ -125,41 +125,67 @@ body {
 }
 
 /* ============================================
-   CUSTOM CURSOR
+   CUSTOM CURSOR — dot + ring
    ============================================ */
-.nx-cursor {
+
+/* Inner dot — instant, no lag */
+.nx-dot {
   position: fixed;
   top: 0;
   left: 0;
-  width: 24px;
-  height: 24px;
+  width: 6px;
+  height: 6px;
+  background: var(--nx-accent-from);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100000;
+  will-change: transform;
+}
+
+.nx-dot--expand {
+  opacity: 0;
+}
+
+/* Outer ring — smooth lerp via JS, expand on interactive */
+.nx-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border: 1px solid var(--nx-accent-from);
+  border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
+  opacity: 0.5;
+  will-change: transform;
+  transition:
+    width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    margin 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+/* Expanded state — on cards, links, buttons */
+.nx-ring--expand {
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  opacity: 0.8;
+  background: var(--nx-fg);
+  border-color: transparent;
   mix-blend-mode: difference;
-  transition: transform 0.15s ease;
 }
 
-.nx-cursor::before,
-.nx-cursor::after {
-  content: '';
-  position: absolute;
-  background: var(--nx-accent-from);
-}
-
-.nx-cursor::before {
-  width: 1px;
-  height: 24px;
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%);
-}
-
-.nx-cursor::after {
-  width: 24px;
-  height: 1px;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
+/* Press state */
+.nx-ring--press {
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
+  opacity: 0.6;
 }
 
 /* ============================================
@@ -555,7 +581,8 @@ body {
   * {
     cursor: auto !important;
   }
-  .nx-cursor {
+  .nx-dot,
+  .nx-ring {
     display: none !important;
   }
 }
