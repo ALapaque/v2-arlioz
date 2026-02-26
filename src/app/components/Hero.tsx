@@ -2,15 +2,15 @@
 
 import { useLoaderState } from "./LoaderProvider";
 import { SplitText, SlideIn, FadeUp, ScaleReveal } from "./AnimatedText";
+import HeroBlob from "./HeroBlob";
 
 export default function Hero() {
   const { isLoaderDone } = useLoaderState();
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background mesh */}
-      <div className="hero-mesh" aria-hidden="true" />
-      <div className="hero-mesh-secondary" aria-hidden="true" />
+      {/* WebGL gradient blob */}
+      <HeroBlob />
 
       {/* Decorative vertical line */}
       <div
