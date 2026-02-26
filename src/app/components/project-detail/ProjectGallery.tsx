@@ -44,9 +44,9 @@ function GalleryItem({
             </div>
           </div>
           {/* Mobile label */}
-          <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[var(--nx-overlay-from)] to-transparent md:hidden">
+          <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[rgba(6,6,6,0.85)] to-transparent md:hidden">
             <span
-              className="text-[11px] tracking-[0.15em] uppercase text-[var(--nx-ivory-dim)]"
+              className="text-[11px] tracking-[0.15em] uppercase text-[rgba(237,235,230,0.75)]"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               {image.label}

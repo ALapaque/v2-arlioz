@@ -15,7 +15,7 @@ export default function ProjectTestimonial({
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="relative py-28 md:py-40 bg-[#111111]">
+    <section ref={ref} className="relative py-28 md:py-40 bg-[var(--nx-bg-alt)]">
       <div className="line-decorative absolute top-0 left-0 right-0" />
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">

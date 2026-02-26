@@ -33,7 +33,7 @@ export default function TeamNavigation({
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6, ease }}
-            className="group flex flex-col justify-center px-8 md:px-14 py-16 md:py-24 hover:bg-[#111111] transition-colors duration-500"
+            className="group flex flex-col justify-center px-8 md:px-14 py-16 md:py-24 hover:bg-[var(--nx-bg-alt)] transition-colors duration-500"
           >
             <span
               className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-ivory-ghost)] group-hover:text-[var(--nx-accent-from)] transition-colors duration-300 flex items-center gap-2 mb-4"
@@ -63,7 +63,7 @@ export default function TeamNavigation({
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ delay: 0.08, duration: 0.6, ease }}
-            className="group flex flex-col justify-center items-end text-right px-8 md:px-14 py-16 md:py-24 hover:bg-[#111111] transition-colors duration-500 border-t md:border-t-0 border-[var(--nx-border)]"
+            className="group flex flex-col justify-center items-end text-right px-8 md:px-14 py-16 md:py-24 hover:bg-[var(--nx-bg-alt)] transition-colors duration-500 border-t md:border-t-0 border-[var(--nx-border)]"
           >
             <span
               className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-ivory-ghost)] group-hover:text-[var(--nx-accent-from)] transition-colors duration-300 flex items-center gap-2 mb-4"

@@ -98,7 +98,7 @@ export default function TeamHero({ member }: { member: TeamMember }) {
           transition={{ delay: 0.25, duration: 0.8, ease }}
           className="relative w-full max-w-[1100px] aspect-[16/9] mb-16 border border-[var(--nx-border)] overflow-hidden"
           style={{
-            background: `linear-gradient(135deg, #0D1117 0%, #111827 100%)`,
+            background: `linear-gradient(135deg, var(--nx-bg) 0%, var(--nx-bg-alt) 100%)`,
           }}
         >
           <img

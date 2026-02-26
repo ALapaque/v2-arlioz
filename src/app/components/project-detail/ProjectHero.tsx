@@ -107,7 +107,7 @@ export default function ProjectHero({ project }: { project: Project }) {
           transition={{ delay: 0.3, duration: 1, ease }}
           className="relative w-full aspect-[16/9] max-w-[1100px] mb-16 border border-[var(--nx-border)] overflow-hidden"
           style={{
-            background: project.gallery[0]?.gradient || "linear-gradient(135deg, #0D1117 0%, #111827 100%)",
+            background: project.gallery[0]?.gradient || `linear-gradient(135deg, var(--nx-bg) 0%, var(--nx-bg-alt) 100%)`,
           }}
         >
           {/* Project image */}

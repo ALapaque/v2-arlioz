@@ -62,7 +62,7 @@ export default function TeamProjects({
                 style={{
                   background:
                     project.gallery[0]?.gradient ||
-                    "linear-gradient(135deg, #0D1117 0%, #111827 100%)",
+                    "linear-gradient(135deg, var(--nx-bg) 0%, var(--nx-bg-alt) 100%)",
                 }}
               >
                 {project.image && (

@@ -63,7 +63,7 @@ export default function ProjectCTA() {
           >
             <a
               href="mailto:contact@arlioz.be"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-accent text-[var(--nx-black)] text-[12px] tracking-[0.2em] uppercase font-medium hover:bg-[var(--nx-ivory)] transition-colors duration-300"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-accent text-[#060606] text-[12px] tracking-[0.2em] uppercase font-medium transition-colors duration-300"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Démarrer la conversation
