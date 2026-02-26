@@ -85,12 +85,22 @@ export default function TeamExperience({
                     style={{ background: i === 0 ? accentColor : "var(--nx-border)" }}
                   />
 
-                  <span
-                    className="text-[10px] tracking-[0.25em] uppercase text-[var(--nx-ivory-ghost)] block mb-2"
-                    style={{ fontFamily: "var(--font-mono)" }}
-                  >
-                    {exp.period}
-                  </span>
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-2">
+                    <span
+                      className="text-[10px] tracking-[0.25em] uppercase text-[var(--nx-ivory-ghost)]"
+                      style={{ fontFamily: "var(--font-mono)" }}
+                    >
+                      {exp.period}
+                    </span>
+                    {exp.location && (
+                      <span
+                        className="text-[10px] tracking-[0.15em] uppercase text-[var(--nx-ivory-ghost)] opacity-60"
+                        style={{ fontFamily: "var(--font-mono)" }}
+                      >
+                        {exp.location}
+                      </span>
+                    )}
+                  </div>
                   <h3
                     className="text-[clamp(1.3rem,2vw,1.8rem)] tracking-tight mb-1"
                     style={{ fontFamily: "var(--font-display)" }}

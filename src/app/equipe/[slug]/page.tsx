@@ -12,6 +12,7 @@ import TeamHero from "@/app/components/team-detail/TeamHero";
 import TeamBio from "@/app/components/team-detail/TeamBio";
 import TeamSkills from "@/app/components/team-detail/TeamSkills";
 import TeamExperience from "@/app/components/team-detail/TeamExperience";
+import TeamRecommendations from "@/app/components/team-detail/TeamRecommendations";
 import TeamProjects from "@/app/components/team-detail/TeamProjects";
 import TeamNavigation from "@/app/components/team-detail/TeamNavigation";
 import ProjectCTA from "@/app/components/project-detail/ProjectCTA";
@@ -69,6 +70,10 @@ export default async function TeamMemberPage({
           experience={member.experience}
           education={member.education}
           certifications={member.certifications}
+          accentColor={member.accentColor}
+        />
+        <TeamRecommendations
+          recommendations={member.recommendations}
           accentColor={member.accentColor}
         />
         <TeamProjects projects={relatedProjects} />
