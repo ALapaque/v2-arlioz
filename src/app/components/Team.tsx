@@ -50,7 +50,7 @@ export default function Team() {
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         {/* Section header */}
-        <div className="mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+        <div className="mb-14 md:mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
             <SlideIn animate={isInView} delay={0} className="mb-4">
               <span className="section-label">04 &mdash; L&rsquo;ÉQUIPE</span>
@@ -82,35 +82,36 @@ export default function Team() {
         </div>
 
         {/* Team grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {team.map((member, i) => (
             <motion.div
               key={member.name}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
-                delay: 0.4 + i * 0.15,
-                duration: 0.8,
+                delay: 0.3 + i * 0.12,
+                duration: 0.6,
                 ease,
               }}
-              className="group relative border border-[var(--nx-border)] bg-[var(--nx-black)] overflow-hidden hover:border-[var(--nx-gold-dim)] transition-all duration-500"
+              className="group relative border border-[var(--nx-border)] bg-[var(--nx-black)] overflow-hidden md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500"
             >
               {/* Photo */}
-              <div className="relative h-[400px] md:h-[480px] overflow-hidden">
+              <div className="relative aspect-[3/4] md:aspect-auto md:h-[480px] overflow-hidden">
                 <img
                   src={member.image}
                   alt={member.name}
-                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                  className="w-full h-full object-cover object-top will-change-transform md:group-hover:scale-[1.03] transition-transform duration-700"
                 />
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--nx-black)] via-[rgba(8,8,8,0.3)] to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--nx-black)] via-[rgba(8,8,8,0.2)] to-transparent" />
 
                 {/* Specialties floating over image */}
-                <div className="absolute bottom-6 left-6 right-6 flex flex-wrap gap-2">
+                <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 flex flex-wrap gap-1.5 md:gap-2">
                   {member.specialties.map((spec) => (
                     <span
                       key={spec}
-                      className="px-3 py-1 bg-[rgba(8,8,8,0.7)] backdrop-blur-sm border border-[var(--nx-border)] text-[9px] tracking-[0.2em] uppercase text-[var(--nx-ivory-dim)] group-hover:border-[var(--nx-gold-dim)] group-hover:text-[var(--nx-gold)] transition-all duration-500"
+                      className="px-2.5 py-1 md:px-3 bg-[rgba(8,8,8,0.7)] backdrop-blur-sm border border-[var(--nx-border)] text-[8px] md:text-[9px] tracking-[0.2em] uppercase text-[var(--nx-ivory-dim)] md:group-hover:border-[var(--nx-gold-dim)] md:group-hover:text-[var(--nx-gold)] transition-colors duration-500"
                       style={{ fontFamily: "var(--font-mono)" }}
                     >
                       {spec}
@@ -120,21 +121,21 @@ export default function Team() {
               </div>
 
               {/* Info */}
-              <div className="p-8 md:p-10">
+              <div className="p-6 md:p-10">
                 <h3
-                  className="text-[clamp(1.8rem,3vw,2.5rem)] leading-none tracking-tight mb-2"
+                  className="text-[clamp(1.6rem,3vw,2.5rem)] leading-none tracking-tight mb-2"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   {member.name}
                 </h3>
                 <span
-                  className="inline-block text-[10px] tracking-[0.25em] uppercase text-[var(--nx-gold)] mb-5"
+                  className="inline-block text-[10px] tracking-[0.25em] uppercase text-[var(--nx-gold)] mb-4 md:mb-5"
                   style={{ fontFamily: "var(--font-mono)" }}
                 >
                   {member.role}
                 </span>
                 <p
-                  className="text-[14px] leading-[1.8] text-[var(--nx-ivory-dim)]"
+                  className="text-[13px] md:text-[14px] leading-[1.7] text-[var(--nx-ivory-dim)]"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   {member.description}
@@ -146,26 +147,27 @@ export default function Team() {
 
         {/* Meeting photo */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.7, duration: 0.8, ease }}
-          className="mt-8 relative aspect-[21/9] border border-[var(--nx-border)] overflow-hidden group hover:border-[var(--nx-gold-dim)] transition-all duration-500"
+          transition={{ delay: 0.55, duration: 0.6, ease }}
+          className="mt-6 md:mt-8 relative aspect-[16/9] md:aspect-[21/9] border border-[var(--nx-border)] overflow-hidden group md:hover:border-[var(--nx-gold-dim)] transition-colors duration-500"
         >
           <img
             src="/assets/meeting.jpg"
             alt="L'équipe Arlioz en réunion"
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            loading="lazy"
+            className="w-full h-full object-cover will-change-transform md:group-hover:scale-[1.03] transition-transform duration-700"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[rgba(8,8,8,0.7)] via-transparent to-transparent" />
-          <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12">
+          <div className="absolute bottom-6 left-6 md:bottom-12 md:left-12">
             <span
-              className="text-[10px] tracking-[0.3em] uppercase text-[var(--nx-gold)] block mb-2"
+              className="text-[9px] md:text-[10px] tracking-[0.3em] uppercase text-[var(--nx-gold)] block mb-1.5 md:mb-2"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Collaboration
             </span>
             <span
-              className="text-[clamp(1.5rem,3vw,2.5rem)] tracking-tight"
+              className="text-[clamp(1.2rem,3vw,2.5rem)] tracking-tight"
               style={{ fontFamily: "var(--font-display)" }}
             >
               TOUJOURS À L&rsquo;ÉCOUTE
