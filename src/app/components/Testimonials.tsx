@@ -2,6 +2,9 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { SplitText, SlideIn } from "./AnimatedText";
+
+const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 interface Testimonial {
   quote: string;
@@ -14,27 +17,27 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     quote:
-      "NEXORA a transformé notre vision en une plateforme qui a dépassé toutes nos attentes. Leur attention au détail et leur rigueur technique sont incomparables.",
-    name: "Mathieu Renard",
-    title: "CEO & Co-founder",
-    company: "Vaultify",
-    initials: "MR",
+      "Arlioz a parfaitement compris nos besoins. Le widget s\u2019intègre en quelques minutes et nos restaurateurs l\u2019adorent. Les réservations en ligne ont explosé.",
+    name: "Thomas Dupont",
+    title: "Product Manager",
+    company: "Restomax",
+    initials: "TD",
   },
   {
     quote:
-      "Travailler avec NEXORA, c'est comme avoir une équipe technique interne d'élite. Ils ne codent pas, ils architecturent des expériences.",
-    name: "Clara Dubois",
-    title: "Directrice Digitale",
-    company: "Maison Lumière",
-    initials: "CD",
+      "L\u2019application a transformé notre business. Nos clients adorent la facilité de commande et notre panier moyen a augmenté de 32% en trois mois.",
+    name: "Kevin Tran",
+    title: "Gérant",
+    company: "Hawaiian Pokebowl",
+    initials: "KT",
   },
   {
     quote:
-      "Notre MVP était prêt en 8 semaines. 6 mois plus tard, 10 000 utilisateurs actifs. Le ROI parle de lui-même.",
-    name: "Antoine Mercier",
-    title: "CTO",
-    company: "Orbyt",
-    initials: "AM",
+      "Un travail impeccable du début à la fin. Arlioz a su capturer l\u2019essence de mon univers photographique dans un site à la hauteur de mes images.",
+    name: "Julie Kraemer",
+    title: "Photographe",
+    company: "JK Studio",
+    initials: "JK",
   },
 ];
 
@@ -45,21 +48,25 @@ export default function Testimonials() {
   return (
     <section className="relative py-28 md:py-40" ref={ref}>
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-20 text-center"
-        >
-          <span className="section-label block mb-4">TÉMOIGNAGES</span>
+        {/* Header — sequenced */}
+        <div className="mb-20 text-center">
+          <SlideIn animate={isInView} delay={0} direction="right" className="mb-4 flex justify-center">
+            <span className="section-label">TÉMOIGNAGES</span>
+          </SlideIn>
           <h2
             className="text-[clamp(2rem,4vw,3.5rem)] leading-[0.95] tracking-tight"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            ILS NOUS FONT <span className="text-[var(--nx-gold)]">CONFIANCE</span>
+            <SplitText animate={isInView} delay={0.1}>
+              ILS NOUS FONT
+            </SplitText>{" "}
+            <span className="text-[var(--nx-gold)]">
+              <SplitText animate={isInView} delay={0.18}>
+                CONFIANCE
+              </SplitText>
+            </span>
           </h2>
-        </motion.div>
+        </div>
 
         {/* Testimonials grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -69,9 +76,9 @@ export default function Testimonials() {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
-                delay: 0.2 + i * 0.1,
+                delay: 0.3 + i * 0.1,
                 duration: 0.7,
-                ease: [0.16, 1, 0.3, 1],
+                ease,
               }}
               className="relative p-8 md:p-10 border border-[var(--nx-border)] bg-[var(--nx-black-alt)] group hover:border-[var(--nx-gold-dim)] transition-all duration-500"
             >

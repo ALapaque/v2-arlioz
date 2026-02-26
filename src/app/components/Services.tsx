@@ -2,6 +2,9 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { SplitText, SlideIn } from "./AnimatedText";
+
+const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 interface Service {
   icon: string;
@@ -15,38 +18,38 @@ const services: Service[] = [
     icon: "◈",
     title: "Applications Web sur-mesure",
     description:
-      "React, Next.js, Vue — des interfaces ultra-performantes taillées pour vos ambitions. Chaque pixel est intentionnel.",
+      "React, Next.js, Angular, Vue, Nuxt — des interfaces ultra-performantes taillées pour vos ambitions. Chaque pixel est intentionnel.",
     featured: true,
   },
   {
     icon: "△",
-    title: "Plateformes SaaS & MVP",
+    title: "Applications Cross-platform",
     description:
-      "Du concept au lancement. Architecture scalable, UX pensée pour la conversion, infrastructure cloud-native.",
+      "React Native, Expo — une seule codebase pour iOS et Android. Des apps mobiles natives, performantes et élégantes.",
   },
   {
     icon: "◇",
-    title: "E-commerce Premium",
+    title: "Backend & API robustes",
     description:
-      "Shopify Plus, headless commerce — des expériences d'achat mémorables qui transforment les visiteurs en clients fidèles.",
+      "NestJS, Node.js, TypeScript — architectures API solides, microservices, intégrations tierces. La plomberie invisible qui fait tout fonctionner.",
   },
   {
     icon: "⬡",
+    title: "Protection des données & RGPD",
+    description:
+      "Audit de conformité, mise en place des processus RGPD, protection des données personnelles. La sécurité au cœur de chaque projet.",
+  },
+  {
+    icon: "◉",
     title: "Design System & UI/UX",
     description:
       "Systèmes de design cohérents et scalables. De la recherche utilisateur aux composants pixel-perfect.",
   },
   {
-    icon: "◉",
-    title: "Performance & Optimisation",
-    description:
-      "Core Web Vitals, SSR, edge computing — chaque milliseconde compte. Nous optimisons ce qui compte.",
-  },
-  {
     icon: "⬢",
-    title: "API & Intégrations complexes",
+    title: "Widgets & Intégrables",
     description:
-      "Architectures API robustes, intégrations tierces, microservices — la plomberie invisible qui fait tout fonctionner.",
+      "Composants légers et autonomes intégrables en quelques minutes sur n'importe quel site existant. Personnalisables et performants.",
   },
 ];
 
@@ -63,23 +66,27 @@ export default function Services() {
       />
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-20"
-        >
-          <span className="section-label block mb-4">01 &mdash; NOS EXPERTISES</span>
+        {/* Section header — sequenced: label → title */}
+        <div className="mb-20">
+          <SlideIn animate={isInView} delay={0} className="mb-4">
+            <span className="section-label">01 &mdash; NOS EXPERTISES</span>
+          </SlideIn>
           <h2
             className="text-[clamp(2.5rem,5vw,5rem)] leading-[0.95] tracking-tight max-w-[600px]"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            DES SOLUTIONS,
-            <br />
-            <span className="text-[var(--nx-gold)]">PAS DES TEMPLATES</span>
+            <span className="block">
+              <SplitText animate={isInView} delay={0.1}>
+                DES SOLUTIONS,
+              </SplitText>
+            </span>
+            <span className="block text-[var(--nx-gold)]">
+              <SplitText animate={isInView} delay={0.2}>
+                PAS DES TEMPLATES
+              </SplitText>
+            </span>
           </h2>
-        </motion.div>
+        </div>
 
         {/* Services grid — asymmetric */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -89,9 +96,9 @@ export default function Services() {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
-                delay: 0.15 + i * 0.08,
+                delay: 0.35 + i * 0.08,
                 duration: 0.7,
-                ease: [0.16, 1, 0.3, 1],
+                ease,
               }}
               className={`card-border-animated group p-8 md:p-10 ${
                 service.featured ? "md:col-span-2 lg:col-span-2 lg:row-span-1" : ""

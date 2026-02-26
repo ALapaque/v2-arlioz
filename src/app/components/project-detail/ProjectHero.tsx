@@ -100,7 +100,7 @@ export default function ProjectHero({ project }: { project: Project }) {
           {project.headline}
         </motion.p>
 
-        {/* Mockup area — stylized dashboard placeholder */}
+        {/* Mockup area — project image */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -108,90 +108,75 @@ export default function ProjectHero({ project }: { project: Project }) {
           className="relative w-full aspect-[16/9] max-w-[1100px] mb-16 border border-[var(--nx-border)] overflow-hidden"
           style={{
             background: project.gallery[0]?.gradient || "linear-gradient(135deg, #0D1117 0%, #111827 100%)",
-            perspective: "1200px",
           }}
         >
-          {/* Faux dashboard UI */}
-          <div className="absolute inset-0 p-6 md:p-10" style={{ transform: "rotateX(2deg)" }}>
-            {/* Top bar */}
-            <div className="flex items-center gap-3 mb-6">
-              <div className="flex gap-1.5">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57] opacity-70" />
-                <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e] opacity-70" />
-                <div className="w-2.5 h-2.5 rounded-full bg-[#28c840] opacity-70" />
-              </div>
-              <div className="flex-1 h-6 bg-[rgba(255,255,255,0.04)] rounded-sm mx-8 max-w-[300px]" />
+          {/* Project image */}
+          {project.image ? (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <img
+                src={project.image}
+                alt={project.name}
+                className="max-w-[50%] max-h-[85%] object-contain drop-shadow-2xl"
+              />
             </div>
-
-            {/* Content grid */}
-            <div className="grid grid-cols-12 gap-4 h-[calc(100%-3rem)]">
-              {/* Sidebar */}
-              <div className="col-span-2 hidden md:flex flex-col gap-3">
-                {[...Array(6)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="h-3 rounded-sm"
-                    style={{
-                      background: i === 1 ? `${project.accentColor}33` : "rgba(255,255,255,0.04)",
-                      width: `${60 + Math.random() * 40}%`,
-                    }}
-                  />
-                ))}
+          ) : (
+            <div className="absolute inset-0 p-6 md:p-10" style={{ transform: "rotateX(2deg)" }}>
+              {/* Top bar */}
+              <div className="flex items-center gap-3 mb-6">
+                <div className="flex gap-1.5">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57] opacity-70" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e] opacity-70" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#28c840] opacity-70" />
+                </div>
+                <div className="flex-1 h-6 bg-[rgba(255,255,255,0.04)] rounded-sm mx-8 max-w-[300px]" />
               </div>
 
-              {/* Main content */}
-              <div className="col-span-12 md:col-span-10 flex flex-col gap-4">
-                {/* KPI row */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  {(project.gallery[0]?.uiElements || []).slice(0, 4).map((el, i) => (
-                    <div
-                      key={i}
-                      className="p-3 md:p-4 border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)]"
-                    >
-                      <div
-                        className="text-[10px] tracking-[0.15em] uppercase opacity-40 mb-1"
-                        style={{ fontFamily: "var(--font-mono)" }}
-                      >
-                        {typeof el === "string" && !el.startsWith("€") && !el.startsWith("+") ? el : "Metric"}
-                      </div>
-                      <div
-                        className="text-[clamp(0.9rem,2vw,1.3rem)]"
-                        style={{
-                          fontFamily: "var(--font-display)",
-                          color: i === 0 ? project.accentColor : "var(--nx-ivory)",
-                        }}
-                      >
-                        {el}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Chart area */}
-                <div className="flex-1 border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.01)] p-4 flex items-end gap-1.5 min-h-[80px]">
-                  {[40, 55, 35, 68, 52, 78, 45, 82, 60, 90, 72, 95, 65, 88, 70, 85, 75, 92, 80, 98].map(
-                    (h, i) => (
+              {/* Content grid */}
+              <div className="grid grid-cols-12 gap-4 h-[calc(100%-3rem)]">
+                <div className="col-span-12 flex flex-col gap-4">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {(project.gallery[0]?.uiElements || []).slice(0, 4).map((el, i) => (
                       <div
                         key={i}
-                        className="flex-1 rounded-t-sm transition-all duration-300"
-                        style={{
-                          height: `${h}%`,
-                          background:
-                            i >= 16
-                              ? project.accentColor
-                              : `rgba(255,255,255,${0.04 + (i / 20) * 0.06})`,
-                          opacity: 0.5 + (i / 20) * 0.5,
-                        }}
-                      />
-                    )
-                  )}
+                        className="p-3 md:p-4 border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)]"
+                      >
+                        <div
+                          className="text-[clamp(0.9rem,2vw,1.3rem)]"
+                          style={{
+                            fontFamily: "var(--font-display)",
+                            color: i === 0 ? project.accentColor : "var(--nx-ivory)",
+                          }}
+                        >
+                          {el}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex-1 border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.01)] p-4 flex items-end gap-1.5 min-h-[80px]">
+                    {[40, 55, 35, 68, 52, 78, 45, 82, 60, 90, 72, 95, 65, 88, 70, 85, 75, 92, 80, 98].map(
+                      (h, i) => (
+                        <div
+                          key={i}
+                          className="flex-1 rounded-t-sm"
+                          style={{
+                            height: `${h}%`,
+                            background:
+                              i >= 16
+                                ? project.accentColor
+                                : `rgba(255,255,255,${0.04 + (i / 20) * 0.06})`,
+                            opacity: 0.5 + (i / 20) * 0.5,
+                          }}
+                        />
+                      )
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
 
           {/* Gradient overlay for depth */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--nx-black)] via-transparent to-transparent opacity-40 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--nx-black)] via-transparent to-transparent opacity-30 pointer-events-none" />
         </motion.div>
 
         {/* Bottom info columns */}

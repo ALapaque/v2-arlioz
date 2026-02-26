@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
+const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
 interface StatItem {
   value: number;
   suffix: string;
@@ -10,9 +12,9 @@ interface StatItem {
 }
 
 const stats: StatItem[] = [
-  { value: 47, suffix: "+", label: "Projets livrés" },
-  { value: 98, suffix: "%", label: "Clients satisfaits" },
-  { value: 12, suffix: "x", label: "ROI moyen client" },
+  { value: 7, suffix: "+", label: "Années d'expérience" },
+  { value: 2, suffix: "", label: "Experts dédiés" },
+  { value: 100, suffix: "%", label: "Clients satisfaits" },
   { value: 5, suffix: "★", label: "Note moyenne" },
 ];
 
@@ -79,7 +81,7 @@ export default function Stats() {
               transition={{
                 delay: i * 0.1,
                 duration: 0.7,
-                ease: [0.16, 1, 0.3, 1],
+                ease,
               }}
               className="text-center md:text-left"
             >
