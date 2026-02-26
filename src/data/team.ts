@@ -174,15 +174,45 @@ export const teamMembers: TeamMember[] = [
     recommendations: [
       {
         author: "Wahid Argandiwall",
-        role: "Software Developer",
+        role: "Senior DotNet | Azure Developer",
         company: "Candriam",
         text: "Amaury was in the core Frontend team here at Candriam. He focused on coaching, writing shared components and deciding on the main architecture. Everyone enjoyed working with Amaury. He has great in-depth knowledge of the Angular framework, is up-to-date and provides you with tons of information. He is able to focus and keep calm during stressful situations, which is a great skill in general. Thanks, Amaury, for your commitment, willingness to help and great enthusiasm!!",
       },
       {
-        author: "Collègue",
-        role: "Developer",
+        author: "Stefan Casier",
+        role: "Technical Architect at Samayas / Creator / Sharer of knowledge",
         company: "Candriam",
         text: "Amaury is exceptionally well experienced in the Angular frontend development. He is motivated and eager to learn business concepts. On a personal level it is very nice to work with him.",
+      },
+      {
+        author: "Frederique Rensonnet",
+        role: "Head of IT Corporate functions",
+        company: "Candriam",
+        text: "Amaury is really an excellent developer. His years of experience don\u2019t reflect all his knowledge and skills. He is a real pillar in a development team. He is team player and reliable.",
+      },
+      {
+        author: "Alexandre Moreaux",
+        role: "Full Stack Engineer",
+        company: "SBIM",
+        text: "Amaury et moi, nous avons travaillé sur le même projet durant 6 mois. Cette collaboration et rencontre fus remplie de positif ! Nous avons clairement amélioré la qualité du code de l\u2019application (toujours à la recherche des bonnes pratiques) et sa maintenabilité qui était notre priorité. Mais pas seulement, en travaillant ensemble on a mis en place une méthodologie de gestion du projet parfaite et bien rodée. Amaury m\u2019a aussi accompagné dans des concepts avancés d\u2019Angular grâce à sa qualité de pédagogue. Au niveau de l\u2019aspect humain, Amaury est quelqu\u2019un de sympathique et surtout un grand passionné. Je pense que c\u2019est pour cela que nous nous sommes bien entendu directement. En résumé : cette collaboration fut un atout majeur dans mon évolution en tant que développeur front-end.",
+      },
+      {
+        author: "Lucas Robyns",
+        role: "Front End Web Developer",
+        company: "",
+        text: "J\u2019ai travaillé avec Amaury pendant 3 semaines. Il avait pour responsabilités de me former en Angular. Fort de son expérience de développeur front-end, il a été un très bon professeur. Grâce à sa formation, j\u2019ai pu, en peu de temps, être prêt pour intégrer le projet pour lequel il me coachait. Bon pédagogue, j\u2019ai énormément progressé à ses côtés. Bilan de ces 3 semaines, j\u2019ai eu beaucoup de plaisir de partager et collaborer avec lui.",
+      },
+      {
+        author: "Lucas Robyns",
+        role: "Front End Web Developer",
+        company: "",
+        text: "J\u2019ai rencontré Amaury durant mes études. À la fois sympathique, travailleur et avec un grand sens de l\u2019humour, il est devenu un compagnon fidèle durant mon cursus. D\u2019une infinie gentillesse, il est le premier à apporter son aide aux personnes qui en ont besoin. J\u2019ai eu l\u2019occasion de réaliser différents projets avec lui, toujours partant pour être dans son équipe. Il a montré durant sa scolarité une soif d\u2019apprendre qui m\u2019a toujours impressionné, progressant sans cesse. Plus qu\u2019une simple rencontre, Amaury est devenu, à ce jour, un véritable ami avec qui je partage toujours.",
+      },
+      {
+        author: "Bertrand Vanderplanck",
+        role: "Full Stack Tech/Chapter Lead",
+        company: "",
+        text: "Amaury est un développeur qui a un talent inné pour la programmation en tout genre. Il a ce qui est à mes yeux le plus important dans le monde du développement : la logique. Une facilité de compréhension et une adaptation à chaque épreuve. Rien ne le freine et sa soif d\u2019apprendre en rendrait ivre plus d\u2019un !",
       },
     ],
     relatedProjectSlugs: [

@@ -111,7 +111,8 @@ export default function TeamRecommendations({
                     className="text-[10px] tracking-[0.2em] uppercase text-[var(--nx-ivory-ghost)]"
                     style={{ fontFamily: "var(--font-mono)" }}
                   >
-                    {rec.role} @ {rec.company}
+                    {rec.role}
+                    {rec.company ? ` @ ${rec.company}` : ""}
                   </span>
                 </div>
               </div>
