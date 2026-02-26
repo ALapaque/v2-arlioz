@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import type { Recommendation } from "@/data/team";
+import GlowBorder from "../GlowBorder";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
@@ -60,8 +61,9 @@ export default function TeamRecommendations({
                 duration: 0.6,
                 ease,
               }}
-              className="relative border border-[var(--nx-border)] p-8 md:p-12 md:hover:border-[var(--nx-accent-dim)] transition-colors duration-500"
+              className="relative border border-[var(--nx-border)] p-8 md:p-12 transition-colors duration-500"
             >
+              <GlowBorder />
               {/* Quote mark */}
               <div
                 className="absolute top-6 right-8 md:top-8 md:right-12 text-[4rem] md:text-[6rem] leading-none opacity-10 pointer-events-none select-none"

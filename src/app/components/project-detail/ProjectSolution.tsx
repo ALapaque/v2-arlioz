@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import type { ProjectStep } from "@/data/projects";
+import GlowBorder from "../GlowBorder";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
@@ -47,8 +48,9 @@ export default function ProjectSolution({ steps }: { steps: ProjectStep[] }) {
                 duration: 0.7,
                 ease,
               }}
-              className="group p-8 md:p-10 border border-[var(--nx-border)] bg-[var(--nx-black)] hover:border-[var(--nx-accent-from)] hover:bg-[rgba(245,166,35,0.02)] transition-all duration-500"
+              className="group relative p-8 md:p-10 border border-[var(--nx-border)] bg-[var(--nx-black)] transition-all duration-500"
             >
+              <GlowBorder />
               {/* Icon */}
               <span
                 className="text-2xl text-[var(--nx-accent-from)] block mb-6 transition-transform duration-500 group-hover:scale-110"

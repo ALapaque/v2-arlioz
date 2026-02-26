@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import type { Project } from "@/data/projects";
+import GlowBorder from "../GlowBorder";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
@@ -54,8 +55,9 @@ export default function TeamProjects({
                 duration: 0.6,
                 ease,
               }}
-              className="group relative border border-[var(--nx-border)] overflow-hidden md:hover:border-[var(--nx-accent-dim)] transition-colors duration-500"
+              className="group relative border border-[var(--nx-border)] overflow-hidden transition-colors duration-500"
             >
+              <GlowBorder />
               {/* Image */}
               <div
                 className="relative aspect-[16/10] overflow-hidden"

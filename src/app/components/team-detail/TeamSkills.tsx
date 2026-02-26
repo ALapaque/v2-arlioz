@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import GlowBorder from "../GlowBorder";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
@@ -55,8 +56,9 @@ export default function TeamSkills({
                 duration: 0.6,
                 ease,
               }}
-              className="border border-[var(--nx-border)] p-8 md:p-10 md:hover:border-[var(--nx-accent-dim)] transition-colors duration-500"
+              className="relative border border-[var(--nx-border)] p-8 md:p-10 transition-colors duration-500"
             >
+              <GlowBorder />
               <span
                 className="text-[10px] tracking-[0.3em] uppercase block mb-8"
                 style={{

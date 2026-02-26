@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { SplitText, SlideIn } from "./AnimatedText";
+import GlowBorder from "./GlowBorder";
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -80,8 +81,9 @@ export default function Testimonials() {
                 duration: 0.7,
                 ease,
               }}
-              className="relative p-8 md:p-10 border border-[var(--nx-border)] bg-[var(--nx-black-alt)] group hover:border-[var(--nx-accent-dim)] transition-all duration-500"
+              className="relative p-8 md:p-10 border border-[var(--nx-border)] bg-[var(--nx-black-alt)] group transition-all duration-500"
             >
+              <GlowBorder />
               {/* Large quote mark */}
               <span
                 className="absolute top-6 left-8 text-[5rem] leading-none text-[var(--nx-accent-from)] opacity-15 select-none"

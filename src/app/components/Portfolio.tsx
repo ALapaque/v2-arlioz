@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { SplitText, SlideIn, FadeUp } from "./AnimatedText";
+import GlowBorder from "./GlowBorder";
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -123,8 +124,9 @@ export default function Portfolio() {
                 duration: 0.7,
                 ease,
               }}
-              className="group block relative overflow-hidden border border-[var(--nx-border-subtle)] rounded-sm hover:border-[var(--nx-accent-from)] transition-all duration-500 hover:shadow-[var(--nx-card-hover-shadow)]"
+              className="group block relative overflow-hidden border border-[var(--nx-border-subtle)] rounded-sm transition-all duration-500"
             >
+              <GlowBorder />
               {/* Image area — always dark regardless of theme */}
               <div
                 className="relative h-[200px] md:h-[280px] overflow-hidden"

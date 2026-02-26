@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { SplitText, SlideIn, FadeUp } from "./AnimatedText";
+import GlowBorder from "./GlowBorder";
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -97,8 +98,9 @@ export default function Team() {
                 duration: 0.6,
                 ease,
               }}
-              className="group relative border border-[var(--nx-border)] bg-[var(--nx-black)] overflow-hidden md:hover:border-[var(--nx-accent-dim)] transition-colors duration-500 block"
+              className="group relative border border-[var(--nx-border)] bg-[var(--nx-black)] overflow-hidden transition-colors duration-500 block"
             >
+              <GlowBorder />
               {/* Photo */}
               <div className="relative aspect-[3/4] md:aspect-auto md:h-[480px] overflow-hidden">
                 <img
@@ -165,8 +167,9 @@ export default function Team() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.55, duration: 0.6, ease }}
-          className="mt-6 md:mt-8 relative aspect-[16/9] md:aspect-[21/9] border border-[var(--nx-border)] overflow-hidden group md:hover:border-[var(--nx-accent-dim)] transition-colors duration-500"
+          className="mt-6 md:mt-8 relative aspect-[16/9] md:aspect-[21/9] border border-[var(--nx-border)] overflow-hidden group transition-colors duration-500"
         >
+          <GlowBorder />
           <img
             src="/assets/meeting.jpg"
             alt="L'équipe Arlioz en réunion"
