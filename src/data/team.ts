@@ -53,8 +53,8 @@ export const teamMembers: TeamMember[] = [
     headline:
       "Développeur fullstack passionné par la découverte de nouvelles technologies et la création d\u2019expériences digitales performantes.",
     bio: [
-      "Amaury est un développeur fullstack basé en Belgique, animé par une curiosité insatiable pour les technologies modernes. Avec plus de 5 ans d\u2019expérience en développement frontend et fullstack, il conçoit des applications web et mobile qui allient performance technique et expérience utilisateur soignée.",
-      "Son parcours l\u2019a mené des projets Angular d\u2019envergure chez Candriam \u2014 où il a coaché l\u2019équipe frontend, conçu les composants partagés et défini l\u2019architecture \u2014 jusqu\u2019à la création de solutions complètes en React, React Native et NestJS au sein de Radyo et Arlioz.",
+      "Amaury est un développeur fullstack basé en Belgique avec plus de 6 ans d\u2019expérience. De SBIM à Candriam en passant par EasyOrder, Restomax et Pharmasimple, il a travaillé sur des projets variés : logiciels SaaS, e-commerce, applications mobiles et plateformes de réservation.",
+      "Chez Candriam, il a pris le lead de l\u2019équipe frontend, refactoré l\u2019architecture Angular et implémenté le pattern Redux avec NgRx. Chez EasyOrder et Restomax, il a conçu des applications cross-platform complètes, migré des backends et développé des design systems scalables.",
       "Au sein d\u2019Arlioz, Amaury est le pilier technique : architecture, développement frontend et backend, intégration API, optimisation des performances. Chaque ligne de code est pensée pour durer.",
     ],
     image: "/assets/team-amaury.jpg",
@@ -65,19 +65,19 @@ export const teamMembers: TeamMember[] = [
       { name: "Anglais", level: "Professionnel" },
       { name: "Italien", level: "Notions" },
     ],
-    specialties: ["React / Next.js", "React Native", "NestJS", "TypeScript"],
+    specialties: ["Angular", "React / Next.js", "React Native", "TypeScript"],
     skills: [
       {
         category: "Frontend",
         items: [
+          "Angular",
+          "NgRx",
           "React",
           "Next.js",
           "React Native",
-          "Angular",
-          "Vue.js / Nuxt.js",
+          "Vue.js",
           "TypeScript",
           "Tailwind CSS",
-          "Framer Motion",
         ],
       },
       {
@@ -86,64 +86,99 @@ export const teamMembers: TeamMember[] = [
           "NestJS",
           "Node.js",
           "ASP.NET Web API",
-          "PostgreSQL",
+          "Spring Boot",
+          "ElasticSearch",
           "Redis",
-          "REST API",
+          "PostgreSQL",
+          "MySQL",
         ],
       },
       {
         category: "Outils & DevOps",
         items: [
           "Git",
-          "Vercel",
+          "Azure DevOps",
+          "Cypress",
           "Docker",
+          "Vercel",
           "AWS",
-          "Stripe",
-          "Sanity CMS",
           "Expo",
+          "Google Tag Manager",
         ],
       },
     ],
     experience: [
       {
-        role: "Co-fondateur & Fullstack Developer",
-        company: "Arlioz",
-        period: "2023 \u2013 Présent",
-        location: "Belgique",
-        description:
-          "Co-fondation et direction technique. Architecture et développement d\u2019applications web et mobile sur mesure pour des clients variés : systèmes de réservation, applications de commande, marketplaces et sites vitrines.",
-      },
-      {
-        role: "Fullstack Developer",
+        role: "Senior Frontend Developer",
         company: "Radyo",
-        period: "2022 \u2013 Présent",
-        location: "Namur, Belgique",
+        period: "Nov 2025 \u2013 Présent",
+        location: "Namur, Belgique \u00b7 Hybride",
         description:
-          "Développement d\u2019applications cross-platform et de plateformes web. Conception et implémentation de projets de commande en ligne, marketplaces et systèmes de réservation en React Native et NestJS.",
+          "Développement frontend avancé avec Angular et Angular CLI dans un environnement hybride.",
       },
       {
-        role: "Frontend Developer",
+        role: "Co-Founder",
+        company: "Arlioz",
+        period: "Mai 2025 \u2013 Présent",
+        location: "Charleroi, Belgique \u00b7 Remote",
+        description:
+          "Développement interne et missions de consultance. Client actuel : Radyo.",
+      },
+      {
+        role: "Fullstack Software Developer",
+        company: "Restomax",
+        period: "Nov 2023 \u2013 Nov 2025",
+        location: "Wavres, Belgique \u00b7 Remote",
+        description:
+          "Migration d\u2019un backend PHP (Laravel) vers une API ASP.NET. Développement de modules dans le backoffice VueJS : éditeur de zones de livraison, configurateur de storefront, module de branding, module RestomaxBook avec vue timeline. Développement et maintenance de l\u2019application click & collect et d\u2019un widget/site auto-généré pour les restaurants.",
+      },
+      {
+        role: "Fullstack Software Developer",
+        company: "EasyOrder",
+        period: "Fév 2022 \u2013 Nov 2025",
+        location: "Bruxelles, Belgique \u00b7 Remote",
+        description:
+          "Développement d\u2019applications web / Android / iOS entièrement personnalisées. Conception d\u2019un design system scalable. Implémentation de fonctionnalités natives iOS et Android. Projets : Gong Cha, marketplace de la commune d\u2019Etterbeek, Hawaiian Poké Bowl.",
+      },
+      {
+        role: "Lead Frontend Developer",
         company: "Candriam",
-        period: "2021 \u2013 2022",
-        location: "Bruxelles, Belgique",
+        period: "Sep 2021 \u2013 Fév 2022",
+        location: "Bruxelles, Belgique \u00b7 Remote",
         description:
-          "Membre de l\u2019équipe Frontend core. Coaching de développeurs, conception de composants partagés et définition de l\u2019architecture Angular de la plateforme. Responsable des décisions techniques frontend.",
+          "Développement d\u2019une solution ESG. Refactoring complet de l\u2019architecture pour des composants réutilisables. Amélioration des performances. Implémentation du pattern Redux avec NgRx (@ngrx/entities, @ngrx/store-components). Développement d\u2019un module de thème.",
       },
       {
-        role: "Frontend Developer",
-        company: "ArcelorMittal",
-        period: "2020 \u2013 2021",
-        location: "Florange, France",
+        role: "Medior Fullstack Developer Consultant",
+        company: "BuSI",
+        period: "Août 2021 \u2013 Fév 2022",
+        location: "Bruxelles, Belgique \u00b7 Remote",
         description:
-          "Développement d\u2019interfaces web pour des outils industriels internes. Mise en place de solutions Angular robustes dans un environnement à grande échelle.",
+          "Mission de consultance fullstack. Client : Candriam \u2014 Lead frontend developer.",
       },
       {
-        role: "Développeur Java & Angular",
+        role: "Fullstack Software Engineer",
+        company: "Pharmasimple",
+        period: "Mai 2021 \u2013 Juil 2021",
+        location: "Belgique \u00b7 Hybride",
+        description:
+          "Développement d\u2019une application e-commerce en React Native, d\u2019un dashboard admin en React et du backend en NestJS avec ElasticSearch et Redis.",
+      },
+      {
+        role: "Frontend Software Engineer",
+        company: "SBIM",
+        period: "Juin 2019 \u2013 Mai 2021",
+        location: "Charleroi, Belgique \u00b7 Hybride",
+        description:
+          "Développement frontend, continuous delivery, clean code. Mise en place de l\u2019architecture : Azure DevOps, Cypress. Formation Angular. Projet principal : Kesio \u2014 logiciel de gestion pour kinésithérapeutes, ergothérapeutes, logopèdes et autres professions paramédicales.",
+      },
+      {
+        role: "Développeur Java & Angular (Stage)",
         company: "Technofutur TIC",
-        period: "2019 \u2013 2020",
+        period: "Mai 2019",
         location: "Charleroi, Belgique",
         description:
-          "Formation intensive en développement Java et Angular, avec mise en pratique sur des projets concrets d\u2019entreprise. Certification obtenue.",
+          "Réalisation d\u2019un projet fonctionnel en 12 jours : galerie photo avec inscription, connexion et partage. Stack : Spring Boot, Spring Security, JWT, MySQL, Angular 7, Materialize.",
       },
     ],
     education: [
