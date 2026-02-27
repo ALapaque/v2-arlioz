@@ -1,98 +1,103 @@
 import { motion } from "framer-motion";
-import {
-  Smartphone,
-  Globe,
-  Palette,
-  TrendingUp,
-  Layers,
-  Zap,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowRight, Compass, Paintbrush, Code2, Rocket } from "lucide-react";
 
-const services = [
+const expertise = [
   {
-    icon: Smartphone,
-    title: "Mobile App Development",
+    icon: Compass,
+    title: "Strategy",
     description:
-      "Native and cross-platform mobile applications built with cutting-edge technology for iOS and Android.",
+      "We define the roadmap. Through research, workshops, and data analysis, we identify opportunities and craft strategies that align technology with business objectives.",
+    services: ["Product Strategy", "Market Research", "User Research", "Digital Transformation"],
   },
   {
-    icon: Globe,
-    title: "Web Development",
+    icon: Paintbrush,
+    title: "Design",
     description:
-      "Responsive, performant web applications and platforms using modern frameworks and best practices.",
+      "We shape the experience. Our designers create interfaces that are intuitive, beautiful, and purposeful — grounded in user research and brand identity.",
+    services: ["UI/UX Design", "Design Systems", "Branding", "Prototyping"],
   },
   {
-    icon: Palette,
-    title: "UI/UX Design",
+    icon: Code2,
+    title: "Engineering",
     description:
-      "Human-centered design that creates intuitive, beautiful interfaces your users will love.",
+      "We build for scale. Our engineers deliver robust, maintainable code across mobile, web, and backend — from MVPs to enterprise platforms.",
+    services: ["iOS & Android", "Web Development", "Backend & APIs", "AI & ML"],
   },
   {
-    icon: TrendingUp,
-    title: "Digital Strategy",
+    icon: Rocket,
+    title: "Growth",
     description:
-      "Data-driven strategies that align technology investments with business objectives and growth targets.",
-  },
-  {
-    icon: Layers,
-    title: "Product Management",
-    description:
-      "End-to-end product lifecycle management from ideation through launch and continuous improvement.",
-  },
-  {
-    icon: Zap,
-    title: "Rapid Prototyping",
-    description:
-      "Fast, iterative prototyping to validate ideas and reduce risk before committing to full development.",
+      "We drive results. Through analytics, experimentation, and optimization, we help products find their audience and maximize impact.",
+    services: ["Analytics", "ASO & SEO", "Performance Optimization", "Launch Strategy"],
   },
 ];
 
 export default function Services() {
   return (
-    <section className="py-32 bg-surface">
-      <div className="max-w-[1360px] mx-auto px-6">
-        {/* Section header */}
-        <p className="uppercase tracking-[0.2em] text-sm text-accent mb-4">
-          WHAT WE DO
-        </p>
-        <h2 className="font-medium mb-6">Services &amp; Expertise</h2>
-        <p className="text-text-muted text-lg max-w-2xl mb-16">
-          From strategy to launch, we deliver end-to-end digital solutions that
-          drive real results.
-        </p>
+    <section id="expertise" className="py-32 bg-surface-dark">
+      <div className="max-w-[1360px] mx-auto px-6 lg:px-10">
+        {/* Header */}
+        <div className="max-w-3xl mb-20">
+          <p className="uppercase tracking-[0.15em] text-[13px] text-accent mb-4 font-medium">
+            Our Expertise
+          </p>
+          <h2
+            className="font-medium leading-[1.1] tracking-[-0.5px] text-text-primary mb-6"
+            style={{ fontSize: "clamp(32px, 2rem + 1.5vw, 48px)" }}
+          >
+            Crafted by people, accelerated by AI, and built on tools that scale.
+          </h2>
+          <p className="text-text-muted text-lg leading-relaxed">
+            We bring together strategy, design, engineering, and growth to deliver end-to-end digital experiences.
+          </p>
+        </div>
 
-        {/* Service cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => {
-            const Icon = service.icon;
+        {/* Expertise Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {expertise.map((item, index) => {
+            const Icon = item.icon;
             return (
               <motion.div
-                key={service.title}
-                className="group p-8 rounded-[24px] bg-surface-card border border-border hover:border-accent/30 transition-all duration-300 cursor-pointer"
+                key={item.title}
+                className="group p-10 rounded-[40px] bg-surface-card border border-border hover:border-border-light transition-all duration-300"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 {/* Icon */}
-                <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center mb-6">
-                  <Icon className="text-accent" size={24} />
+                <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mb-8">
+                  <Icon className="text-accent" size={28} />
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-medium mb-3">{service.title}</h3>
+                <h3 className="text-2xl font-medium mb-4 text-text-primary">{item.title}</h3>
 
                 {/* Description */}
-                <p className="text-text-muted text-base leading-relaxed">
-                  {service.description}
+                <p className="text-text-muted text-[15px] leading-relaxed mb-8">
+                  {item.description}
                 </p>
 
-                {/* Bottom link */}
-                <div className="mt-6 flex items-center gap-2 text-sm text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  Learn more
-                  <ArrowRight size={16} />
+                {/* Service list */}
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {item.services.map((service) => (
+                    <span
+                      key={service}
+                      className="px-3 py-1.5 rounded-full border border-border text-text-dim text-[13px] font-medium"
+                    >
+                      {service}
+                    </span>
+                  ))}
                 </div>
+
+                {/* Link */}
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 text-[15px] text-text-muted hover:text-white font-medium transition-colors duration-200"
+                >
+                  Learn more
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
+                </a>
               </motion.div>
             );
           })}

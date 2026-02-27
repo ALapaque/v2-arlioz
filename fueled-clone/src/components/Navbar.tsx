@@ -2,7 +2,13 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
-const navLinks = ["Work", "Services", "About", "Careers", "Blog"];
+const navLinks = [
+  { label: "Work", href: "#work" },
+  { label: "Expertise", href: "#expertise" },
+  { label: "About", href: "#about" },
+  { label: "Careers", href: "#careers" },
+  { label: "Blog", href: "#blog" },
+];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -15,11 +21,8 @@ export default function Navbar() {
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
-      // Background change threshold
       setScrolled(currentScrollY > 50);
 
-      // Hide on scroll down, show on scroll up
       if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
         setVisible(false);
       } else {
@@ -33,13 +36,8 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
@@ -47,46 +45,44 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav
+      <motion.header
         initial={{ y: 0 }}
         animate={{ y: visible || menuOpen ? 0 : -100 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-black/95 backdrop-blur-lg"
+            ? "bg-black/80 backdrop-blur-[10px] backdrop-saturate-[120%]"
             : "bg-transparent"
         }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
+        <div className="mx-auto flex max-w-[1360px] items-center justify-between px-6 py-5 lg:px-10">
           {/* Logo */}
-          <a href="/" className="text-white text-2xl font-bold tracking-tight">
+          <a href="/" className="text-white text-[22px] font-bold tracking-[-0.02em]">
             fueled
           </a>
 
-          {/* Desktop nav links */}
-          <ul className="hidden lg:flex items-center gap-8">
+          {/* Desktop nav */}
+          <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <li key={link}>
-                <a
-                  href={`#${link.toLowerCase()}`}
-                  className="text-text-muted hover:text-white transition-colors cursor-pointer text-sm"
-                >
-                  {link}
-                </a>
-              </li>
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-gray-400 hover:text-white transition-colors duration-200 text-[15px] font-medium"
+              >
+                {link.label}
+              </a>
             ))}
-          </ul>
+          </nav>
 
-          {/* Right side: CTA + mobile hamburger */}
+          {/* Right side */}
           <div className="flex items-center gap-4">
             <a
               href="#contact"
-              className="hidden lg:inline-flex bg-accent hover:bg-accent-dark rounded-full px-6 py-2.5 text-sm font-medium text-white transition-colors"
+              className="hidden lg:inline-flex items-center bg-[rgba(23,23,23,0.60)] hover:bg-accent border border-border-light hover:border-accent rounded-full px-6 py-2.5 text-[15px] font-medium text-white transition-all duration-200"
             >
-              Get in Touch
+              Contact
             </a>
 
-            {/* Mobile hamburger */}
             <button
               onClick={() => setMenuOpen(true)}
               className="lg:hidden text-white p-1"
@@ -96,23 +92,22 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-      </motion.nav>
+      </motion.header>
 
-      {/* Mobile full-screen overlay menu */}
+      {/* Mobile overlay */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed inset-0 z-50 bg-black flex flex-col"
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-[5px] flex flex-col"
           >
-            {/* Mobile menu header */}
-            <div className="flex items-center justify-between px-6 py-4">
+            <div className="flex items-center justify-between px-6 py-5">
               <a
                 href="/"
-                className="text-white text-2xl font-bold tracking-tight"
+                className="text-white text-[22px] font-bold tracking-[-0.02em]"
                 onClick={() => setMenuOpen(false)}
               >
                 fueled
@@ -126,35 +121,29 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Mobile nav links */}
-            <nav className="flex flex-1 flex-col items-center justify-center gap-8">
+            <nav className="flex flex-1 flex-col items-center justify-center gap-10">
               {navLinks.map((link, i) => (
                 <motion.a
-                  key={link}
-                  href={`#${link.toLowerCase()}`}
+                  key={link.label}
+                  href={link.href}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
                   transition={{ delay: i * 0.05, duration: 0.3 }}
                   onClick={() => setMenuOpen(false)}
-                  className="text-3xl text-text-muted hover:text-white transition-colors cursor-pointer"
+                  className="text-4xl font-medium text-gray-400 hover:text-white transition-colors"
                 >
-                  {link}
+                  {link.label}
                 </motion.a>
               ))}
               <motion.a
                 href="#contact"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{
-                  delay: navLinks.length * 0.05,
-                  duration: 0.3,
-                }}
+                transition={{ delay: navLinks.length * 0.05, duration: 0.3 }}
                 onClick={() => setMenuOpen(false)}
-                className="mt-4 bg-accent hover:bg-accent-dark rounded-full px-8 py-3 text-lg font-medium text-white transition-colors"
+                className="mt-4 bg-[rgba(23,23,23,0.60)] border border-border-light rounded-full px-8 py-3 text-lg font-medium text-white"
               >
-                Get in Touch
+                Contact
               </motion.a>
             </nav>
           </motion.div>
