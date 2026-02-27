@@ -76,6 +76,10 @@ body {
   background: var(--color-text-dim);
 }
 
+/* Hide scrollbar on carousel */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+
 /* Marquee animation */
 @keyframes marquee {
   0% { transform: translateX(0); }

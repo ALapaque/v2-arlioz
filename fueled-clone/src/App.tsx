@@ -7,6 +7,7 @@ import About from './components/About'
 import Testimonials from './components/Testimonials'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
+import BackToTop from './components/BackToTop'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Testimonials />
       <CTA />
       <Footer />
+      <BackToTop />
     </div>
   )
 }
