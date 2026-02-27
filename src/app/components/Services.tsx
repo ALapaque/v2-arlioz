@@ -1,145 +1,126 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { SplitText, SlideIn } from "./AnimatedText";
-import GlowBorder from "./GlowBorder";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
-const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
-
-interface Service {
-  icon: string;
-  title: string;
-  description: string;
-  featured?: boolean;
-}
-
-const services: Service[] = [
+const services = [
   {
-    icon: "◈",
-    title: "Applications Web sur-mesure",
-    description:
-      "React, Next.js, Angular, Vue, Nuxt — des interfaces ultra-performantes taillées pour vos ambitions. Chaque pixel est intentionnel.",
-    featured: true,
+    number: "01",
+    title: "Digital Strategy",
+    description: "We define product vision, market positioning, and roadmaps that align business goals with user needs. Data-driven decisions that set the foundation for success.",
+    tags: ["Product Strategy", "Market Research", "Roadmapping", "Analytics"],
+    href: "/expertise#digital-strategy",
+    color: "#6E5BFF",
   },
   {
-    icon: "△",
-    title: "Applications Cross-platform",
-    description:
-      "React Native, Expo — une seule codebase pour iOS et Android. Des apps mobiles natives, performantes et élégantes.",
+    number: "02",
+    title: "Design",
+    description: "We craft intuitive, beautiful experiences across every touchpoint. From brand identity to interaction design, we make products people love to use.",
+    tags: ["UX/UI Design", "Branding", "Design Systems", "Prototyping"],
+    href: "/expertise#design",
+    color: "#FF5B8E",
   },
   {
-    icon: "◇",
-    title: "Backend & API robustes",
-    description:
-      "NestJS, Node.js, TypeScript — architectures API solides, microservices, intégrations tierces. La plomberie invisible qui fait tout fonctionner.",
+    number: "03",
+    title: "Engineering",
+    description: "We build scalable, performant digital products using modern technology stacks. From native mobile to complex web platforms, engineering excellence is our standard.",
+    tags: ["Mobile Apps", "Web Development", "Cloud & DevOps", "API Design"],
+    href: "/expertise#engineering",
+    color: "#5BFFB5",
   },
   {
-    icon: "⬡",
-    title: "Protection des données & RGPD",
-    description:
-      "Audit de conformité, mise en place des processus RGPD, protection des données personnelles. La sécurité au cœur de chaque projet.",
+    number: "04",
+    title: "Growth",
+    description: "We help products find and retain their audience. Through optimization, experimentation, and data analysis, we accelerate sustainable growth.",
+    tags: ["SEO & ASO", "CRO", "Analytics", "Marketing Automation"],
+    href: "/expertise#growth",
+    color: "#FFB85B",
   },
   {
-    icon: "◉",
-    title: "Design System & UI/UX",
-    description:
-      "Systèmes de design cohérents et scalables. De la recherche utilisateur aux composants pixel-perfect.",
-  },
-  {
-    icon: "⬢",
-    title: "Widgets & Intégrables",
-    description:
-      "Composants légers et autonomes intégrables en quelques minutes sur n'importe quel site existant. Personnalisables et performants.",
+    number: "05",
+    title: "AI & Innovation",
+    description: "We integrate artificial intelligence and emerging technologies to create smarter, more efficient digital experiences that stay ahead of the curve.",
+    tags: ["Machine Learning", "Generative AI", "NLP", "Computer Vision"],
+    href: "/expertise#ai",
+    color: "#5BD4FF",
   },
 ];
 
 export default function Services() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-
   return (
-    <section id="services" className="relative py-28 md:py-40" ref={ref}>
-      {/* Decorative vertical line */}
-      <div
-        className="absolute right-[20%] top-0 h-full line-vertical hidden lg:block"
-        aria-hidden="true"
-      />
-
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        {/* Section header — sequenced: label → title */}
-        <div className="mb-20">
-          <SlideIn animate={isInView} delay={0} className="mb-4">
-            <span className="section-label">01 &mdash; NOS EXPERTISES</span>
-          </SlideIn>
-          <h2
-            className="text-[clamp(2.5rem,5vw,5rem)] leading-[0.95] tracking-tight max-w-[600px]"
-            style={{ fontFamily: "var(--font-display)" }}
+    <section className="py-32 bg-black" id="expertise">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6">
+          <div>
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="section-label block mb-4"
+            >
+              Our Expertise
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Crafted by people,<br />
+              <span className="text-gradient-purple">accelerated by AI</span>
+            </motion.h2>
+          </div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-white/50 max-w-md text-lg"
           >
-            <span className="block">
-              <SplitText animate={isInView} delay={0.1}>
-                DES SOLUTIONS,
-              </SplitText>
-            </span>
-            <span className="block text-gradient">
-              <SplitText animate={isInView} delay={0.2}>
-                PAS DES TEMPLATES
-              </SplitText>
-            </span>
-          </h2>
+            Digital strategy, design, engineering, and growth services delivering elevated experiences built on tools that scale.
+          </motion.p>
         </div>
 
-        {/* Services grid — asymmetric */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {services.map((service, i) => (
+        <div className="space-y-2">
+          {services.map((service, index) => (
             <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                delay: 0.35 + i * 0.08,
-                duration: 0.7,
-                ease,
-              }}
-              className={`card-border-animated group p-8 md:p-10 ${
-                service.featured ? "md:col-span-2 lg:col-span-2 lg:row-span-1" : ""
-              }`}
+              key={service.number}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
             >
-              <GlowBorder />
-              {/* Icon */}
-              <span
-                className="text-3xl text-gradient block mb-6 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110"
-                aria-hidden="true"
-              >
-                {service.icon}
-              </span>
-
-              {/* Title */}
-              <h3
-                className="text-[clamp(1.3rem,2vw,1.6rem)] mb-4 tracking-tight"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {service.title}
-              </h3>
-
-              {/* Description */}
-              <p
-                className="text-[14px] leading-[1.8] text-[var(--nx-ivory-dim)]"
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                {service.description}
-              </p>
-
-              {/* Bottom tag */}
-              <div className="mt-8 flex items-center gap-2">
-                <div className="h-px flex-1 bg-[var(--nx-border)] group-hover:bg-[var(--nx-accent-from)] transition-colors duration-500" />
-                <span
-                  className="text-[9px] tracking-[0.3em] uppercase text-[var(--nx-ivory-ghost)] group-hover:text-[var(--nx-accent-from)] transition-colors duration-500"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  En savoir plus
-                </span>
-              </div>
+              <Link href={service.href} className="block group">
+                <div className="relative border border-white/5 rounded-2xl p-8 lg:p-10 hover:border-white/10 transition-all duration-500 hover:bg-white/[0.02]">
+                  <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-12">
+                    <span className="text-sm font-mono font-medium opacity-30 group-hover:opacity-100 transition-opacity duration-300" style={{ color: service.color }}>
+                      {service.number}
+                    </span>
+                    <h3 className="text-2xl lg:text-3xl font-bold tracking-tight flex-shrink-0 lg:w-64 group-hover:text-white transition-colors" style={{ fontFamily: "var(--font-display)" }}>
+                      {service.title}
+                    </h3>
+                    <p className="text-white/40 text-base leading-relaxed flex-1 group-hover:text-white/60 transition-colors duration-300">
+                      {service.description}
+                    </p>
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-[#6E5BFF] group-hover:border-[#6E5BFF] transition-all duration-300">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="group-hover:translate-x-0.5 transition-transform duration-300">
+                          <path d="M4 9h10m0 0L10 5m4 4l-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2 mt-6 lg:ml-20">
+                    {service.tags.map((tag) => (
+                      <span key={tag} className="px-3 py-1 text-xs text-white/30 border border-white/5 rounded-full group-hover:border-white/10 group-hover:text-white/50 transition-all duration-300">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </div>

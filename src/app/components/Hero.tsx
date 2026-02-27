@@ -1,117 +1,90 @@
 "use client";
 
-import { useLoaderState } from "./LoaderProvider";
-import { SplitText, SlideIn, FadeUp, ScaleReveal } from "./AnimatedText";
-import HeroBlob from "./HeroBlob";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Hero() {
-  const { isLoaderDone } = useLoaderState();
-
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* WebGL gradient blob */}
-      <HeroBlob />
-
-      {/* Decorative vertical line */}
-      <div
-        className="absolute left-[15%] top-0 h-full line-vertical hidden lg:block"
-        aria-hidden="true"
-      />
-
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-10 w-full pt-32 pb-20">
-        <div className="max-w-[900px]">
-          {/* Top label — slides in from left */}
-          <SlideIn animate={isLoaderDone} delay={0} className="mb-8">
-            <span className="section-label">
-              ARLIOZ &mdash; PRIVACY &amp; DIGITAL DEVELOPMENT
-            </span>
-          </SlideIn>
-
-          {/* Main title — word-by-word reveal */}
-          <h1
-            className="text-[clamp(3.2rem,10vw,9rem)] leading-[0.9] tracking-tight mb-8"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            <span className="block">
-              <SplitText animate={isLoaderDone} delay={0.12}>
-                WE BUILD
-              </SplitText>
-            </span>
-            <span className="block text-gradient">
-              <SplitText animate={isLoaderDone} delay={0.22} stagger={0.04}>
-                DIGITAL EMPIRES
-              </SplitText>
-            </span>
-          </h1>
-
-          {/* Subtitle — subtle fade up */}
-          <FadeUp animate={isLoaderDone} delay={0.5} className="mb-12">
-            <p
-              className="text-[clamp(1rem,2vw,1.25rem)] leading-relaxed text-[var(--nx-ivory-dim)] max-w-[540px]"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              Privacy &amp; digital design r&eacute;unis pour aider les entreprises
-              &agrave; grandir en s&eacute;curit&eacute; et intelligemment.
-            </p>
-          </FadeUp>
-
-          {/* CTAs — scale reveal, last in sequence */}
-          <ScaleReveal animate={isLoaderDone} delay={0.65}>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="#portfolio"
-                className="btn-slide inline-flex items-center gap-3 px-8 py-4 bg-gradient-accent text-[#060606] text-[12px] tracking-[0.2em] uppercase font-medium transition-colors duration-300"
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                <span>Voir nos réalisations</span>
-              </a>
-              <a
-                href="#process"
-                className="btn-outline-slide inline-flex items-center gap-3 px-8 py-4 border border-[var(--nx-ivory-ghost)] text-[var(--nx-ivory)] text-[12px] tracking-[0.2em] uppercase transition-all duration-300"
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                <span>Notre process</span>
-                <span>&#8594;</span>
-              </a>
-            </div>
-          </ScaleReveal>
-        </div>
-
-        {/* Floating badge */}
-        <FadeUp
-          animate={isLoaderDone}
-          delay={0.8}
-          className="absolute right-8 md:right-16 top-[35%] hidden lg:block"
-        >
-          <div className="badge-float border border-[var(--nx-accent-from)] px-5 py-3 bg-[var(--nx-surface-card)] backdrop-blur-md">
-            <span
-              className="text-[10px] tracking-[0.25em] uppercase text-gradient block"
-              style={{ fontFamily: "var(--font-mono)" }}
-            >
-              Available for projects
-            </span>
-            <span
-              className="text-2xl text-[var(--nx-ivory)] tracking-wider"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              2026
-            </span>
-          </div>
-        </FadeUp>
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-black">
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-[#6E5BFF]/8 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 left-1/3 w-[400px] h-[400px] bg-[#6E5BFF]/5 rounded-full blur-[100px]" />
+        <div className="absolute top-1/2 left-1/2 w-[300px] h-[300px] bg-purple-500/5 rounded-full blur-[80px]" />
       </div>
 
-      {/* Scroll indicator */}
-      <FadeUp animate={isLoaderDone} delay={0.9} className="absolute bottom-10 left-1/2 -translate-x-1/2">
-        <div className="flex flex-col items-center gap-3 scroll-indicator">
-          <span
-            className="text-[9px] tracking-[0.3em] uppercase text-[var(--nx-ivory-ghost)]"
-            style={{ fontFamily: "var(--font-mono)" }}
+      <div
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+      />
+
+      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10 pt-32 pb-20 w-full">
+        <div className="max-w-[900px]">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-8"
           >
-            Scroll
-          </span>
-          <div className="w-px h-8 bg-gradient-to-b from-[var(--nx-accent-from)] to-transparent" />
+            <span className="section-label">Digital Product Agency</span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-[84px] font-bold leading-[0.95] tracking-tight mb-8"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            Digital done{" "}
+            <span className="text-gradient-purple">right.</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="text-xl md:text-2xl text-white/60 max-w-[600px] mb-12 leading-relaxed font-light"
+          >
+            Sharp strategy. Precision execution. Experiences that drive impact.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="flex flex-wrap gap-4"
+          >
+            <Link href="/work" className="btn-primary">
+              View Our Work
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="ml-1">
+                <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+            <Link href="/contact" className="btn-secondary">
+              Start a Project
+            </Link>
+          </motion.div>
         </div>
-      </FadeUp>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-6 h-10 border-2 border-white/20 rounded-full flex items-start justify-center p-1.5"
+          >
+            <motion.div className="w-1 h-2 bg-white/40 rounded-full" />
+          </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }

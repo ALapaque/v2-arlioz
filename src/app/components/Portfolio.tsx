@@ -1,197 +1,160 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { SplitText, SlideIn, FadeUp } from "./AnimatedText";
-import GlowBorder from "./GlowBorder";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
-const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
-
-interface PortfolioProject {
-  slug: string;
-  name: string;
-  category: string;
-  description: string;
-  stack: string[];
-  color: string;
-  accent: string;
-  image: string;
-}
-
-const projects: PortfolioProject[] = [
+const caseStudies = [
   {
-    slug: "restomax-book",
-    name: "Restomax Book",
-    category: "Website / Widget",
-    description:
-      "Widget de réservation en temps réel intégrable sur n\u2019importe quel site de restaurant.",
-    stack: ["Next.js", "TypeScript", "NestJS", "PostgreSQL"],
-    color: "#0D1117",
-    accent: "#E63946",
-    image: "/assets/projects/restomax-book.png",
+    client: "Microsoft",
+    title: "We Made a Community Mural with AI",
+    description: "Used ChatGPT and DALL-E to transform human sentiment into digital art, creating a unique community experience.",
+    tags: ["AI", "Backend", "Design", "Research", "Web"],
+    gradient: "from-blue-600/20 to-purple-600/20",
+    slug: "microsoft",
   },
   {
-    slug: "hawaiian-pokebowl",
-    name: "Hawaiian Pokebowl",
-    category: "Application Cross-platform",
-    description:
-      "Application mobile cross-platform de commande en ligne pour une chaîne de pokebowl.",
-    stack: ["React Native", "TypeScript", "NestJS", "Stripe"],
-    color: "#1A1500",
-    accent: "#F5A623",
-    image: "/assets/projects/hawaiian-pokebowl.png",
+    client: "Google",
+    title: "We Put Google\u2019s Most Popular Tools Inside WordPress",
+    description: "Developed Site Kit plugin integrating Analytics and Search Console, reaching 5 million site owners worldwide.",
+    tags: ["Backend", "Branding", "Design", "Research", "Web"],
+    gradient: "from-green-600/20 to-blue-600/20",
+    slug: "google",
   },
   {
-    slug: "supermark-ett",
-    name: "Supermark\u2019Ett",
-    category: "Application Cross-platform",
-    description:
-      "Marketplace locale connectant commerces de proximité et consommateurs.",
-    stack: ["React Native", "TypeScript", "NestJS", "PostgreSQL"],
-    color: "#0C0D1A",
-    accent: "#3B7DD8",
-    image: "/assets/projects/supermarkEtt.png",
+    client: "Apple",
+    title: "We Sparked Sales Growth",
+    description: "Enhanced iPhone sales among EMEA carriers through an innovative gamification approach that drove engagement.",
+    tags: ["Backend", "Design", "iOS", "Research"],
+    gradient: "from-gray-600/20 to-gray-400/20",
+    slug: "apple",
   },
   {
-    slug: "jk-studio",
-    name: "JK Studio",
-    category: "Website",
-    description:
-      "Portfolio digital raffiné pour un studio de photographie professionnel.",
-    stack: ["Next.js", "TypeScript", "Framer Motion", "Sanity"],
-    color: "#0D0D0D",
-    accent: "#F5F0E8",
-    image: "/assets/projects/jk-studio.png",
+    client: "The White House",
+    title: "We Digitized Democracy",
+    description: "Relaunched WhiteHouse.gov within an 8-week timeframe, creating a modern digital presence for the administration.",
+    tags: ["Backend", "Web"],
+    gradient: "from-blue-800/20 to-red-600/20",
+    slug: "white-house",
+  },
+  {
+    client: "CLEAR",
+    title: "We Built the Future of Digital Identity",
+    description: "Expanded from a single-use app to a comprehensive identity platform serving 33 million users.",
+    tags: ["Android", "Design", "iOS"],
+    gradient: "from-cyan-600/20 to-blue-600/20",
+    slug: "clear",
+  },
+  {
+    client: "New York Times",
+    title: "We Unlocked Revenue",
+    description: "Enabled a new affiliate revenue stream on the Wirecutter platform, opening new business opportunities.",
+    tags: ["Backend", "Branding", "Design", "Research", "Web"],
+    gradient: "from-gray-800/20 to-gray-600/20",
+    slug: "new-york-times",
+  },
+  {
+    client: "PMC",
+    title: "We Brought AI to Entertainment Magazines",
+    description: "Integrated generative AI into Variety and Rolling Stone, significantly reducing website bounce rates.",
+    tags: ["AI", "Backend", "Research", "Web"],
+    gradient: "from-red-600/20 to-orange-600/20",
+    slug: "pmc",
+  },
+  {
+    client: "Victoria\u2019s Secret",
+    title: "We Gave Brand Loyalty a Design Language",
+    description: "Created a comprehensive design system for the new Rewards Program, elevating the brand experience.",
+    tags: ["Branding", "Design", "iOS", "Research"],
+    gradient: "from-pink-600/20 to-purple-600/20",
+    slug: "victorias-secret",
   },
 ];
 
 export default function Portfolio() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-
   return (
-    <section
-      id="portfolio"
-      className="relative py-28 md:py-40 bg-[var(--nx-black-alt)]"
-      ref={ref}
-    >
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        {/* Section header */}
-        <div className="mb-14 md:mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+    <section className="py-32 bg-black" id="work">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
-            <SlideIn animate={isInView} delay={0} className="mb-4">
-              <span className="section-label">
-                02 &mdash; NOS RÉALISATIONS
-              </span>
-            </SlideIn>
-            <h2
-              className="text-[clamp(2.5rem,5vw,5rem)] leading-[0.95] tracking-tight"
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="section-label block mb-4"
+            >
+              Selected Work
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              <span className="block">
-                <SplitText animate={isInView} delay={0.1}>
-                  DES PROJETS,
-                </SplitText>
-              </span>
-              <span className="block text-gradient">
-                <SplitText animate={isInView} delay={0.2}>
-                  PAS DES MAQUETTES
-                </SplitText>
-              </span>
-            </h2>
+              Making an impact for<br />
+              <span className="text-gradient-purple">industry leaders</span>
+            </motion.h2>
           </div>
-          <FadeUp animate={isInView} delay={0.3}>
-            <p
-              className="text-[13px] tracking-[0.15em] uppercase text-[var(--nx-ivory-ghost)] max-w-[300px]"
-              style={{ fontFamily: "var(--font-mono)" }}
-            >
-              Chaque projet est une collaboration unique. Voici ceux dont nous
-              sommes le plus fiers.
-            </p>
-          </FadeUp>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            <Link href="/work" className="btn-secondary">
+              View All Work
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+          </motion.div>
         </div>
 
-        {/* Projects — 2-col on desktop, stack on mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-          {projects.map((project, i) => (
-            <motion.a
-              href={`/projets/${project.slug}`}
-              key={project.name}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {caseStudies.map((study, index) => (
+            <motion.div
+              key={study.slug}
               initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                delay: 0.4 + i * 0.1,
-                duration: 0.7,
-                ease,
-              }}
-              className="group block relative overflow-hidden border border-[var(--nx-border-subtle)] rounded-sm transition-all duration-500"
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: (index % 2) * 0.15, duration: 0.6 }}
             >
-              <GlowBorder />
-              {/* Image area — always dark regardless of theme */}
-              <div
-                className="relative h-[200px] md:h-[280px] overflow-hidden"
-                style={{ background: project.color }}
-              >
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <img
-                    src={project.image}
-                    alt={project.name}
-                    className="w-[200px] md:w-[280px] h-auto object-contain opacity-75 group-hover:opacity-95 group-hover:scale-105 transition-all duration-700"
-                  />
+              <Link href={`/work/${study.slug}`} className="block group">
+                <div className="relative overflow-hidden rounded-2xl border border-white/5 hover:border-white/10 transition-all duration-500">
+                  <div className={`aspect-[4/3] bg-gradient-to-br ${study.gradient} relative`}>
+                    <div className="absolute inset-0 bg-black/40" />
+                    <div className="absolute inset-0 p-8 flex flex-col justify-between">
+                      <div>
+                        <span className="text-white/50 text-sm font-medium uppercase tracking-wider">
+                          {study.client}
+                        </span>
+                      </div>
+                      <div>
+                        <h3 className="text-2xl lg:text-3xl font-bold mb-3 group-hover:text-[#6E5BFF] transition-colors duration-300" style={{ fontFamily: "var(--font-display)" }}>
+                          {study.title}
+                        </h3>
+                        <p className="text-white/50 text-sm leading-relaxed mb-4 max-w-md">
+                          {study.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {study.tags.map((tag) => (
+                            <span key={tag} className="px-2.5 py-1 text-[11px] text-white/40 bg-white/5 rounded-full">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="absolute top-8 right-8 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:bg-[#6E5BFF]">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M4 12L12 4m0 0H5m7 0v7" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
-
-                {/* Gradient — always dark since image bg is always dark */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[rgba(6,6,6,0.6)] to-transparent" />
-
-                {/* Category tag — floats on image, always light */}
-                <div className="absolute top-4 left-4 md:top-5 md:left-6">
-                  <span
-                    className="inline-block px-2.5 py-1 border text-[8px] md:text-[9px] tracking-[0.25em] uppercase"
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      borderColor: project.accent,
-                      color: project.accent,
-                    }}
-                  >
-                    {project.category}
-                  </span>
-                </div>
-
-                {/* View arrow — appears on hover */}
-                <div className="absolute top-4 right-4 md:top-5 md:right-6 w-9 h-9 md:w-10 md:h-10 border border-[rgba(255,255,255,0.15)] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:border-[rgba(255,255,255,0.3)]">
-                  <span className="text-white text-sm group-hover:translate-x-0.5 transition-transform duration-300">
-                    &#8594;
-                  </span>
-                </div>
-              </div>
-
-              {/* Content area — theme-aware */}
-              <div className="p-5 md:p-6 bg-[var(--nx-bg-alt)]">
-                <h3
-                  className="text-[clamp(1.4rem,3vw,2rem)] leading-none tracking-tight mb-2"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  {project.name}
-                </h3>
-                <p
-                  className="text-[13px] leading-[1.7] text-[var(--nx-ivory-dim)] mb-4 line-clamp-2"
-                  style={{ fontFamily: "var(--font-body)" }}
-                >
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {project.stack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2.5 py-0.5 bg-[var(--nx-tag-bg)] border border-[var(--nx-tag-border)] text-[9px] md:text-[10px] tracking-[0.15em] uppercase text-[var(--nx-ivory-dim)]"
-                      style={{ fontFamily: "var(--font-mono)" }}
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.a>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>

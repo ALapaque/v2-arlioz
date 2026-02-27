@@ -1,98 +1,82 @@
 "use client";
 
-import { useRef } from "react";
-import { useInView } from "framer-motion";
-import { SplitText, SlideIn, FadeUp, ScaleReveal } from "./AnimatedText";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function CTA() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-
   return (
-    <section
-      id="contact"
-      className="relative py-32 md:py-48 bg-[var(--nx-black-alt)] overflow-hidden"
-      ref={ref}
-    >
-      {/* Top line */}
-      <div className="line-decorative absolute top-0 left-0 right-0" />
+    <section className="py-32 bg-black relative overflow-hidden">
+      <div className="absolute inset-0">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#6E5BFF]/5 rounded-full blur-[150px]" />
+      </div>
 
-      {/* Background glow */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-15 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(245,166,35,0.2) 0%, transparent 70%)",
-          filter: "blur(80px)",
-        }}
-        aria-hidden="true"
-      />
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 relative z-10">
+        <div className="max-w-3xl mx-auto text-center">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="section-label block mb-6"
+          >
+            Start a Project
+          </motion.span>
 
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10 relative z-10">
-        <div className="max-w-[800px] mx-auto text-center">
-          {/* Label — slides in */}
-          <SlideIn animate={isInView} delay={0} direction="right" className="mb-8 flex justify-center">
-            <span className="section-label">PROCHAINE ÉTAPE</span>
-          </SlideIn>
-
-          {/* Title — word-by-word */}
-          <h2
-            className="text-[clamp(2.2rem,5vw,4.5rem)] leading-[0.95] tracking-tight mb-8"
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-8"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            <span className="block">
-              <SplitText animate={isInView} delay={0.1}>
-                PRÊT À BÂTIR
-              </SplitText>
-            </span>
-            <span className="block">
-              <SplitText animate={isInView} delay={0.18}>
-                QUELQUE CHOSE
-              </SplitText>
-            </span>
-            <span className="block">
-              D&rsquo;
-              <span className="text-gradient">
-                <SplitText animate={isInView} delay={0.26}>
-                  EXCEPTIONNEL
-                </SplitText>
-              </span>{" "}
-              ?
-            </span>
-          </h2>
+            How can we <span className="text-gradient-purple">help?</span>
+          </motion.h2>
 
-          {/* Paragraph — subtle fade */}
-          <FadeUp animate={isInView} delay={0.4} className="mb-14">
-            <p className="text-[var(--nx-ivory-dim)] text-[16px] leading-relaxed max-w-[500px] mx-auto">
-              Parlons de votre projet. Pas de formulaire générique — un échange
-              direct pour comprendre vos ambitions.
-            </p>
-          </FadeUp>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-white/50 text-lg md:text-xl mb-12 max-w-lg mx-auto"
+          >
+            Tell us about your project and let&apos;s build something great together. Our team is ready to help you succeed.
+          </motion.p>
 
-          {/* CTA button — scale reveal, last */}
-          <ScaleReveal animate={isInView} delay={0.55}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <a
-                href="mailto:contact@arlioz.be"
-                className="btn-slide inline-flex items-center gap-3 px-10 py-5 bg-gradient-accent text-[#060606] text-[12px] tracking-[0.2em] uppercase font-medium transition-colors duration-300"
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                <span>Lancer notre collaboration</span>
-                <span className="text-base">&#8594;</span>
-              </a>
-            </div>
-          </ScaleReveal>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="flex flex-wrap items-center justify-center gap-4"
+          >
+            <Link href="/contact" className="btn-primary text-base px-10 py-4">
+              Get in Touch
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+            <Link href="/work" className="btn-secondary text-base px-10 py-4">
+              See Our Work
+            </Link>
+          </motion.div>
 
-          {/* Email */}
-          <FadeUp animate={isInView} delay={0.7} className="mt-12">
-            <a
-              href="mailto:contact@arlioz.be"
-              className="text-[var(--nx-ivory-ghost)] hover:text-[var(--nx-accent-from)] transition-colors duration-300 text-[14px] tracking-[0.1em]"
-              style={{ fontFamily: "var(--font-mono)" }}
-            >
-              contact@arlioz.be
-            </a>
-          </FadeUp>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            className="mt-16 flex flex-wrap items-center justify-center gap-8 text-white/20 text-sm"
+          >
+            <span>Google</span>
+            <span className="w-1 h-1 rounded-full bg-white/10" />
+            <span>Apple</span>
+            <span className="w-1 h-1 rounded-full bg-white/10" />
+            <span>Microsoft</span>
+            <span className="w-1 h-1 rounded-full bg-white/10" />
+            <span>The White House</span>
+            <span className="w-1 h-1 rounded-full bg-white/10" />
+            <span>New York Times</span>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -1,135 +1,178 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import ThemeToggle from "./ThemeToggle";
+import Link from "next/link";
 
-const navLinks = [
-  { label: "Services", href: "/#services" },
-  { label: "Réalisations", href: "/#portfolio" },
-  { label: "Process", href: "/#process" },
-  { label: "Contact", href: "/#contact" },
+const navItems = [
+  {
+    label: "Expertise",
+    href: "/expertise",
+    submenu: [
+      { label: "Digital Strategy", href: "/expertise#digital-strategy" },
+      { label: "Design", href: "/expertise#design" },
+      { label: "Engineering", href: "/expertise#engineering" },
+      { label: "Growth", href: "/expertise#growth" },
+      { label: "AI", href: "/expertise#ai" },
+    ],
+  },
+  { label: "Work", href: "/work" },
+  {
+    label: "Company",
+    href: "/about",
+    submenu: [
+      { label: "About", href: "/about" },
+      { label: "Careers", href: "/about#careers" },
+    ],
+  },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navigation() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isMobileOpen ? "hidden" : "";
+  }, [isMobileOpen]);
 
   return (
     <>
-      <motion.nav
+      <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-          scrolled
-            ? "bg-[var(--nx-surface)] backdrop-blur-xl border-b border-[var(--nx-border)]"
+          isScrolled
+            ? "bg-black/80 backdrop-blur-xl border-b border-white/5"
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-[1400px] mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
-          {/* Logo */}
-          <a href="/" className="flex items-center gap-3 group">
-            <img
-              src="/logo-arlioz.svg"
-              alt="Arlioz"
-              className="h-9 w-auto"
-            />
-            <span
-              className="text-2xl tracking-[0.08em] text-[var(--nx-ivory)]"
+        <nav className="max-w-[1400px] mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
+          <Link href="/" className="relative z-10">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="text-2xl font-bold tracking-tight"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              ARLIOZ
-            </span>
-          </a>
+              <span className="text-white">fueled</span>
+            </motion.div>
+          </Link>
 
-          {/* Desktop Links */}
-          <div className="hidden md:flex items-center gap-10">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-[13px] tracking-[0.15em] uppercase text-[var(--nx-ivory-dim)] hover:text-[var(--nx-accent-from)] transition-colors duration-300"
-                style={{ fontFamily: "var(--font-mono)" }}
+          <div className="hidden lg:flex items-center gap-1">
+            {navItems.map((item) => (
+              <div
+                key={item.label}
+                className="relative"
+                onMouseEnter={() => item.submenu && setActiveSubmenu(item.label)}
+                onMouseLeave={() => setActiveSubmenu(null)}
               >
-                {link.label}
-              </a>
+                <Link
+                  href={item.href}
+                  className="px-5 py-2 text-[15px] text-white/70 hover:text-white transition-colors duration-300 font-medium"
+                >
+                  {item.label}
+                </Link>
+                <AnimatePresence>
+                  {item.submenu && activeSubmenu === item.label && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full left-0 pt-2"
+                    >
+                      <div className="bg-[#111] border border-white/10 rounded-xl p-2 min-w-[200px] backdrop-blur-xl">
+                        {item.submenu.map((sub) => (
+                          <Link
+                            key={sub.label}
+                            href={sub.href}
+                            className="block px-4 py-2.5 text-sm text-white/60 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200"
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             ))}
           </div>
 
-          {/* CTA + Theme Toggle */}
-          <div className="hidden md:flex items-center gap-4">
-            <ThemeToggle />
-            <a
-              href="/#contact"
-              className="inline-flex items-center gap-2 px-6 py-2.5 border border-[var(--nx-accent-from)] text-[var(--nx-accent-from)] text-[12px] tracking-[0.2em] uppercase hover:bg-[var(--nx-accent-from)] hover:text-[var(--nx-bg)] transition-all duration-300"
-              style={{ fontFamily: "var(--font-mono)" }}
-            >
-              Démarrer un projet
-              <span className="text-sm">&#8594;</span>
-            </a>
+          <div className="hidden lg:block">
+            <Link href="/contact" className="btn-primary text-sm">
+              Get in Touch
+            </Link>
           </div>
 
-          {/* Mobile Toggle */}
           <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden flex flex-col gap-1.5 w-8 h-8 items-center justify-center"
+            onClick={() => setIsMobileOpen(!isMobileOpen)}
+            className="lg:hidden relative z-10 w-10 h-10 flex flex-col items-center justify-center gap-1.5"
             aria-label="Toggle menu"
           >
-            <span
-              className={`w-6 h-px bg-[var(--nx-ivory)] transition-all duration-300 ${
-                mobileOpen ? "rotate-45 translate-y-[3px]" : ""
-              }`}
+            <motion.span
+              animate={isMobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+              className="w-6 h-[2px] bg-white block"
             />
-            <span
-              className={`w-6 h-px bg-[var(--nx-ivory)] transition-all duration-300 ${
-                mobileOpen ? "-rotate-45 -translate-y-[3px]" : ""
-              }`}
+            <motion.span
+              animate={isMobileOpen ? { opacity: 0 } : { opacity: 1 }}
+              className="w-6 h-[2px] bg-white block"
+            />
+            <motion.span
+              animate={isMobileOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+              className="w-6 h-[2px] bg-white block"
             />
           </button>
-        </div>
-      </motion.nav>
+        </nav>
+      </motion.header>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
-        {mobileOpen && (
+        {isMobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[99] bg-[var(--nx-bg)] pt-24 px-8 flex flex-col gap-8 md:hidden"
+            className="fixed inset-0 z-[99] bg-black"
           >
-            {navLinks.map((link, i) => (
-              <motion.a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.08 }}
-                className="text-3xl tracking-[0.05em] text-[var(--nx-ivory)] hover:text-[var(--nx-accent-from)] transition-colors"
-                style={{ fontFamily: "var(--font-display)" }}
+            <div className="flex flex-col items-start justify-center h-full px-8 pt-20">
+              {navItems.map((item, i) => (
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.08, duration: 0.4 }}
+                  className="w-full"
+                >
+                  <Link
+                    href={item.href}
+                    onClick={() => setIsMobileOpen(false)}
+                    className="block py-4 text-4xl font-bold text-white hover:text-[#6E5BFF] transition-colors border-b border-white/10"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {item.label}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.4 }}
+                className="mt-10"
               >
-                {link.label}
-              </motion.a>
-            ))}
-            <a
-              href="/#contact"
-              onClick={() => setMobileOpen(false)}
-              className="mt-8 inline-flex items-center gap-3 px-6 py-3 border border-[var(--nx-accent-from)] text-[var(--nx-accent-from)] text-[12px] tracking-[0.2em] uppercase self-start"
-              style={{ fontFamily: "var(--font-mono)" }}
-            >
-              Démarrer un projet &#8594;
-            </a>
-            <div className="mt-4">
-              <ThemeToggle />
+                <Link href="/contact" onClick={() => setIsMobileOpen(false)} className="btn-primary text-lg">
+                  Get in Touch
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         )}
